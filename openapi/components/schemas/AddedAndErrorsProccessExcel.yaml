@@ -1,0 +1,9 @@
+type: object
+properties:
+  added:
+    type: integer
+    format: int32
+  errors:
+    type: array
+    items:
+      $ref: ./ExcelError.yaml

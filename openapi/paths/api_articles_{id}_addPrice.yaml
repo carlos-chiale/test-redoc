@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Artículos
+  summary: Agregar precio a artículo
+  operationId: addPrice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: branchOfficeId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: price
+      in: query
+      required: true
+      schema:
+        type: number
+        format: double
+    - name: date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleResponse.yaml
+  security:
+    - Bearer Authentication: []

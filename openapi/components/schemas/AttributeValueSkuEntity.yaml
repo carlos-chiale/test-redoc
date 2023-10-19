@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  sku:
+    $ref: ./SkuEntity.yaml
+  attribute:
+    $ref: ./AttributeEntity.yaml
+  value:
+    type: string
+  valueEnum:
+    $ref: ./AttributeEnumEntity.yaml

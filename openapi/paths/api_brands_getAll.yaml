@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Marcas
+  summary: Obtener todas las marcas de la organización
+  operationId: getAllByOrganization_8
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListBrandProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

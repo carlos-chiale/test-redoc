@@ -1,0 +1,33 @@
+required:
+  - allProducts
+  - discountPercent
+  - forTotalArticles
+  - highPrice
+  - promotion
+  - quantityForPromotion
+  - quantityWithDiscount
+  - skuIds
+type: object
+properties:
+  promotion:
+    $ref: ./Promotion.yaml
+  quantityForPromotion:
+    type: integer
+    format: int32
+  quantityWithDiscount:
+    type: integer
+    format: int32
+  discountPercent:
+    type: number
+    format: double
+  allProducts:
+    type: boolean
+  highPrice:
+    type: boolean
+  forTotalArticles:
+    type: boolean
+  skuIds:
+    type: array
+    items:
+      type: integer
+      format: int64

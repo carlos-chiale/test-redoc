@@ -1,0 +1,8 @@
+type: object
+properties:
+  skuBranchOfficeOrDepositId:
+    type: integer
+    format: int64
+  stock:
+    type: integer
+    format: int32

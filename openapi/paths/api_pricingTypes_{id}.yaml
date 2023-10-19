@@ -1,0 +1,52 @@
+put:
+  tags:
+    - Tipos de pricing
+  summary: Editar tipo de pricing
+  operationId: editPricingType
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: description
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: code
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PricingTypeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Tipos de pricing
+  summary: Eliminar tipo de pricing
+  operationId: deletePricingType
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,35 @@
+post:
+  tags:
+    - Órdenes de reposición
+  summary: Crear borrador de órdenes de reposición para unidad de negocio
+  operationId: createDraftRepositionOrder
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: branchOfficeToId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/SkuRepositionOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/DraftRepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,59 @@
+type: object
+properties:
+  name:
+    type: string
+  location:
+    type: string
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - PHISIC
+      - ECOMMERCE
+  channel:
+    $ref: ./ChannelWithBusinessUnitProjection.yaml
+  url:
+    type: string
+  externalId:
+    type: string
+  roomSpace:
+    type: number
+    format: double
+  priceVariation:
+    type: number
+    format: double
+  exhibitionSpace:
+    type: number
+    format: double
+  marketplace:
+    type: string
+  belongsShoppingCenter:
+    type: boolean
+  shoppingCenter:
+    type: string
+  priceRestriction:
+    type: string
+  restrictedCategories:
+    type: array
+    items:
+      $ref: ./CategoryProjection.yaml
+  restrictedArticles:
+    type: array
+    items:
+      $ref: ./ArticleProjection.yaml
+  restrictedAcceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodProjection.yaml
+  salePoints:
+    type: array
+    items:
+      $ref: ./SalePointProjectionWithoutBranchOffice.yaml
+  branchOfficeType:
+    $ref: ./JSONObject.yaml
+  businessUnit:
+    type: array
+    items:
+      $ref: ./JSONObject.yaml

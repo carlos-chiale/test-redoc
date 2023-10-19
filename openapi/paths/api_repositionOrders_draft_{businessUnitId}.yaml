@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Órdenes de reposición
+  summary: Obtener borrador de órdenes de reposición para unidad de negocio
+  operationId: getDraftRepositionOrder
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/DraftRepositionOrderSavedProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

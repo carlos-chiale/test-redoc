@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  ticket:
+    $ref: ./TicketEntity.yaml
+  sku:
+    $ref: ./SkuEntity.yaml
+  unitPrice:
+    type: number
+    format: double
+  quantity:
+    type: integer
+    format: int32

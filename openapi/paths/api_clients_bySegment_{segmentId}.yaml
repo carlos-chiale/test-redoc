@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Clientes
+  summary: Obtener clientes por segmento de cliente
+  operationId: getClientsBySegment
+  parameters:
+    - name: segmentId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageClientProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Artículos
+  summary: Agregar atributo a sku
+  operationId: addAttributeValueSku
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: attributeId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: value
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: idEnum
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AttributeValueSkuResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - NOMINAL
+      - NOMINAL_SENT
+      - PERCENTAGE
+      - MAX_PRICE_PER_ARTICLE
+      - PERCENTAGE_SENT
+      - FREE_SHIPPING
+      - GIFT
+      - NOMINAL_DISCOUNT
+      - PRICE_TABLE
+  discountValue:
+    type: number
+    format: double
+  discountPercent:
+    type: number
+    format: double
+  gift:
+    $ref: ./SkuEntity.yaml
+  skus:
+    type: array
+    items:
+      $ref: ./SkuEntity.yaml
+  promotion:
+    $ref: ./PromotionEntity.yaml
+  regularPromotionType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

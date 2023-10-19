@@ -1,0 +1,92 @@
+post:
+  tags:
+    - Clientes
+  summary: Crear cliente
+  operationId: createClient
+  parameters:
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: lastname
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: birthdate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: telephone
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: cellphone
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: idTypeId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: idNumber
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: countryId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: stateId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: locality
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: address
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: email
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: fidelity
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: sex
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - MALE
+          - FEMALE
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ClientProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

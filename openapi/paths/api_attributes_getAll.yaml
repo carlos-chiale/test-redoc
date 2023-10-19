@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Atributos
+  summary: Obtener todos los atributos de la organización
+  operationId: getAllByOrganization_9
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListAttributesResponse.yaml
+  security:
+    - Bearer Authentication: []

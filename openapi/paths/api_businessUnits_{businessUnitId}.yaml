@@ -1,0 +1,59 @@
+put:
+  tags:
+    - Unidades de negocio
+  summary: Editar unidad de negocio
+  operationId: editBusinessUnit
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: languageId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: currencyId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BusinessUnitResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Unidades de negocio
+  summary: Eliminar unidad de negocio
+  operationId: deleteBusinessUnit
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BusinessUnitResponse.yaml
+  security:
+    - Bearer Authentication: []

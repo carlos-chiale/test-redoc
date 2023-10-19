@@ -1,0 +1,11 @@
+type: object
+properties:
+  message:
+    type: string
+  status:
+    type: string
+    enum:
+      - OK
+      - ERROR
+  data:
+    $ref: ./PageBranchOfficeProjectionIdName.yaml

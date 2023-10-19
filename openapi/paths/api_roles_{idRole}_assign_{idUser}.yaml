@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Roles
+  summary: Asignar rol a usuario
+  operationId: assignRole
+  parameters:
+    - name: idRole
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: idUser
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RoleResponse.yaml
+  security:
+    - Bearer Authentication: []

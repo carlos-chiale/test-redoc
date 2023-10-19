@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  principal:
+    type: boolean
+  supplier:
+    $ref: ./SupplierIdNameProjection.yaml
+  commercialTerm:
+    $ref: ./CommercialTermProjection.yaml
+  purchaseUnit:
+    $ref: ./PurchaseUnitProjection.yaml

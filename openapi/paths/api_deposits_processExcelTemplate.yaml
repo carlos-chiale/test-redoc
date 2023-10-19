@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Depósito
+  summary: Carga de depósitos por archivo excel
+  operationId: processExcelTemplate_1
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+            - file
+          type: object
+          properties:
+            file:
+              type: string
+              format: binary
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ExcelProcessResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Depósito
+  summary: Crear depósito
+  operationId: createDeposit
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Deposit.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/DepositProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

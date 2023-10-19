@@ -1,0 +1,60 @@
+put:
+  tags:
+    - Roles
+  summary: Editar rol
+  operationId: modifyRole
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: privilegesId
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: description
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RoleResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Roles
+  summary: Elimnar rol
+  operationId: deleteRole
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RoleResponse.yaml
+  security:
+    - Bearer Authentication: []

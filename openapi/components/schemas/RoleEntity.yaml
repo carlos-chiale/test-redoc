@@ -1,0 +1,21 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  name:
+    type: string
+  users:
+    type: array
+    items:
+      $ref: ./UserEntity.yaml
+  privileges:
+    type: array
+    items:
+      $ref: ./PrivilegeEntity.yaml
+  description:
+    type: string
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  organizationName:
+    type: string

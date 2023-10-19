@@ -1,0 +1,35 @@
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - WEEKLY
+      - MONTHLY
+      - ANUALLY
+  monday:
+    type: boolean
+  tuesday:
+    type: boolean
+  wednesday:
+    type: boolean
+  thursday:
+    type: boolean
+  friday:
+    type: boolean
+  saturday:
+    type: boolean
+  sunday:
+    type: boolean
+  dayMonthly:
+    type: integer
+    format: int32
+  dayAnually:
+    type: string
+    format: date
+  startTime:
+    $ref: ./LocalTime.yaml
+  endTime:
+    $ref: ./LocalTime.yaml
+  repeatInterval:
+    type: integer
+    format: int32

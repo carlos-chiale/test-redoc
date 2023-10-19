@@ -1,0 +1,26 @@
+post:
+  tags:
+    - Clientes
+  summary: Clonar segmento de cliente
+  operationId: cloneClientSegment
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: copyText
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ClientSegmentProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

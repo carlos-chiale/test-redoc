@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Órdenes de reposición
+  summary: Marcar artículo de orden como enviado
+  operationId: markAsReceived
+  parameters:
+    - name: estimatedDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+    - name: repositionOrderSkuId
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/RepositionOrderSentProjectionProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

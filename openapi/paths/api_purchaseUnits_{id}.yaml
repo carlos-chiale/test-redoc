@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Unidades de compra
+  summary: Obtener unidad de compra
+  operationId: getArticle
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PurchaseUnitResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Unidades de compra
+  summary: Editar unidad de compra
+  operationId: editPurchaseUnit
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/PurchaseUnit.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PurchaseUnitResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Unidades de compra
+  summary: Eliminar uniadd de compra
+  operationId: deletePurchaseUnit
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

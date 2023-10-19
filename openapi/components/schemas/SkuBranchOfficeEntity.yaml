@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  sku:
+    $ref: ./SkuEntity.yaml
+  branchOffice:
+    $ref: ./BranchOfficeEntity.yaml
+  stock:
+    type: integer
+    format: int32
+  unsupply:
+    type: boolean

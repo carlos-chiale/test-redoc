@@ -1,0 +1,11 @@
+type: object
+properties:
+  sku:
+    $ref: ./SkuIdNameStockProjection.yaml
+  stockoutDate:
+    type: string
+    format: date
+  repositionOrder:
+    type: array
+    items:
+      $ref: ./RepositionOrderProjection.yaml

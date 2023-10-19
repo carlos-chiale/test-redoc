@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Métodos de pago aceptados
+  summary: Obtener tipos de método de pago aceptado
+  operationId: getTypes
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListAcceptedPaymentMethodTypeResponse.yaml
+  security:
+    - Bearer Authentication: []

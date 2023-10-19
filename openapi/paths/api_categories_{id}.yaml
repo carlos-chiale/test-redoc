@@ -1,0 +1,103 @@
+get:
+  tags:
+    - Categorías
+  summary: Obtener  categoría
+  operationId: getCategory
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CategoryResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Categorías
+  summary: Editar categoría
+  operationId: editCategory
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: description
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: fatherId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: enable
+      in: query
+      required: true
+      schema:
+        type: boolean
+    - name: roundingTypeId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: businessUnitsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CategoryResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Categorías
+  summary: Eliminar categoría
+  operationId: deleteCategory
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CategoryEntity.yaml
+  security:
+    - Bearer Authentication: []

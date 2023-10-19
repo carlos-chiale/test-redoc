@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  sku:
+    $ref: ./SkuIdNameProjection.yaml
+  deposit:
+    $ref: ./DepositIdNameProjection.yaml
+  stock:
+    type: integer
+    format: int32

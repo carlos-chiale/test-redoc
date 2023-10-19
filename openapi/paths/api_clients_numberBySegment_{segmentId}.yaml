@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Clientes
+  summary: Obtener clientes por segmento de cliente
+  operationId: getNumberOfClientsBySegment
+  parameters:
+    - name: segmentId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/IntegerResponse.yaml
+  security:
+    - Bearer Authentication: []

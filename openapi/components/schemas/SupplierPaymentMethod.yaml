@@ -1,0 +1,10 @@
+required:
+  - name
+  - paymentDeadlineDays
+type: object
+properties:
+  name:
+    type: string
+  paymentDeadlineDays:
+    type: integer
+    format: int32

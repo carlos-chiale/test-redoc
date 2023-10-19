@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Depósito
+  summary: Obtener todos los depósitos de la organización
+  operationId: getAllByOrganization_4
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListDepositIdNameProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

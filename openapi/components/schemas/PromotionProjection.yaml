@@ -1,0 +1,96 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  description:
+    type: string
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryIdAndNameProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  brands:
+    type: array
+    items:
+      $ref: ./BrandProjection.yaml
+  acceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodProjection.yaml
+  recurrence:
+    $ref: ./RecurrenceProjection.yaml
+  quantityApplications:
+    type: integer
+    format: int32
+  quantityPerBranchOffice:
+    type: integer
+    format: int32
+  quantityPerClient:
+    type: integer
+    format: int32
+  quantityPerArticle:
+    type: integer
+    format: int32
+  minimumTicket:
+    type: number
+    format: double
+  maximumTicket:
+    type: number
+    format: double
+  accumulateOtherPromotions:
+    type: boolean
+  distributeLines:
+    type: boolean
+  binRangeMax:
+    type: integer
+    format: int32
+  binRangeMin:
+    type: integer
+    format: int32
+  bines:
+    type: array
+    items:
+      $ref: ./PromotionBinProjection.yaml
+  clientSegments:
+    type: array
+    items:
+      $ref: ./ClientSegmentOnlyNameProjection.yaml
+  regularPromotion:
+    $ref: ./RegularPromotionProjection.yaml
+  buyTogetherPromotion:
+    $ref: ./BuyTogetherPromotionProjection.yaml
+  mxnPromotion:
+    $ref: ./MxnPromotionProjection.yaml
+  buyOneGetOnePromotion:
+    $ref: ./BuyOneGetOnePromotionProjection.yaml
+  progressiveDiscountPromotion:
+    $ref: ./ProgressiveDiscountPromotionProjection.yaml
+  startDay:
+    type: string
+    format: date
+  endDay:
+    type: string
+    format: date
+  type:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  status:
+    $ref: ./JSONObject.yaml
+  origin:
+    $ref: ./JSONObject.yaml

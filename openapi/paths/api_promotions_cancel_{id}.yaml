@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Promociones
+  summary: Cancelar promoción
+  operationId: cancelPromotion
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PromotionProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

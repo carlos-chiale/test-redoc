@@ -1,0 +1,56 @@
+required:
+  - belongsShoppingCenter
+  - name
+  - type
+type: object
+properties:
+  externalId:
+    type: string
+  name:
+    type: string
+  type:
+    $ref: ./BranchOfficeType.yaml
+  location:
+    type: string
+  url:
+    type: string
+  roomSpace:
+    type: number
+    format: double
+  priceVariation:
+    type: number
+    format: double
+  exhibitionSpace:
+    type: number
+    format: double
+  marketplace:
+    type: string
+  belongsShoppingCenter:
+    type: boolean
+  shoppingCenter:
+    type: string
+  priceRestriction:
+    type: string
+  businessUnitsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  restrictedCategoriesIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  restrictedArticlesIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  restrictedAcceptedPaymentMethodsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  channelId:
+    type: integer
+    format: int64

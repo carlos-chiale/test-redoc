@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Organización
+  summary: Crear organización con usuario administrador
+  description: >-
+    Crea una nueva organización, con el usuario administrador (y contraseña que
+    se elija). Se envía un correo para verificar la cuenta y así activar tanto
+    el usuario como la organización.
+  operationId: registerOrganizationWithAdminUser
+  parameters:
+    - name: organizationName
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: userEmail
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: password
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/UserAndOrganizationResponse.yaml

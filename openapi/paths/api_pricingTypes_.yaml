@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Tipos de pricing
+  summary: Crear tipo de pricing
+  operationId: createPricingType
+  parameters:
+    - name: description
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: code
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PricingTypeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

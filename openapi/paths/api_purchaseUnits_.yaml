@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Unidades de compra
+  summary: Crear unidades de compra
+  operationId: createPurchaseUnit
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/PurchaseUnit.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PurchaseUnitResponse.yaml
+  security:
+    - Bearer Authentication: []

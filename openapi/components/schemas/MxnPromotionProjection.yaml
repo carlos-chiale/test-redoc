@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  skus:
+    type: array
+    items:
+      $ref: ./SkuIdNameProjection.yaml
+  discountPercent:
+    type: number
+    format: double
+  quantityForPromotion:
+    type: integer
+    format: int32
+  quantityWithDiscount:
+    type: integer
+    format: int32
+  allProducts:
+    type: boolean
+  highPrice:
+    type: boolean
+  forTotalArticles:
+    type: boolean

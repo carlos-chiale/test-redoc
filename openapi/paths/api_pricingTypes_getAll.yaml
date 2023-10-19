@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Tipos de pricing
+  summary: Obtener todos los tipo de pricing de la organización
+  operationId: getAllByOrganization_3
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListPricingTypeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

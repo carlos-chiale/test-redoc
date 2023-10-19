@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Unidades de negocio
+  summary: Crear unidad de negocio
+  operationId: createBusinessUnit
+  parameters:
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: languageId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: currencyId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BusinessUnitResponse.yaml
+  security:
+    - Bearer Authentication: []

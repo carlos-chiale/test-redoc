@@ -1,0 +1,43 @@
+get:
+  tags:
+    - Autorización
+  summary: Confirmar usuario
+  description: Confirmar usuario con un token.
+  operationId: confirmUser_1
+  parameters:
+    - name: token
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/LoginResponse.yaml
+post:
+  tags:
+    - Autorización
+  summary: Confirmar usuario y setear contraseña
+  description: Confirmar usuario con un token y setear contraseña.
+  operationId: confirmUser
+  parameters:
+    - name: token
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: password
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/LoginResponse.yaml

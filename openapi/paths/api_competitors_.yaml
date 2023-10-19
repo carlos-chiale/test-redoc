@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Competidores
+  summary: Crear competidor
+  operationId: createCompetitor
+  parameters:
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: website
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: articlesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CompetitorProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

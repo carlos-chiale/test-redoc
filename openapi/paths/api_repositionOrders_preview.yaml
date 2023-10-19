@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Órdenes de reposición
+  summary: Vista de previa órdenes de reposición
+  operationId: createRepositionOrderPreview
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/SkuRepositionOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListRepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

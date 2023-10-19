@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  date:
+    type: string
+    format: date
+  quantity:
+    type: integer
+    format: int32
+  whoReceived:
+    type: string
+  observations:
+    type: string

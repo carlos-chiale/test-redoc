@@ -1,0 +1,8 @@
+type: object
+properties:
+  businessUnit:
+    $ref: ./BusinessUnitIdNameProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml

@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Clientes
+  summary: Obtener todos los segmentos de clientes
+  operationId: getAllSegments
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListClientSegmentProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

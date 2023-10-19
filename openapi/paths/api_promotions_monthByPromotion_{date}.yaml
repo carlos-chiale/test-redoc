@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Promociones
+  summary: Obtener promociónes del mes
+  operationId: getPromotionsOfMontByMonth
+  parameters:
+    - name: date
+      in: path
+      required: true
+      schema:
+        type: string
+        format: date
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Métodos de pago aceptados
+  summary: Crear método de pago aceptado
+  operationId: createAcceptedPaymentMethod
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AcceptedPaymentMethod.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

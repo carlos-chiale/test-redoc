@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Marcas
+  summary: Crear marca
+  operationId: createBrand
+  parameters:
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: description
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BrandProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

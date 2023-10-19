@@ -1,0 +1,48 @@
+put:
+  tags:
+    - Métodos de pago de proveedores
+  summary: Editar método de pago de proveedor
+  operationId: editSupplierPaymentMethod
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SupplierPaymentMethod.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Métodos de pago de proveedores
+  summary: Eliminar método de pago de proveedor
+  operationId: removeSupplierPaymentMethod
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Proveedores
+  summary: Obtener todos los proveedores de la organización
+  operationId: getAllByOrganization
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierIdNameResponse.yaml
+  security:
+    - Bearer Authentication: []

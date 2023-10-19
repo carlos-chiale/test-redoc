@@ -1,0 +1,12 @@
+get:
+  tags:
+    - Chequeo de salud
+  summary: Chequeo
+  operationId: health
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: string

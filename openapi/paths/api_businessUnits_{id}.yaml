@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Unidades de negocio
+  summary: Obener unidad de negocio
+  operationId: getBussinesUnit
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BusinessUnitProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

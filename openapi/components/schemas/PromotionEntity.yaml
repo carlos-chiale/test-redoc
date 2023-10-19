@@ -1,0 +1,131 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  name:
+    type: string
+  description:
+    type: string
+  status:
+    type: string
+    enum:
+      - CREATED
+      - SUGGESTED
+      - SCHEDULED
+      - IN_ACTION
+      - CANCEL
+      - REJECTED
+      - FINISHED
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  startDay:
+    type: string
+    format: date
+  endDay:
+    type: string
+    format: date
+  recurrence:
+    $ref: ./RecurrenceEntity.yaml
+  origin:
+    type: string
+    enum:
+      - MANUAL
+      - SUGGESTED
+  type:
+    type: string
+    enum:
+      - REGULAR
+      - BUY_TOGETHER
+      - MxN
+      - PROGRESSIVE_DISCOUNT
+      - BOGO
+  clientSegments:
+    type: array
+    items:
+      $ref: ./ClientSegmentEntity.yaml
+  brands:
+    type: array
+    items:
+      $ref: ./BrandEntity.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryEntity.yaml
+  acceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodEntity.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeEntity.yaml
+  regularPromotion:
+    $ref: ./RegularPromotionEntity.yaml
+  buyTogetherPromotion:
+    $ref: ./BuyTogetherPromotionEntity.yaml
+  mxnPromotion:
+    $ref: ./MxnPromotionEntity.yaml
+  progressiveDiscountPromotion:
+    $ref: ./ProgressiveDiscountPromotionEntity.yaml
+  buyOneGetOnePromotion:
+    $ref: ./BuyOneGetOnePromotionEntity.yaml
+  quantityApplications:
+    type: integer
+    format: int32
+  quantityPerBranchOffice:
+    type: integer
+    format: int32
+  quantityPerClient:
+    type: integer
+    format: int32
+  quantityPerArticle:
+    type: integer
+    format: int32
+  accumulateOtherPromotions:
+    type: boolean
+  minimumTicket:
+    type: number
+    format: double
+  maximumTicket:
+    type: number
+    format: double
+  distributeLines:
+    type: boolean
+  binRangeMax:
+    type: integer
+    format: int32
+  binRangeMin:
+    type: integer
+    format: int32
+  bines:
+    type: array
+    items:
+      $ref: ./PromotionBinEntity.yaml
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  promotionType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  promotionStatus:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  promotionOrigin:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

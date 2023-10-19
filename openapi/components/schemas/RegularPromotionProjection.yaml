@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  skus:
+    type: array
+    items:
+      $ref: ./SkuIdNameProjection.yaml
+  discountValue:
+    type: number
+    format: double
+  discountPercent:
+    type: number
+    format: double
+  gift:
+    $ref: ./SkuIdNameProjection.yaml
+  type:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

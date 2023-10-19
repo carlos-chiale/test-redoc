@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Organización
+  summary: Obtener organización por id
+  operationId: getOrganization
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OrganizationProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Organización
+  summary: Modificar organización
+  operationId: modifyOrganization
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Organization.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OrganizationEntityResponse.yaml
+  security:
+    - Bearer Authentication: []

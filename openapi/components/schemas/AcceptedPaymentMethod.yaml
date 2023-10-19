@@ -1,0 +1,22 @@
+required:
+  - name
+type: object
+properties:
+  externalId:
+    type: string
+  name:
+    type: string
+  typeId:
+    type: integer
+    format: int64
+  feeRangeMin:
+    type: integer
+    format: int32
+  feeRangeMax:
+    type: integer
+    format: int32
+  businessUnitsIds:
+    type: array
+    items:
+      type: integer
+      format: int64

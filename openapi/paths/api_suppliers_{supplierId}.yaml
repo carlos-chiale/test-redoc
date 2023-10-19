@@ -1,0 +1,99 @@
+get:
+  tags:
+    - Proveedores
+  summary: Obtener proveedor
+  operationId: getSupplier
+  parameters:
+    - name: supplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Proveedores
+  summary: Editar proveedor
+  operationId: editSupplier
+  parameters:
+    - name: supplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: website
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: catalogueLink
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: businessUnitsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: supplierPaymentMethodIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Proveedores
+  summary: Eliminar proveedor
+  operationId: deleteSupplier
+  parameters:
+    - name: supplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierEntity.yaml
+  security:
+    - Bearer Authentication: []

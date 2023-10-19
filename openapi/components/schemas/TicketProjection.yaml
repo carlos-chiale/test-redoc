@@ -1,0 +1,51 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  channel:
+    $ref: ./ChannelIdTypeBusinessUnitProjection.yaml
+  currency:
+    $ref: ./CurrencyProjection.yaml
+  date:
+    type: string
+    format: date
+  code:
+    type: integer
+    format: int32
+  fidelity:
+    type: string
+  acceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodProjection.yaml
+  clientRut:
+    type: integer
+    format: int32
+  subtotal:
+    type: number
+    format: double
+  iva:
+    type: number
+    format: double
+  total:
+    type: number
+    format: double
+  accumulatePoints:
+    type: number
+    format: double
+  consumedPoints:
+    type: number
+    format: double
+  skusWithUnitPrice:
+    type: array
+    items:
+      $ref: ./TicketSkuProjection.yaml
+  salePoint:
+    $ref: ./SalePointBranchOfficeDataProjection.yaml
+  promotions:
+    type: array
+    items:
+      $ref: ./PromotionIdNameTypeDistributeProjection.yaml
+  documentType:
+    $ref: ./JSONObject.yaml

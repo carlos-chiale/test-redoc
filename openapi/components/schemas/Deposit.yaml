@@ -1,0 +1,29 @@
+required:
+  - capacity
+  - name
+type: object
+properties:
+  externalId:
+    type: string
+  name:
+    type: string
+  capacity:
+    type: number
+    format: double
+  address:
+    type: string
+  branchOfficesIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  businessUnitsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  categoriesIds:
+    type: array
+    items:
+      type: integer
+      format: int64

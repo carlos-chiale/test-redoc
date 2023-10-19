@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Métodos de pago aceptados
+  summary: Obtener método de pago aceptado por unidad de negocio
+  operationId: getByBusinessUnitId
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ListAcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

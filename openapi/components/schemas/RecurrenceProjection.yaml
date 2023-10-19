@@ -1,0 +1,39 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  endTime:
+    $ref: ./LocalTime.yaml
+  startTime:
+    $ref: ./LocalTime.yaml
+  monday:
+    type: boolean
+  tuesday:
+    type: boolean
+  wednesday:
+    type: boolean
+  thursday:
+    type: boolean
+  friday:
+    type: boolean
+  saturday:
+    type: boolean
+  sunday:
+    type: boolean
+  dayMonthly:
+    type: integer
+    format: int32
+  dayAnually:
+    type: string
+    format: date
+  repeatInterval:
+    type: integer
+    format: int32
+  type:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

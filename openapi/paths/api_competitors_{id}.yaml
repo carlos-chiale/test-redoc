@@ -1,0 +1,86 @@
+get:
+  tags:
+    - Competidores
+  summary: Obtener Competidor
+  operationId: getArticle_1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CompetitorProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Competidores
+  summary: Editar competidor
+  operationId: editCompetitor
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: website
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: articlesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/CompetitorProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Competidores
+  summary: Eliminar competidor
+  operationId: deleteCompetitor
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

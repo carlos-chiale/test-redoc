@@ -1,0 +1,10 @@
+type: object
+properties:
+  realName:
+    type: string
+  businessName:
+    type: string
+  rut:
+    type: string
+  address:
+    type: string

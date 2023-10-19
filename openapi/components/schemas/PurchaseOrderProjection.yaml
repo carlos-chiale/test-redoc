@@ -1,0 +1,32 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  supplier:
+    $ref: ./SupplierIdNameProjection.yaml
+  branchOffice:
+    $ref: ./BranchOfficeProjectionIdName.yaml
+  createdDate:
+    type: string
+    format: date
+  deposit:
+    $ref: ./DepositProjection.yaml
+  estimatedDeliveryDate:
+    type: string
+    format: date
+  orderOrigin:
+    $ref: ./JSONObject.yaml
+  purchaseOrderAnalysis:
+    $ref: ./JSONObject.yaml
+  notCompletedReason:
+    type: string
+  orderStatus:
+    $ref: ./JSONObject.yaml
+  skus:
+    type: array
+    properties:
+      empty:
+        type: boolean
+    items:
+      type: object

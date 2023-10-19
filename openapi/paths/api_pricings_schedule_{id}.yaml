@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Pricings
+  summary: Agendar pricing
+  operationId: schedule_1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: startDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time
+    - name: endDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PricingProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

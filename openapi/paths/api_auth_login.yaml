@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Autorización
+  summary: Hacer login en la aplicación
+  description: >-
+    Luego de loguearse, se obtiene un token el cual se utilizará en todos los
+    llamados del sistema.
+  operationId: login
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Login.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/LoginResponse.yaml

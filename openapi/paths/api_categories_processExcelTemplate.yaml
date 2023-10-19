@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Categorías
+  summary: Carga de articulos por archivo excel
+  operationId: processExcelTemplate_3
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+            - file
+          type: object
+          properties:
+            file:
+              type: string
+              format: binary
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ExcelProcessResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,34 @@
+required:
+  - promotion
+  - regularPromotionType
+  - skuIds
+type: object
+properties:
+  promotion:
+    $ref: ./Promotion.yaml
+  regularPromotionType:
+    type: string
+    enum:
+      - NOMINAL
+      - NOMINAL_SENT
+      - PERCENTAGE
+      - MAX_PRICE_PER_ARTICLE
+      - PERCENTAGE_SENT
+      - FREE_SHIPPING
+      - GIFT
+      - NOMINAL_DISCOUNT
+      - PRICE_TABLE
+  skuIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  discountValue:
+    type: number
+    format: double
+  discountPercent:
+    type: number
+    format: double
+  giftId:
+    type: integer
+    format: int64

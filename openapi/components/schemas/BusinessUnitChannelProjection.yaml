@@ -1,0 +1,15 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjection.yaml
+  channels:
+    type: array
+    items:
+      $ref: ./ChannelIdTypeProjection.yaml

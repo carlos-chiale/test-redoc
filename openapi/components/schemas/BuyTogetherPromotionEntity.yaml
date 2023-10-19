@@ -1,0 +1,21 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  discountFirstList:
+    type: number
+    format: double
+  discountSecondList:
+    type: number
+    format: double
+  firstList:
+    type: array
+    items:
+      $ref: ./SkuEntity.yaml
+  secondList:
+    type: array
+    items:
+      $ref: ./SkuEntity.yaml
+  promotion:
+    $ref: ./PromotionEntity.yaml

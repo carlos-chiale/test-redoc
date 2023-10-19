@@ -1,0 +1,14 @@
+type: object
+properties:
+  token:
+    type: string
+  privileges:
+    type: array
+    items:
+      $ref: ./PrivilegeIdNameProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml
+  superAdmin:
+    type: boolean

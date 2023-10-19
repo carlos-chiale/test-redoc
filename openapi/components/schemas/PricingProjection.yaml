@@ -1,0 +1,63 @@
+type: object
+properties:
+  name:
+    type: string
+  value:
+    type: number
+    format: double
+  id:
+    type: integer
+    format: int64
+  percent:
+    type: boolean
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleIdNameProjection.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryIdAndNameProjection.yaml
+  allConditions:
+    type: boolean
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml
+  newPrice:
+    type: number
+    format: double
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  pricingType:
+    $ref: ./PricingTypeProjection.yaml
+  startDay:
+    type: string
+    format: date
+  organization:
+    $ref: ./OrganizationProjection.yaml
+  pricingOrigin:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  pricingAnalysis:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  endDay:
+    type: string
+    format: date
+  status:
+    $ref: ./JSONObject.yaml
+  endPrice:
+    $ref: ./JSONObject.yaml

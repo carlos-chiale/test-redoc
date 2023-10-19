@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Proveedores
+  summary: Crear proveedor
+  operationId: createSupplier
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Supplier.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierResponse.yaml
+  security:
+    - Bearer Authentication: []

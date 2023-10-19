@@ -1,0 +1,51 @@
+get:
+  tags:
+    - Métodos de pago aceptados
+  summary: Consultar métodos de pago paginado
+  operationId: query_7
+  parameters:
+    - name: id
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/PageAcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

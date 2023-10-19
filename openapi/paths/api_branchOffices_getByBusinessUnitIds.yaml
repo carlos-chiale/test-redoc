@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Sucursales
+  summary: Obtener sucursales por unidades de negocio
+  operationId: getBranchOfficesByBusinessUnits
+  parameters:
+    - name: businessUnitIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeByBusinessUnitResponse.yaml
+  security:
+    - Bearer Authentication: []

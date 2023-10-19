@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  skus:
+    type: array
+    items:
+      $ref: ./SkuIdNameProjection.yaml
+  bogopromotionType:
+    $ref: ./JSONObject.yaml
+  gift:
+    $ref: ./SkuIdNameProjection.yaml

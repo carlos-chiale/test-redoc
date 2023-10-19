@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Órdenes de compra
+  summary: Vista previa de orden de compra
+  operationId: createPurchaseOrdersPreview
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/SkuPurchaseOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListPurchaseOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

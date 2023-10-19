@@ -1,0 +1,93 @@
+post:
+  tags:
+    - Clientes
+  summary: Crear segmento de cliente
+  operationId: createClientSegment
+  parameters:
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: description
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: minAge
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+    - name: maxAge
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+    - name: sex
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - MALE
+          - FEMALE
+    - name: countryIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: stateIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: articlesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: brandsIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: categoriesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: branchOfficesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ClientSegmentProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

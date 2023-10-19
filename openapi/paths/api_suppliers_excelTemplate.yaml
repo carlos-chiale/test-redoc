@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Proveedores
+  summary: Obtener plantilla de carga en excel
+  operationId: getExcelTemplate
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              type: string
+              format: byte
+  security:
+    - Bearer Authentication: []

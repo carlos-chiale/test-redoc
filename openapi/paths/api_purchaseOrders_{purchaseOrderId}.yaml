@@ -1,0 +1,21 @@
+delete:
+  tags:
+    - Órdenes de compra
+  summary: Eliminar orden de compra
+  operationId: deleteArticle_2
+  parameters:
+    - name: purchaseOrderId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

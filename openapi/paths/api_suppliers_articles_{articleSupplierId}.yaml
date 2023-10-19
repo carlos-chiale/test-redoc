@@ -1,0 +1,48 @@
+put:
+  tags:
+    - Proveedores
+  summary: Editar artículo de proveedor
+  operationId: editArticle
+  parameters:
+    - name: articleSupplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ArticleSuppliers.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Proveedores
+  summary: Eliminar artículo de proveedor
+  operationId: deleteArticle
+  parameters:
+    - name: articleSupplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleSuppliersEntity.yaml
+  security:
+    - Bearer Authentication: []

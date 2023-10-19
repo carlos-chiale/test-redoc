@@ -1,0 +1,20 @@
+type: object
+properties:
+  sheet:
+    type: string
+  row:
+    type: integer
+    format: int32
+  column:
+    type: integer
+    format: int32
+  error:
+    type: string
+    enum:
+      - OBLIGATORY_FIELD
+      - INCORRECT_TYPE
+      - NOT_FOUND
+  error_es:
+    type: string
+  error_en:
+    type: string

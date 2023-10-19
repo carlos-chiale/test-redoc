@@ -1,0 +1,21 @@
+delete:
+  tags:
+    - Artículos
+  summary: Eliminar precio de artículo
+  operationId: deletePrice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleEntity.yaml
+  security:
+    - Bearer Authentication: []

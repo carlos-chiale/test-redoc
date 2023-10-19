@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Pricings
+  summary: Crear pricing
+  operationId: createPricing
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Pricing.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PricingProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

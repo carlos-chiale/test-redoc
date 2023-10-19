@@ -1,0 +1,40 @@
+get:
+  tags:
+    - Clientes
+  summary: Consultar segmento de clientes paginado
+  operationId: query_3
+  parameters:
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/PageClientSegmentOnlyNameProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - GIFT
+      - FREE_SHIPPING
+      - MAX_PRICE_PER_ARTICLE
+  gift:
+    $ref: ./SkuEntity.yaml
+  skus:
+    type: array
+    items:
+      $ref: ./SkuEntity.yaml
+  promotion:
+    $ref: ./PromotionEntity.yaml
+  bogopromotionType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

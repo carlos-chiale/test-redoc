@@ -1,0 +1,48 @@
+required:
+  - endPrice
+  - name
+  - pricingTypeId
+type: object
+properties:
+  name:
+    type: string
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  percent:
+    type: boolean
+  endPrice:
+    type: string
+    enum:
+      - BACK_TO_DEFAULT
+      - KEEP_THIS_PRICE
+      - NEW_PRICE
+  newPrice:
+    type: number
+    format: double
+  value:
+    type: number
+    format: double
+  pricingTypeId:
+    type: integer
+    format: int64
+  articlesIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  branchOfficeIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  categoryIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  allConditions:
+    type: boolean

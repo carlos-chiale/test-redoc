@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Artículos
+  summary: Obtener todos los artículos y sus skus de la organización
+  operationId: getAllWithSkuByOrganization
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListArticleIdNameSkusProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,39 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  state:
+    $ref: ./StateWithoutCountryProjection.yaml
+  address:
+    type: string
+  country:
+    $ref: ./CountryProjection.yaml
+  email:
+    type: string
+  lastname:
+    type: string
+  birthdate:
+    type: string
+    format: date
+  telephone:
+    type: string
+  idType:
+    $ref: ./IdTypeProjection.yaml
+  idNumber:
+    type: string
+  locality:
+    type: string
+  fidelity:
+    type: string
+  cellphone:
+    type: string
+  sex:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

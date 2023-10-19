@@ -1,80 +1,447 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
-  version: 1.0.0
-  title: Example.com
-  termsOfService: https://example.com/terms/
-  contact:
-    email: contact@example.com
-    url: http://example.com/contact
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  x-logo:
-    url: https://redocly.github.io/openapi-template/logo.png
-  description: >
-    This is an **example** API to demonstrate features of the OpenAPI
-    specification.
-
-    # Introduction
-
-    This API definition is intended to to be a good starting point for
-    describing your API in [OpenAPI/Swagger
-    format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).
-
-    It also demonstrates features of the
-    [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-    and the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-    the standard OpenAPI syntax, we use a few 
-    [vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
-    # OpenAPI Specification
-
-    The goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which
-    allows both humans and computers to discover and understand the capabilities
-    of the service without access to source
-    code, documentation, or through network traffic inspection. When properly
-    defined via OpenAPI, a consumer can 
-    understand and interact with the remote service with a minimal amount of
-    implementation logic. Similar to what
-    interfaces have done for lower-level programming, OpenAPI removes the
-    guesswork in calling the service.
-tags:
-  - name: Echo
-    description: Example echo operations.
-  - name: User
-    description: Operations about users.
-  - name: Tag
-    description: This is a tag description.
+  title: Bright Market API Docs
+  description: Documentación de los servicios de Bright Market
 servers:
-  - url: https://{tenant}/api/v1
-    variables:
-      tenant:
-        default: www
-        description: Your tenant id
-  - url: https://example.com/api/v1
+  - url: /
+    description: Test
+tags:
+  - name: Categorías
+    description: Servicios referidos a las categorías
+  - name: Depósito
+    description: Servicios referidos a los depósitos
+  - name: Promociones
+    description: Servicios referidos a las promociones
+  - name: Roles
+    description: Servicios referidos a los roles
+  - name: Tickets
+    description: Servicios referidos a los tickets
+  - name: Sucursales
+    description: Servicios referidos a las sucursales
+  - name: Atributos
+    description: Servicios referidos a los atributos
+  - name: Tipos de promoción
+    description: Servicios referidos a los tipos de promoción
+  - name: Marcas
+    description: Servicios referidos a las marcas
+  - name: Proveedores
+    description: Servicios referidos a los proveedores
+  - name: Métodos de pago de proveedores
+    description: Servicios referidos a los métodos de pago de proveedores
+  - name: Unidades de compra
+    description: Servicios referidos a las unidades de compra
+  - name: Chequeo de salud
+    description: Servicios para chequear el servidor
+  - name: Autorización
+    description: Servicios para autenticación, registro de usuarios y organizaciones
+  - name: Órdenes de compra
+    description: Servicios referidos a las órdenes de compra
+  - name: Pricings
+    description: Servicios referidos a los pricings
+  - name: Usuarios
+    description: Servicios referidos a los usuarios
+  - name: Órdenes de reposición
+    description: Servicios referidos a las órdenes de reposición
+  - name: Tipos de pricing
+    description: Servicios referidos a los tipos de pricing
+  - name: Organización
+    description: Servicios referidos a las organizaciones
+  - name: Métodos de pago aceptados
+    description: Servicios referidos a los métodos de pago aceptados
+  - name: Artículos
+    description: Servicios referidos a los artículos
+  - name: Competidores
+    description: Servicios referidos a los competidores
+  - name: Unidades de negocio
+    description: Servicios referidos a las unidades de negocio
+  - name: Clientes
+    description: Servicios referidos a los clientes y segmentos de clientes
 paths:
-  /users/{username}:
-    $ref: paths/users_{username}.yaml
-  /echo:
-    $ref: paths/echo.yaml
-  /pathItem:
-    $ref: paths/pathItem.yaml
-  /pathItemWithExamples:
-    $ref: paths/pathItemWithExamples.yaml
+  /api/users/{id}:
+    $ref: paths/api_users_{id}.yaml
+  /api/tickets/{id}:
+    $ref: paths/api_tickets_{id}.yaml
+  /api/suppliers/{supplierId}:
+    $ref: paths/api_suppliers_{supplierId}.yaml
+  /api/suppliers/contacts/{supplierContactId}:
+    $ref: paths/api_suppliers_contacts_{supplierContactId}.yaml
+  /api/suppliers/articles/{articleSupplierId}:
+    $ref: paths/api_suppliers_articles_{articleSupplierId}.yaml
+  /api/supplierPaymentMethod/{id}:
+    $ref: paths/api_supplierPaymentMethod_{id}.yaml
+  /api/roles/{id}:
+    $ref: paths/api_roles_{id}.yaml
+  /api/roles/assignToUser/{idUser}:
+    $ref: paths/api_roles_assignToUser_{idUser}.yaml
+  /api/repositionOrders/{id}:
+    $ref: paths/api_repositionOrders_{id}.yaml
+  /api/repositionOrders/changeStatus/{id}:
+    $ref: paths/api_repositionOrders_changeStatus_{id}.yaml
+  /api/purchaseUnits/{id}:
+    $ref: paths/api_purchaseUnits_{id}.yaml
+  /api/purchaseOrders/{id}:
+    $ref: paths/api_purchaseOrders_{id}.yaml
+  /api/purchaseOrders/changeStatus/{id}:
+    $ref: paths/api_purchaseOrders_changeStatus_{id}.yaml
+  /api/promotions/regular/{id}:
+    $ref: paths/api_promotions_regular_{id}.yaml
+  /api/promotions/progressiveDiscount/{id}:
+    $ref: paths/api_promotions_progressiveDiscount_{id}.yaml
+  /api/promotions/mxn/{id}:
+    $ref: paths/api_promotions_mxn_{id}.yaml
+  /api/promotions/buyTogether/{id}:
+    $ref: paths/api_promotions_buyTogether_{id}.yaml
+  /api/promotions/buyOneGetOne/{id}:
+    $ref: paths/api_promotions_buyOneGetOne_{id}.yaml
+  /api/promotionTypes/{id}:
+    $ref: paths/api_promotionTypes_{id}.yaml
+  /api/pricings/{id}:
+    $ref: paths/api_pricings_{id}.yaml
+  /api/pricingTypes/{id}:
+    $ref: paths/api_pricingTypes_{id}.yaml
+  /api/organizations/{id}:
+    $ref: paths/api_organizations_{id}.yaml
+  /api/deposits/{id}:
+    $ref: paths/api_deposits_{id}.yaml
+  /api/deposits/editStocks:
+    $ref: paths/api_deposits_editStocks.yaml
+  /api/deposits/editStock/{id}:
+    $ref: paths/api_deposits_editStock_{id}.yaml
+  /api/competitors/{id}:
+    $ref: paths/api_competitors_{id}.yaml
+  /api/clients/{id}:
+    $ref: paths/api_clients_{id}.yaml
+  /api/clients/segments/{id}:
+    $ref: paths/api_clients_segments_{id}.yaml
+  /api/categories/{id}:
+    $ref: paths/api_categories_{id}.yaml
+  /api/businessUnits/{businessUnitId}:
+    $ref: paths/api_businessUnits_{businessUnitId}.yaml
+  /api/businessUnits/channel/{channelId}:
+    $ref: paths/api_businessUnits_channel_{channelId}.yaml
+  /api/brands/{id}:
+    $ref: paths/api_brands_{id}.yaml
+  /api/branchOffices/{id}:
+    $ref: paths/api_branchOffices_{id}.yaml
+  /api/branchOffices/{branchOfficeId}/toggleUnsupply/{skuId}:
+    $ref: paths/api_branchOffices_{branchOfficeId}_toggleUnsupply_{skuId}.yaml
+  /api/branchOffices/salePoint/{id}:
+    $ref: paths/api_branchOffices_salePoint_{id}.yaml
+  /api/branchOffices/editStocks:
+    $ref: paths/api_branchOffices_editStocks.yaml
+  /api/branchOffices/editStock/{id}:
+    $ref: paths/api_branchOffices_editStock_{id}.yaml
+  /api/attributes/{attributeId}:
+    $ref: paths/api_attributes_{attributeId}.yaml
+  /api/articles/{id}:
+    $ref: paths/api_articles_{id}.yaml
+  /api/articles/toggleDiscontinued/{id}:
+    $ref: paths/api_articles_toggleDiscontinued_{id}.yaml
+  /api/articles/suppliers/{id}:
+    $ref: paths/api_articles_suppliers_{id}.yaml
+  /api/articles/sku/{id}:
+    $ref: paths/api_articles_sku_{id}.yaml
+  /api/articles/sku/attributeValue/{id}:
+    $ref: paths/api_articles_sku_attributeValue_{id}.yaml
+  /api/articles/attributeValue/{id}:
+    $ref: paths/api_articles_attributeValue_{id}.yaml
+  /api/acceptedPaymentMethod/{id}:
+    $ref: paths/api_acceptedPaymentMethod_{id}.yaml
+  /api/users/create:
+    $ref: paths/api_users_create.yaml
+  /api/tickets/createTickets:
+    $ref: paths/api_tickets_createTickets.yaml
+  /api/tickets/:
+    $ref: paths/api_tickets_.yaml
+  /api/suppliers/{supplierId}/contacts:
+    $ref: paths/api_suppliers_{supplierId}_contacts.yaml
+  /api/suppliers/{supplierId}/articles:
+    $ref: paths/api_suppliers_{supplierId}_articles.yaml
+  /api/suppliers/processExcelTemplate:
+    $ref: paths/api_suppliers_processExcelTemplate.yaml
+  /api/suppliers/:
+    $ref: paths/api_suppliers_.yaml
+  /api/supplierPaymentMethod/:
+    $ref: paths/api_supplierPaymentMethod_.yaml
+  /api/roles/{idRole}/unassign/{idUser}:
+    $ref: paths/api_roles_{idRole}_unassign_{idUser}.yaml
+  /api/roles/{idRole}/assign/{idUser}:
+    $ref: paths/api_roles_{idRole}_assign_{idUser}.yaml
+  /api/roles/:
+    $ref: paths/api_roles_.yaml
+  /api/repositionOrders/{businessUnitId}:
+    $ref: paths/api_repositionOrders_{businessUnitId}.yaml
+  /api/repositionOrders/preview:
+    $ref: paths/api_repositionOrders_preview.yaml
+  /api/repositionOrders/markReceived:
+    $ref: paths/api_repositionOrders_markReceived.yaml
+  /api/repositionOrders/markAsSent:
+    $ref: paths/api_repositionOrders_markAsSent.yaml
+  /api/repositionOrders/draft/{businessUnitId}/{branchOfficeToId}:
+    $ref: paths/api_repositionOrders_draft_{businessUnitId}_{branchOfficeToId}.yaml
+  /api/purchaseUnits/:
+    $ref: paths/api_purchaseUnits_.yaml
+  /api/purchaseOrders/preview:
+    $ref: paths/api_purchaseOrders_preview.yaml
+  /api/purchaseOrders/markReceived:
+    $ref: paths/api_purchaseOrders_markReceived.yaml
+  /api/purchaseOrders/:
+    $ref: paths/api_purchaseOrders_.yaml
+  /api/promotions/schedule/{id}:
+    $ref: paths/api_promotions_schedule_{id}.yaml
+  /api/promotions/regular:
+    $ref: paths/api_promotions_regular.yaml
+  /api/promotions/progressiveDiscount:
+    $ref: paths/api_promotions_progressiveDiscount.yaml
+  /api/promotions/mxn:
+    $ref: paths/api_promotions_mxn.yaml
+  /api/promotions/cancel/{id}:
+    $ref: paths/api_promotions_cancel_{id}.yaml
+  /api/promotions/buyTogether:
+    $ref: paths/api_promotions_buyTogether.yaml
+  /api/promotions/buyOneGetOne:
+    $ref: paths/api_promotions_buyOneGetOne.yaml
+  /api/promotionTypes/:
+    $ref: paths/api_promotionTypes_.yaml
+  /api/pricings/schedule/{id}:
+    $ref: paths/api_pricings_schedule_{id}.yaml
+  /api/pricings/cancel/{id}:
+    $ref: paths/api_pricings_cancel_{id}.yaml
+  /api/pricings/:
+    $ref: paths/api_pricings_.yaml
+  /api/pricingTypes/:
+    $ref: paths/api_pricingTypes_.yaml
+  /api/organizations/register:
+    $ref: paths/api_organizations_register.yaml
+  /api/deposits/{depositId}/addSku/{skuId}:
+    $ref: paths/api_deposits_{depositId}_addSku_{skuId}.yaml
+  /api/deposits/stocks/processExcelTemplate:
+    $ref: paths/api_deposits_stocks_processExcelTemplate.yaml
+  /api/deposits/processExcelTemplate:
+    $ref: paths/api_deposits_processExcelTemplate.yaml
+  /api/deposits/:
+    $ref: paths/api_deposits_.yaml
+  /api/competitors/processExcelTemplate:
+    $ref: paths/api_competitors_processExcelTemplate.yaml
+  /api/competitors/:
+    $ref: paths/api_competitors_.yaml
+  /api/clients/segments/clone/{id}:
+    $ref: paths/api_clients_segments_clone_{id}.yaml
+  /api/clients/segments/:
+    $ref: paths/api_clients_segments_.yaml
+  /api/clients/:
+    $ref: paths/api_clients_.yaml
+  /api/categories/processExcelTemplate:
+    $ref: paths/api_categories_processExcelTemplate.yaml
+  /api/categories/:
+    $ref: paths/api_categories_.yaml
+  /api/businessUnits/{businessUnitId}/createChannel:
+    $ref: paths/api_businessUnits_{businessUnitId}_createChannel.yaml
+  /api/businessUnits/:
+    $ref: paths/api_businessUnits_.yaml
+  /api/brands/processExcelTemplate:
+    $ref: paths/api_brands_processExcelTemplate.yaml
+  /api/brands/:
+    $ref: paths/api_brands_.yaml
+  /api/branchOffices/{branchOfficeId}/addSku/{skuId}:
+    $ref: paths/api_branchOffices_{branchOfficeId}_addSku_{skuId}.yaml
+  /api/branchOffices/stocks/processExcelTemplate:
+    $ref: paths/api_branchOffices_stocks_processExcelTemplate.yaml
+  /api/branchOffices/salePoint:
+    $ref: paths/api_branchOffices_salePoint.yaml
+  /api/branchOffices/processExcelTemplate:
+    $ref: paths/api_branchOffices_processExcelTemplate.yaml
+  /api/branchOffices/:
+    $ref: paths/api_branchOffices_.yaml
+  /api/auth/resetPassword:
+    $ref: paths/api_auth_resetPassword.yaml
+  /api/auth/resetPasswordLink:
+    $ref: paths/api_auth_resetPasswordLink.yaml
+  /api/auth/resendUserValidation:
+    $ref: paths/api_auth_resendUserValidation.yaml
+  /api/auth/login:
+    $ref: paths/api_auth_login.yaml
+  /api/auth/loginSuperAdmin:
+    $ref: paths/api_auth_loginSuperAdmin.yaml
+  /api/auth/confirm:
+    $ref: paths/api_auth_confirm.yaml
+  /api/attributes/:
+    $ref: paths/api_attributes_.yaml
+  /api/articles/{id}/sku:
+    $ref: paths/api_articles_{id}_sku.yaml
+  /api/articles/{id}/addPrice:
+    $ref: paths/api_articles_{id}_addPrice.yaml
+  /api/articles/{articleId}/attributeValue:
+    $ref: paths/api_articles_{articleId}_attributeValue.yaml
+  /api/articles/sku/{id}/attributeValue:
+    $ref: paths/api_articles_sku_{id}_attributeValue.yaml
+  /api/articles/processExcelTemplate:
+    $ref: paths/api_articles_processExcelTemplate.yaml
+  /api/articles/:
+    $ref: paths/api_articles_.yaml
+  /api/acceptedPaymentMethod/processExcelTemplate:
+    $ref: paths/api_acceptedPaymentMethod_processExcelTemplate.yaml
+  /api/acceptedPaymentMethod/:
+    $ref: paths/api_acceptedPaymentMethod_.yaml
+  /api/types/ticketDocumentTypes:
+    $ref: paths/api_types_ticketDocumentTypes.yaml
+  /api/types/sex:
+    $ref: paths/api_types_sex.yaml
+  /api/types/recurrenceTypes:
+    $ref: paths/api_types_recurrenceTypes.yaml
+  /api/types/endPricingTypes:
+    $ref: paths/api_types_endPricingTypes.yaml
+  /api/tickets/getProgress/{id}:
+    $ref: paths/api_tickets_getProgress_{id}.yaml
+  /api/suppliers/query:
+    $ref: paths/api_suppliers_query.yaml
+  /api/suppliers/getAll:
+    $ref: paths/api_suppliers_getAll.yaml
+  /api/suppliers/excelTemplate:
+    $ref: paths/api_suppliers_excelTemplate.yaml
+  /api/supplierPaymentMethod/getAll:
+    $ref: paths/api_supplierPaymentMethod_getAll.yaml
+  /api/repositionOrders/statistics:
+    $ref: paths/api_repositionOrders_statistics.yaml
+  /api/repositionOrders/query:
+    $ref: paths/api_repositionOrders_query.yaml
+  /api/repositionOrders/queryStockout:
+    $ref: paths/api_repositionOrders_queryStockout.yaml
+  /api/repositionOrders/queryRequests:
+    $ref: paths/api_repositionOrders_queryRequests.yaml
+  /api/repositionOrders/findSkuArticleQuantityDestiny:
+    $ref: paths/api_repositionOrders_findSkuArticleQuantityDestiny.yaml
+  /api/repositionOrders/draft/{businessUnitId}:
+    $ref: paths/api_repositionOrders_draft_{businessUnitId}.yaml
+  /api/purchaseUnits/query:
+    $ref: paths/api_purchaseUnits_query.yaml
+  /api/purchaseUnits/getAll:
+    $ref: paths/api_purchaseUnits_getAll.yaml
+  /api/purchaseOrders/statistics:
+    $ref: paths/api_purchaseOrders_statistics.yaml
+  /api/purchaseOrders/query:
+    $ref: paths/api_purchaseOrders_query.yaml
+  /api/promotions/{id}:
+    $ref: paths/api_promotions_{id}.yaml
+  /api/promotions/monthByPromotion/{date}:
+    $ref: paths/api_promotions_monthByPromotion_{date}.yaml
+  /api/promotions/month/{date}:
+    $ref: paths/api_promotions_month_{date}.yaml
+  /api/pricings/{id}/changesOfPrice:
+    $ref: paths/api_pricings_{id}_changesOfPrice.yaml
+  /api/pricings/monthByPricing/{date}:
+    $ref: paths/api_pricings_monthByPricing_{date}.yaml
+  /api/pricingTypes/getAll:
+    $ref: paths/api_pricingTypes_getAll.yaml
+  /api/health:
+    $ref: paths/api_health.yaml
+  /api/deposits/stocks/excelTemplate:
+    $ref: paths/api_deposits_stocks_excelTemplate.yaml
+  /api/deposits/stockAdjustments/{id}:
+    $ref: paths/api_deposits_stockAdjustments_{id}.yaml
+  /api/deposits/query:
+    $ref: paths/api_deposits_query.yaml
+  /api/deposits/getAll:
+    $ref: paths/api_deposits_getAll.yaml
+  /api/deposits/excelTemplate:
+    $ref: paths/api_deposits_excelTemplate.yaml
+  /api/competitors/excelTemplate:
+    $ref: paths/api_competitors_excelTemplate.yaml
+  /api/clients/segments/query:
+    $ref: paths/api_clients_segments_query.yaml
+  /api/clients/segments/getAll:
+    $ref: paths/api_clients_segments_getAll.yaml
+  /api/clients/numberBySegment/{segmentId}:
+    $ref: paths/api_clients_numberBySegment_{segmentId}.yaml
+  /api/clients/getAll:
+    $ref: paths/api_clients_getAll.yaml
+  /api/clients/clientSegmentsWithSize:
+    $ref: paths/api_clients_clientSegmentsWithSize.yaml
+  /api/clients/bySegment/{segmentId}:
+    $ref: paths/api_clients_bySegment_{segmentId}.yaml
+  /api/categories/query:
+    $ref: paths/api_categories_query.yaml
+  /api/categories/getPossibleFathers/{categoryId}:
+    $ref: paths/api_categories_getPossibleFathers_{categoryId}.yaml
+  /api/categories/getAll:
+    $ref: paths/api_categories_getAll.yaml
+  /api/categories/excelTemplate:
+    $ref: paths/api_categories_excelTemplate.yaml
+  /api/businessUnits/{id}:
+    $ref: paths/api_businessUnits_{id}.yaml
+  /api/businessUnits/getAll:
+    $ref: paths/api_businessUnits_getAll.yaml
+  /api/businessUnits/channel/getAll:
+    $ref: paths/api_businessUnits_channel_getAll.yaml
+  /api/brands/query:
+    $ref: paths/api_brands_query.yaml
+  /api/brands/getAll:
+    $ref: paths/api_brands_getAll.yaml
+  /api/brands/excelTemplate:
+    $ref: paths/api_brands_excelTemplate.yaml
+  /api/branchOffices/stocks/excelTemplate:
+    $ref: paths/api_branchOffices_stocks_excelTemplate.yaml
+  /api/branchOffices/stockAdjustments/{id}:
+    $ref: paths/api_branchOffices_stockAdjustments_{id}.yaml
+  /api/branchOffices/query:
+    $ref: paths/api_branchOffices_query.yaml
+  /api/branchOffices/getByBusinessUnitIds:
+    $ref: paths/api_branchOffices_getByBusinessUnitIds.yaml
+  /api/branchOffices/excelTemplate:
+    $ref: paths/api_branchOffices_excelTemplate.yaml
+  /api/branchOffices/branchOfficeTypes:
+    $ref: paths/api_branchOffices_branchOfficeTypes.yaml
+  /api/auth/confirmToken:
+    $ref: paths/api_auth_confirmToken.yaml
+  /api/attributes/query:
+    $ref: paths/api_attributes_query.yaml
+  /api/attributes/getAll:
+    $ref: paths/api_attributes_getAll.yaml
+  /api/articles/query:
+    $ref: paths/api_articles_query.yaml
+  /api/articles/querySkus:
+    $ref: paths/api_articles_querySkus.yaml
+  /api/articles/querySkuStockBranchOffice:
+    $ref: paths/api_articles_querySkuStockBranchOffice.yaml
+  /api/articles/getArticlesBySuppliers:
+    $ref: paths/api_articles_getArticlesBySuppliers.yaml
+  /api/articles/getAll:
+    $ref: paths/api_articles_getAll.yaml
+  /api/articles/getAllWithStock:
+    $ref: paths/api_articles_getAllWithStock.yaml
+  /api/articles/getAllWithStockSort:
+    $ref: paths/api_articles_getAllWithStockSort.yaml
+  /api/articles/getAllWithStockSortAndSkuStock:
+    $ref: paths/api_articles_getAllWithStockSortAndSkuStock.yaml
+  /api/articles/getAllWithSku:
+    $ref: paths/api_articles_getAllWithSku.yaml
+  /api/articles/excelTemplate:
+    $ref: paths/api_articles_excelTemplate.yaml
+  /api/acceptedPaymentMethod/types:
+    $ref: paths/api_acceptedPaymentMethod_types.yaml
+  /api/acceptedPaymentMethod/query:
+    $ref: paths/api_acceptedPaymentMethod_query.yaml
+  /api/acceptedPaymentMethod/getByBussinesUnitId/{id}:
+    $ref: paths/api_acceptedPaymentMethod_getByBussinesUnitId_{id}.yaml
+  /api/acceptedPaymentMethod/getAll:
+    $ref: paths/api_acceptedPaymentMethod_getAll.yaml
+  /api/acceptedPaymentMethod/excelTemplate:
+    $ref: paths/api_acceptedPaymentMethod_excelTemplate.yaml
+  /api/users/{userId}:
+    $ref: paths/api_users_{userId}.yaml
+  /api/repositionOrders/{repositionOrderId}:
+    $ref: paths/api_repositionOrders_{repositionOrderId}.yaml
+  /api/purchaseOrders/{purchaseOrderId}:
+    $ref: paths/api_purchaseOrders_{purchaseOrderId}.yaml
+  /api/deposits/deleteSku/{id}:
+    $ref: paths/api_deposits_deleteSku_{id}.yaml
+  /api/branchOffices/deleteSku/{id}:
+    $ref: paths/api_branchOffices_deleteSku_{id}.yaml
+  /api/articles/removePrice/{id}:
+    $ref: paths/api_articles_removePrice_{id}.yaml
 components:
   securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://example.com/api/oauth/dialog
-          scopes:
-            read:users: read users info
-            write:users: modify or remove users
-    api_key:
-      type: apiKey
-      in: header
-      name: api_key
-    basic_auth:
+    Bearer Authentication:
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: JWT

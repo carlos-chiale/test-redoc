@@ -1,0 +1,24 @@
+type: object
+properties:
+  skuId:
+    type: integer
+    format: int64
+  branchOfficeOrDepositFromId:
+    type: integer
+    format: int64
+  branchOfficeOrDepositFrom:
+    type: string
+    enum:
+      - BRANCH_OFFICE
+      - DEPOSIT
+  branchOfficeOrDepositToId:
+    type: integer
+    format: int64
+  branchOfficeOrDepositTo:
+    type: string
+    enum:
+      - BRANCH_OFFICE
+      - DEPOSIT
+  quantity:
+    type: integer
+    format: int32

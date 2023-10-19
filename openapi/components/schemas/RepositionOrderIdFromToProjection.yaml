@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  businessUnit:
+    $ref: ./BusinessUnitIdNameProjection.yaml
+  branchOfficeFrom:
+    $ref: ./BranchOfficeProjectionIdName.yaml
+  depositFrom:
+    $ref: ./DepositProjection.yaml
+  branchOfficeTo:
+    $ref: ./BranchOfficeProjectionIdName.yaml
+  depositTo:
+    $ref: ./DepositProjection.yaml
+  orderStatus:
+    $ref: ./JSONObject.yaml

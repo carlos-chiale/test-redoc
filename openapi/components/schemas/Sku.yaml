@@ -1,0 +1,69 @@
+type: object
+properties:
+  name:
+    type: string
+  externalId:
+    type: string
+  enable:
+    type: boolean
+  heightWithPackaging:
+    type: number
+    format: double
+  lengthWithPackaging:
+    type: number
+    format: double
+  widthWithPackaging:
+    type: number
+    format: double
+  weightWithPackaging:
+    type: number
+    format: double
+  height:
+    type: number
+    format: double
+  length:
+    type: number
+    format: double
+  width:
+    type: number
+    format: double
+  weight:
+    type: number
+    format: double
+  volumen:
+    type: number
+    format: double
+  kit:
+    type: boolean
+  salesUnit:
+    type: string
+  storageUnit:
+    type: string
+  minimumStock:
+    type: integer
+    format: int32
+  shoeSize:
+    type: number
+    format: double
+  clothSizeOp1:
+    type: integer
+    format: int32
+  clothSizeOp2:
+    type: string
+  colour:
+    type: string
+  brand:
+    type: string
+  flavour:
+    type: string
+  presentationVolumenM3:
+    type: number
+    format: double
+  presentationTypeOfContainer:
+    type: string
+  variety:
+    type: string
+  attributes:
+    type: array
+    items:
+      $ref: ./AttributeValue.yaml

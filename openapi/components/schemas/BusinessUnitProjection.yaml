@@ -1,0 +1,21 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  language:
+    $ref: ./LanguageProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml
+  defaultCurrency:
+    $ref: ./CurrencyProjection.yaml
+  organization:
+    $ref: ./OrganizationProjection.yaml
+  channels:
+    type: array
+    items:
+      $ref: ./ChannelProjection.yaml

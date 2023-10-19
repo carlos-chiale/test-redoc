@@ -1,0 +1,21 @@
+delete:
+  tags:
+    - Depósito
+  summary: Eliminar sku de depósito
+  operationId: deleteSkuFromDeposit
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

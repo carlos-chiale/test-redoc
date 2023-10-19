@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+  descriptionEn:
+    type: string
+  descriptionEs:
+    type: string

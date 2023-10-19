@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Métodos de pago aceptados
+  summary: Obtener todos los métodos de pago aceptado de la organización
+  operationId: getAllByOrganization_11
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ListAcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

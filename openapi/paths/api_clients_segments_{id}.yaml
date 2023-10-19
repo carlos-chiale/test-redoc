@@ -1,0 +1,141 @@
+get:
+  tags:
+    - Clientes
+  summary: Obtener segmento de clientes
+  operationId: getSegment
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ClientSegmentProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Clientes
+  summary: Editar segmento de cliente
+  operationId: editClientSegment
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: description
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: minAge
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+    - name: maxAge
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+    - name: sex
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - MALE
+          - FEMALE
+    - name: countryIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: stateIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: articlesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: brandsIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: categoriesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: branchOfficesIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ClientSegmentProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Clientes
+  summary: Eliminar segmento de cliente
+  operationId: deleteClientSegment
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Artículos
+  summary: Crear artículo
+  operationId: createArticle
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Article.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleProjectionWithoutStockResponse.yaml
+  security:
+    - Bearer Authentication: []

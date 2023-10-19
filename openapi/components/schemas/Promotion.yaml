@@ -1,0 +1,77 @@
+required:
+  - accumulateOtherPromotions
+  - distributeLines
+  - name
+  - recurrence
+type: object
+properties:
+  name:
+    type: string
+  description:
+    type: string
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  recurrence:
+    $ref: ./Recurrence.yaml
+  clientSegmentIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  branchOfficeIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  brandIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  categoryIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  acceptedPaymentMethodIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  quantityPerBranchOffice:
+    type: integer
+    format: int32
+  quantityPerClient:
+    type: integer
+    format: int32
+  quantityPerArticle:
+    type: integer
+    format: int32
+  accumulateOtherPromotions:
+    type: boolean
+  minimumTicket:
+    type: number
+    format: double
+  maximumTicket:
+    type: number
+    format: double
+  quantityApplications:
+    type: integer
+    format: int32
+  distributeLines:
+    type: boolean
+  binRangeMax:
+    type: integer
+    format: int32
+  binRangeMin:
+    type: integer
+    format: int32
+  bines:
+    type: array
+    items:
+      type: integer
+      format: int32

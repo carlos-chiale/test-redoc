@@ -1,0 +1,13 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  acceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodProjection.yaml
+  branchOffice:
+    $ref: ./JSONObject.yaml

@@ -1,0 +1,53 @@
+put:
+  tags:
+    - Artículos
+  summary: Editar atributo de sku
+  operationId: editAttributeValueSku
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: value
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: idEnum
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AttributeValueSkuResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Artículos
+  summary: Eliminar atributo de sku
+  operationId: deleteAttributeValueSku
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AttributeValueSkuEntity.yaml
+  security:
+    - Bearer Authentication: []

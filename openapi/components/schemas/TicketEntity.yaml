@@ -1,0 +1,64 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  code:
+    type: integer
+    format: int32
+  clientRut:
+    type: integer
+    format: int32
+  date:
+    type: string
+    format: date
+  subtotal:
+    type: number
+    format: double
+  iva:
+    type: number
+    format: double
+  total:
+    type: number
+    format: double
+  documentType:
+    type: string
+    enum:
+      - CASH_TICKET
+      - CREDIT_INVOICE
+      - CREDIT_NOTE
+  accumulatePoints:
+    type: number
+    format: double
+  consumedPoints:
+    type: number
+    format: double
+  currency:
+    $ref: ./CurrencyEntity.yaml
+  channel:
+    $ref: ./ChannelEntity.yaml
+  salePoint:
+    $ref: ./SalePointEntity.yaml
+  skusWithUnitPrice:
+    type: array
+    items:
+      $ref: ./TicketSkuEntity.yaml
+  acceptedPaymentMethods:
+    type: array
+    items:
+      $ref: ./AcceptedPaymentMethodEntity.yaml
+  fidelity:
+    type: string
+  promotions:
+    type: array
+    items:
+      $ref: ./PromotionEntity.yaml
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  ticketDocumentType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Atributos
+  summary: Consultar atributos paginado
+  operationId: query_6
+  parameters:
+    - name: attribute
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageAttributeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

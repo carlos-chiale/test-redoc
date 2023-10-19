@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  paymentDeadlineDays:
+    type: integer
+    format: int32

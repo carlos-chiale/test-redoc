@@ -1,0 +1,65 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  name:
+    type: string
+  description:
+    type: string
+  type:
+    type: string
+    enum:
+      - MANUAL
+      - AUTO
+  minAge:
+    type: integer
+    format: int32
+  maxAge:
+    type: integer
+    format: int32
+  sex:
+    type: string
+    enum:
+      - MALE
+      - FEMALE
+  countries:
+    type: array
+    items:
+      $ref: ./CountryEntity.yaml
+  states:
+    type: array
+    items:
+      $ref: ./StateEntity.yaml
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleEntity.yaml
+  brands:
+    type: array
+    items:
+      $ref: ./BrandEntity.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryEntity.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeEntity.yaml
+  sexType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  clientSegmentType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object

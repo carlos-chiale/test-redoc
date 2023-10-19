@@ -1,0 +1,12 @@
+type: object
+properties:
+  attributeId:
+    type: integer
+    format: int64
+  value:
+    type: string
+  isEnum:
+    type: boolean
+  attributeEnumId:
+    type: integer
+    format: int64

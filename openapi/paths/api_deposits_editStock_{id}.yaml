@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Depósito
+  summary: Editar stock de sku en depósito
+  operationId: editStockFromSkuInDeposit
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: stock
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SkuDepositProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

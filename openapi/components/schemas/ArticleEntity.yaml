@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  category:
+    $ref: ./CategoryEntity.yaml
+  brand:
+    $ref: ./BrandEntity.yaml
+  cost:
+    minimum: 0
+    type: number
+    format: double
+  defaultPrice:
+    minimum: 0
+    type: number
+    format: double
+  prices:
+    type: array
+    items:
+      $ref: ./ArticlePriceEntity.yaml
+  currency:
+    $ref: ./CurrencyEntity.yaml
+  roundingType:
+    $ref: ./RoundingTypeEntity.yaml
+  enable:
+    type: boolean
+  skus:
+    type: array
+    items:
+      $ref: ./SkuEntity.yaml
+  attributesWithValue:
+    type: array
+    items:
+      $ref: ./AttributeValueArticleEntity.yaml
+  suppliers:
+    type: array
+    items:
+      $ref: ./ArticleSuppliersEntity.yaml
+  stock:
+    type: integer
+    format: int32
+  quantityInPurchaseOrder:
+    type: integer
+    format: int32
+  businessUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitEntity.yaml
+  discontinued:
+    type: boolean
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  skusNameAndId:
+    type: array
+    properties:
+      empty:
+        type: boolean
+    items:
+      type: object
+  actualPrices:
+    type: array
+    items:
+      $ref: ./ArticlePriceEntity.yaml

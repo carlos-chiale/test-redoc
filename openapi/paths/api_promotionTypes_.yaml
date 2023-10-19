@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Tipos de promoción
+  summary: Crear tipo de promoción
+  operationId: createPromotionType
+  parameters:
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: code
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PromotionTypeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

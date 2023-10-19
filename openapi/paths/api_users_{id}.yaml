@@ -1,0 +1,45 @@
+put:
+  tags:
+    - Usuarios
+  summary: Editar usuario
+  operationId: editUser
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: roleIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: businessUnitsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: branchOfficesIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/UserProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,8 @@
+type: object
+properties:
+  quantity:
+    type: integer
+    format: int32
+  discount:
+    type: number
+    format: double

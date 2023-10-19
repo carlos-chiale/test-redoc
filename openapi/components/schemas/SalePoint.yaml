@@ -1,0 +1,12 @@
+type: object
+properties:
+  name:
+    type: string
+  branchOfficeId:
+    type: integer
+    format: int64
+  acceptedPaymentMethodsIds:
+    type: array
+    items:
+      type: integer
+      format: int64

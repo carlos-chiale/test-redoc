@@ -1,0 +1,52 @@
+put:
+  tags:
+    - Tipos de promoción
+  summary: Editar tipo de promoción
+  operationId: editPromotionType
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: code
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PromotionTypeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Tipos de promoción
+  summary: Eliminar tipo de promoción
+  operationId: deletePromotionType
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,22 @@
+put:
+  tags:
+    - Depósito
+  summary: Editar stocks de varios SKUs en varios depósito
+  operationId: editStocksForMultipleSkuBranchOffices
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/StockUpdateRequest.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListDepositProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

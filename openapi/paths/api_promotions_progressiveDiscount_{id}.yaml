@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Promociones
+  summary: Editar promoción 'Descuento progresivo'
+  operationId: editProgressiveDiscountPromotion
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ProgressiveDiscountPromotion.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PromotionProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

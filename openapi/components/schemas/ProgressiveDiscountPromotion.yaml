@@ -1,0 +1,17 @@
+required:
+  - lines
+  - promotion
+  - skuIds
+type: object
+properties:
+  promotion:
+    $ref: ./Promotion.yaml
+  skuIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  lines:
+    type: array
+    items:
+      $ref: ./ProgressiveDiscountPromotionLine.yaml

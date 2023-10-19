@@ -1,0 +1,132 @@
+get:
+  tags:
+    - Artículos
+  summary: Obtener artículo
+  operationId: getArticle_2
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Artículos
+  summary: Editar artículo
+  operationId: editArticle_1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: externalId
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: description
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: categoryId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: brandId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: cost
+      in: query
+      required: false
+      schema:
+        type: number
+        format: double
+    - name: defaultPrice
+      in: query
+      required: false
+      schema:
+        type: number
+        format: double
+    - name: currencyId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: roundingTypeId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: enable
+      in: query
+      required: true
+      schema:
+        type: boolean
+    - name: discontinued
+      in: query
+      required: true
+      schema:
+        type: boolean
+    - name: businessUnitsIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Artículos
+  summary: Eliminar artículo
+  operationId: deleteArticle_3
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleEntity.yaml
+  security:
+    - Bearer Authentication: []

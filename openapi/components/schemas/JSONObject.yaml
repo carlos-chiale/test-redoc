@@ -1,0 +1,6 @@
+type: object
+properties:
+  empty:
+    type: boolean
+additionalProperties:
+  type: object

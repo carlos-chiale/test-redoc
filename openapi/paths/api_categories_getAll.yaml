@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Categorías
+  summary: Obtener todas las categorías por organización
+  operationId: getAllByOrganization_6
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListCategoryResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,29 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  father:
+    $ref: ./CategoryEntity.yaml
+  enable:
+    type: boolean
+  roundingType:
+    $ref: ./RoundingTypeEntity.yaml
+  bussinesUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitEntity.yaml
+  numberOfChilds:
+    type: integer
+    format: int32
+  organization:
+    $ref: ./OrganizationEntity.yaml
+  fatherId:
+    type: integer
+    format: int64

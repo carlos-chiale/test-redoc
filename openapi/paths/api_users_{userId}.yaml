@@ -1,0 +1,21 @@
+delete:
+  tags:
+    - Usuarios
+  summary: Eliminar usuario
+  operationId: deleteUser
+  parameters:
+    - name: userId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/UserEntity.yaml
+  security:
+    - Bearer Authentication: []

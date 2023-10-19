@@ -1,0 +1,29 @@
+post:
+  tags:
+    - Órdenes de reposición
+  summary: Crear órden de reposición
+  operationId: createRepositionOrders
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/CreateRepositionOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListRepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

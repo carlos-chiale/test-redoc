@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Métodos de pago de proveedores
+  summary: Crear método de pago de proveedor
+  operationId: createSupplierPaymentMethod
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SupplierPaymentMethod.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

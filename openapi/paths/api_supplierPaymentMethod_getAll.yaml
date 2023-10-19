@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Métodos de pago de proveedores
+  summary: Obtener todos los métodos de pago de proveedores de la organización
+  operationId: getAllByOrganization_1
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ListSupplierPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

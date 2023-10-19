@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Órdenes de reposición
+  summary: Crear órden de reposición
+  operationId: getRepositionOrder
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Órdenes de reposición
+  summary: Editar órden de reposición
+  operationId: editRepositionOrder
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/EditRepositionOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Métodos de pago aceptados
+  summary: Obtener método de pago aceptado
+  operationId: getAcceptedPaymentMethod
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Métodos de pago aceptados
+  summary: Editar método de pago aceptado
+  operationId: editAcceptedPaymentMethod
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AcceptedPaymentMethod.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AcceptedPaymentMethodProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Métodos de pago aceptados
+  summary: Eliminar método de pago aceptado
+  operationId: deleteAcceptedPaymentMethod
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

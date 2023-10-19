@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Tickets
+  summary: Crear desde listado de ticket
+  operationId: createTickets
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/Ticket.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: string
+  security:
+    - Bearer Authentication: []

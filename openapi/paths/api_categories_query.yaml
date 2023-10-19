@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Categorías
+  summary: Consultar categorías paginado
+  operationId: queryCategories
+  parameters:
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageCategoryIdNameProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Artículos
+  summary: Obtener los tipos de recuerrencia de la aplicación
+  operationId: getRecurrenceTypes
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

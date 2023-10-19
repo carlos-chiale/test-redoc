@@ -1,0 +1,21 @@
+delete:
+  tags:
+    - Órdenes de reposición
+  summary: Eliminar órden de reposición
+  operationId: deleteArticle_1
+  parameters:
+    - name: repositionOrderId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,12 @@
+type: object
+properties:
+  articleId:
+    type: integer
+    format: int64
+  principal:
+    type: boolean
+  commercialTerm:
+    $ref: ./CommercialTerm.yaml
+  purchaseUnitId:
+    type: integer
+    format: int64

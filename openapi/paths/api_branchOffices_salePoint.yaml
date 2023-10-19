@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Sucursales
+  summary: Crear punto de venta en sucursal
+  operationId: addSalePointToBranchOffice
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SalePoint.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SalePointProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

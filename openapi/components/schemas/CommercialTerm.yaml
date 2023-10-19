@@ -1,0 +1,20 @@
+required:
+  - agreedDiscounts
+  - cost
+  - minimumOrder
+type: object
+properties:
+  deliveryTerm:
+    type: integer
+    format: int32
+  minimumOrder:
+    type: string
+  cost:
+    type: number
+    format: double
+  agreedDiscounts:
+    type: number
+    format: double
+  supplierPaymentMethodId:
+    type: integer
+    format: int64

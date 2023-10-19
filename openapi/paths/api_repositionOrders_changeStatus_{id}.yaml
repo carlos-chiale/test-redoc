@@ -1,0 +1,35 @@
+put:
+  tags:
+    - Órdenes de reposición
+  summary: Cambiar estado de órden de reposición
+  operationId: changeStatus
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: status
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+          - SUGGESTED
+          - GENERATED
+          - SENT
+          - IN_PROGRESS
+          - PARTIAL
+          - NOT_COMPLETED
+          - COMPLETED
+          - CANCEL
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/RepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,26 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  description:
+    type: string
+  externalId:
+    type: string
+  enable:
+    type: boolean
+  roundingType:
+    $ref: ./RoundingTypeProjection.yaml
+  father:
+    $ref: ./CategoryIdAndNameProjection.yaml
+  organization:
+    $ref: ./OrganizationProjection.yaml
+  bussinesUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitIdNameProjection.yaml
+  numberOfChilds:
+    type: integer
+    format: int32

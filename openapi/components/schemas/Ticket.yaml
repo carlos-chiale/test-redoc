@@ -1,0 +1,77 @@
+required:
+  - acceptedPaymentMethodIds
+  - accumulatePoints
+  - channelId
+  - clientRut
+  - code
+  - consumedPoints
+  - currencyId
+  - date
+  - documentType
+  - iva
+  - promotionIds
+  - salePointId
+  - skusWithPrice
+  - subtotal
+  - total
+type: object
+properties:
+  code:
+    type: integer
+    format: int32
+  clientRut:
+    type: integer
+    format: int32
+  date:
+    type: string
+    format: date
+  subtotal:
+    type: number
+    format: double
+  iva:
+    type: number
+    format: double
+  total:
+    type: number
+    format: double
+  documentType:
+    $ref: ./TicketDocumentType.yaml
+  accumulatePoints:
+    type: number
+    format: double
+  consumedPoints:
+    type: number
+    format: double
+  currencyId:
+    type: integer
+    format: int32
+  channelId:
+    type: integer
+    format: int32
+  salePointId:
+    type: integer
+    format: int32
+  skusWithPrice:
+    type: array
+    items:
+      $ref: ./TicketSku.yaml
+  acceptedPaymentMethodIds:
+    type: array
+    example:
+      - 1
+      - 2
+      - 3
+    items:
+      type: integer
+      format: int64
+  fidelity:
+    type: string
+  promotionIds:
+    type: array
+    example:
+      - 1
+      - 2
+      - 3
+    items:
+      type: integer
+      format: int64

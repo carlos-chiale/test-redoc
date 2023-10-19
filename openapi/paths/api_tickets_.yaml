@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Tickets
+  summary: Crear ticket
+  operationId: createTicket
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Ticket.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/TicketProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

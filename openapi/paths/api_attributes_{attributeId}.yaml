@@ -1,0 +1,67 @@
+put:
+  tags:
+    - Atributos
+  summary: Editar atributo
+  operationId: editAttribute
+  parameters:
+    - name: attributeId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: attribute
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: businessUnitsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: isEnum
+      in: query
+      required: true
+      schema:
+        type: boolean
+    - name: enums
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AttributeResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Atributos
+  summary: Eliminar atributo
+  operationId: deleteAttribute
+  parameters:
+    - name: attributeId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/AttributeEntity.yaml
+  security:
+    - Bearer Authentication: []

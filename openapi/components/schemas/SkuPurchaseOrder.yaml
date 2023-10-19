@@ -1,0 +1,19 @@
+type: object
+properties:
+  skuId:
+    type: integer
+    format: int64
+  supplierId:
+    type: integer
+    format: int64
+  quantity:
+    type: integer
+    format: int32
+  branchOfficeOrDepositId:
+    type: integer
+    format: int64
+  branchOfficeOrDeposit:
+    type: string
+    enum:
+      - BRANCH_OFFICE
+      - DEPOSIT

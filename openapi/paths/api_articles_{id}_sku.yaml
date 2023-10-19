@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Artículos
+  summary: Agregar SKU a artículo
+  operationId: addSku
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Sku.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SkuWithoutStockResponse.yaml
+  security:
+    - Bearer Authentication: []

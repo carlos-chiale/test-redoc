@@ -1,0 +1,25 @@
+required:
+  - branchOfficeOrDeposit
+  - branchOfficeOrDepositId
+  - skus
+  - supplierId
+type: object
+properties:
+  supplierId:
+    type: integer
+    format: int64
+  branchOfficeOrDeposit:
+    type: string
+    enum:
+      - BRANCH_OFFICE
+      - DEPOSIT
+  branchOfficeOrDepositId:
+    type: integer
+    format: int64
+  skus:
+    type: array
+    items:
+      $ref: ./CreatePurchaseOrderSku.yaml
+  estimatedDeliveryDate:
+    type: string
+    format: date

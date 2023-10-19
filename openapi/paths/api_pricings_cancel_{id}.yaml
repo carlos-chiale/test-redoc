@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Pricings
+  summary: Cancelar pricing
+  operationId: cancelPricing
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PricingProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Órdenes de reposición
+  summary: Marcar órdenes de reposición como recibidas
+  operationId: markReceived
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/MarkReceivedOrderSku.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ListRepositionOrderSkuProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,49 @@
+required:
+  - name
+type: object
+properties:
+  externalId:
+    type: string
+  name:
+    type: string
+  description:
+    type: string
+  categoryId:
+    type: integer
+    format: int64
+  brandId:
+    type: integer
+    format: int64
+  cost:
+    type: number
+    format: double
+  defaultPrice:
+    type: number
+    format: double
+  currencyId:
+    type: integer
+    format: int64
+  roundingTypeId:
+    type: integer
+    format: int64
+  enable:
+    type: boolean
+  skus:
+    type: array
+    items:
+      $ref: ./Sku.yaml
+  attributes:
+    type: array
+    items:
+      $ref: ./AttributeValue.yaml
+  suppliers:
+    type: array
+    items:
+      $ref: ./SupplierArticles.yaml
+  businessUnitsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  discontinued:
+    type: boolean

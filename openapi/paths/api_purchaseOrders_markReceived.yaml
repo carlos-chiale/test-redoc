@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Órdenes de compra
+  summary: Marcar órdenes de compras como recibida
+  operationId: markReceived_1
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/MarkReceivedOrderSku.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListPurchaseOrderSkuProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,15 @@
+required:
+  - quantity
+  - skuId
+  - unitPrice
+type: object
+properties:
+  skuId:
+    type: integer
+    format: int32
+  unitPrice:
+    type: number
+    format: double
+  quantity:
+    type: integer
+    format: int32

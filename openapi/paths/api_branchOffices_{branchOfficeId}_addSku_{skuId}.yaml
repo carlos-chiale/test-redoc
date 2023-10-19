@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Sucursales
+  summary: Agregar stock de SKU a la sucursal
+  operationId: addSkuToBranchOffice
+  parameters:
+    - name: branchOfficeId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: skuId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: stock
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SkuBranchOfficeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

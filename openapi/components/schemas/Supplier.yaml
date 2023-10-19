@@ -1,0 +1,30 @@
+required:
+  - name
+type: object
+properties:
+  externalId:
+    type: string
+  name:
+    type: string
+  website:
+    type: string
+  catalogueLink:
+    type: string
+  businessUnitsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  supplierPaymentMethodsIds:
+    type: array
+    items:
+      type: integer
+      format: int64
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleSuppliers.yaml
+  contacts:
+    type: array
+    items:
+      $ref: ./SupplierContact.yaml

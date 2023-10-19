@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Unidades de negocio
+  summary: Obtener todas las unidades de negocio de la organización
+  operationId: getAllByOrganization_7
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ListBusinessUnitChannelProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

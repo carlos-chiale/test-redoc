@@ -1,0 +1,30 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  address:
+    type: string
+  externalId:
+    type: string
+  skus:
+    type: array
+    items:
+      $ref: ./SkuDepositProjection.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjection.yaml
+  capacity:
+    type: integer
+    format: int32
+  businessUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitIdNameProjection.yaml

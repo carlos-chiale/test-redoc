@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Sucursales
+  summary: Obtener plantilla de carga en excel
+  operationId: getExcelTemplateStocks_1
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              type: string
+              format: byte
+  security:
+    - Bearer Authentication: []

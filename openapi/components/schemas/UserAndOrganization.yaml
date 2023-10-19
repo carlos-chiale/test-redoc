@@ -1,0 +1,6 @@
+type: object
+properties:
+  organizationName:
+    type: string
+  userEmail:
+    type: string

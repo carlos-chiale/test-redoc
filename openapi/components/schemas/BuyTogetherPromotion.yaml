@@ -1,0 +1,26 @@
+required:
+  - discountFirstList
+  - discountSecondList
+  - promotion
+  - skuIdFirstList
+  - skuIdSecondList
+type: object
+properties:
+  promotion:
+    $ref: ./Promotion.yaml
+  discountFirstList:
+    type: number
+    format: double
+  discountSecondList:
+    type: number
+    format: double
+  skuIdFirstList:
+    type: array
+    items:
+      type: integer
+      format: int64
+  skuIdSecondList:
+    type: array
+    items:
+      type: integer
+      format: int64

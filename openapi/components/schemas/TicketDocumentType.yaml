@@ -1,0 +1,5 @@
+type: string
+enum:
+  - CASH_TICKET
+  - CREDIT_INVOICE
+  - CREDIT_NOTE

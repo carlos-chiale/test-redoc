@@ -1,0 +1,48 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  maxAge:
+    type: integer
+    format: int32
+  description:
+    type: string
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleIdNameProjection.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./CategoryIdAndNameProjection.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./BranchOfficeProjectionIdName.yaml
+  minAge:
+    type: integer
+    format: int32
+  countries:
+    type: array
+    items:
+      $ref: ./CountryProjection.yaml
+  states:
+    type: array
+    items:
+      $ref: ./StateWithoutCountryProjection.yaml
+  brands:
+    type: array
+    items:
+      $ref: ./BrandProjection.yaml
+  sex:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  type:
+    $ref: ./JSONObject.yaml

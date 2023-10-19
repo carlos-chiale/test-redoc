@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Artículos
+  summary: Obtener todos los artículos con sus skus y stocks de la organización
+  operationId: getAllWithStockSortAndSkuStock
+  parameters:
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: sortStock
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/PageArticleIdNameSkuWithStocksProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

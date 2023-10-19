@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  name:
+    type: string
+  iso3:
+    type: string
+  iso2:
+    type: string
+  emoji:
+    type: string
+  states:
+    type: array
+    items:
+      $ref: ./StateEntity.yaml

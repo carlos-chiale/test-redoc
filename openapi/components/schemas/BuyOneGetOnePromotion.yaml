@@ -1,0 +1,22 @@
+required:
+  - giftId
+  - promotion
+  - type
+type: object
+properties:
+  promotion:
+    $ref: ./Promotion.yaml
+  type:
+    type: string
+    enum:
+      - GIFT
+      - FREE_SHIPPING
+      - MAX_PRICE_PER_ARTICLE
+  giftId:
+    type: integer
+    format: int64
+  skuIds:
+    type: array
+    items:
+      type: integer
+      format: int64

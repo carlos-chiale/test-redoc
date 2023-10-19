@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Sucursales
+  summary: Crear sucural.
+  operationId: createBranchOffice
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/BranchOffice.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []

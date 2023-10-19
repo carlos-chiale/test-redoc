@@ -1,0 +1,14 @@
+type: object
+properties:
+  message:
+    type: string
+  status:
+    type: string
+    enum:
+      - OK
+      - ERROR
+  data:
+    type: array
+    items:
+      type: integer
+      format: int64

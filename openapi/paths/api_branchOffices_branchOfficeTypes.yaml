@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Sucursales
+  summary: Obtener tipo de sucursales
+  operationId: getBranchOfficeTypes
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

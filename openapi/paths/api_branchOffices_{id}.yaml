@@ -1,0 +1,69 @@
+get:
+  tags:
+    - Sucursales
+  summary: Obtener sucural
+  operationId: getBranchOffice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []
+put:
+  tags:
+    - Sucursales
+  summary: Editar sucural
+  operationId: editBranchOffice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/BranchOffice.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []
+delete:
+  tags:
+    - Sucursales
+  summary: Eliminar sucural
+  operationId: deleteBranchOffice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  purchaseUnit:
+    type: string
+  conversionFactor:
+    type: number
+    format: double
+  organization:
+    $ref: ./OrganizationEntity.yaml

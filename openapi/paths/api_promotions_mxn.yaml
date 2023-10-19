@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Promociones
+  summary: Crear promoción MxN
+  operationId: createMxnPromotion
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/MxnPromotion.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PromotionProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

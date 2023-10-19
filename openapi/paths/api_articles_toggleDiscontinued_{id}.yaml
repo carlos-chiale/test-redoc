@@ -1,0 +1,22 @@
+put:
+  tags:
+    - Artículos
+  summary: Alternar discontinuidad
+  description: Cambia el estado de discontinuidad del artículo
+  operationId: toggleDiscontinued
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleResponse.yaml
+  security:
+    - Bearer Authentication: []

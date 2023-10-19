@@ -1,0 +1,27 @@
+post:
+  tags:
+    - Proveedores
+  summary: Agregar artículo a proveedor
+  operationId: addArticle
+  parameters:
+    - name: supplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ArticleSuppliers.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,110 @@
+get:
+  tags:
+    - Órdenes de reposición
+  summary: Consultar órdenes de reposición paginado
+  operationId: queryRepositionOrder
+  parameters:
+    - name: branchOfficeFromId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: depositFromId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: branchOfficeToId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: depositToId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: businessUnitId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: status
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - SUGGESTED
+          - GENERATED
+          - SENT
+          - IN_PROGRESS
+          - PARTIAL
+          - NOT_COMPLETED
+          - COMPLETED
+          - CANCEL
+    - name: articlesIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: startCreatedDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: endCreatedDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: startEstimatedDeliveryDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: endEstimatedDeliveryDate
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageRepositionOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

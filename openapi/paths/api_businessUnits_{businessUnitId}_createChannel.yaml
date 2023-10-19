@@ -1,0 +1,35 @@
+post:
+  tags:
+    - Unidades de negocio
+  summary: Crear canal en la unidad de negocio
+  operationId: createChannelInBusinessUnit
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: channelTypeId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: currenciesIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ChannelResponse.yaml
+  security:
+    - Bearer Authentication: []

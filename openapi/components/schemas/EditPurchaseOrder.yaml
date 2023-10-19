@@ -1,0 +1,17 @@
+type: object
+properties:
+  branchOfficeOrDeposit:
+    type: string
+    enum:
+      - BRANCH_OFFICE
+      - DEPOSIT
+  branchOfficeOrDepositId:
+    type: integer
+    format: int64
+  estimatedDeliveryDate:
+    type: string
+    format: date
+  skus:
+    type: array
+    items:
+      $ref: ./CreatePurchaseOrderSku.yaml

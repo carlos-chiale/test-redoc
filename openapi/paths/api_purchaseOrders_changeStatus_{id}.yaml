@@ -1,0 +1,40 @@
+put:
+  tags:
+    - Órdenes de compra
+  summary: Cambiar estado de orden de compra
+  operationId: changeStatus_1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: status
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+          - SUGGESTED
+          - GENERATED
+          - SENT
+          - IN_PROGRESS
+          - PARTIAL
+          - NOT_COMPLETED
+          - COMPLETED
+          - CANCEL
+    - name: notCompletedReason
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PurchaseOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

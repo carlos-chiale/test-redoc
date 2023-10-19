@@ -1,0 +1,29 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleSuppliersProjection.yaml
+  website:
+    type: string
+  businessUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitIdNameProjection.yaml
+  catalogueLink:
+    type: string
+  paymentMethods:
+    type: array
+    items:
+      $ref: ./SupplierPaymentMethodProjection.yaml
+  contacts:
+    type: array
+    items:
+      $ref: ./SupplierContactProjection.yaml

@@ -1,0 +1,45 @@
+get:
+  tags:
+    - Artículos
+  summary: Consulta sku con stock en sucursal
+  operationId: getPageSkuIdNameStockBranchOfficeResponse
+  parameters:
+    - name: articleId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: branchOfficeId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: businessUnitId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageSkuIdNameStockBranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []

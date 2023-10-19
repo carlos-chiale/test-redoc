@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Depósito
+  summary: Obtener plantilla de carga en excel
+  operationId: getExcelTemplateStocks
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            type: array
+            items:
+              type: string
+              format: byte
+  security:
+    - Bearer Authentication: []

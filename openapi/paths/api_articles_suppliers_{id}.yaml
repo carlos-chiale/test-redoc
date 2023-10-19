@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Artículos
+  summary: Editar proveedor de artículo
+  operationId: editSupplier_1
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/SupplierArticles.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ArticleResponse.yaml
+  security:
+    - Bearer Authentication: []

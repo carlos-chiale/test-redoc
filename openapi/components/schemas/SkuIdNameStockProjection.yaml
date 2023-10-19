@@ -1,0 +1,30 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  detailedStock:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  articleId:
+    type: integer
+    format: int64
+  articleName:
+    type: string
+  totalStock:
+    type: integer
+    format: int32
+  quantityInPurchaseOrders:
+    type: integer
+    format: int32
+  quantityInRepositionOrders:
+    type: integer
+    format: int32

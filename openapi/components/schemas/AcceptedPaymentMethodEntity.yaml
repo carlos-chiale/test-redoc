@@ -1,0 +1,31 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  name:
+    type: string
+  type:
+    $ref: ./AcceptedPaymentMethodTypeEntity.yaml
+  feeRangeMin:
+    type: integer
+    format: int32
+  feeRangeMax:
+    type: integer
+    format: int32
+  businessUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitEntity.yaml
+  branchOfficesRestricted:
+    type: array
+    items:
+      $ref: ./BranchOfficeEntity.yaml
+  salePoints:
+    type: array
+    items:
+      $ref: ./SalePointEntity.yaml
+  organization:
+    $ref: ./OrganizationEntity.yaml

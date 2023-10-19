@@ -1,0 +1,121 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  article:
+    $ref: ./ArticleEntity.yaml
+  name:
+    type: string
+  enable:
+    type: boolean
+  heightWithPackaging:
+    minimum: 0
+    type: number
+    format: double
+  lengthWithPackaging:
+    minimum: 0
+    type: number
+    format: double
+  widthWithPackaging:
+    minimum: 0
+    type: number
+    format: double
+  weightWithPackaging:
+    minimum: 0
+    type: number
+    format: double
+  height:
+    minimum: 0
+    type: number
+    format: double
+  length:
+    minimum: 0
+    type: number
+    format: double
+  width:
+    minimum: 0
+    type: number
+    format: double
+  weight:
+    minimum: 0
+    type: number
+    format: double
+  weightGrs:
+    type: number
+    format: double
+  volumen:
+    minimum: 0
+    type: number
+    format: double
+  kit:
+    type: boolean
+  createdDate:
+    type: string
+    format: date-time
+  salesUnit:
+    type: string
+  storageUnit:
+    type: string
+  minimumStock:
+    minimum: 0
+    type: integer
+    format: int32
+  attributesWithValue:
+    type: array
+    items:
+      $ref: ./AttributeValueSkuEntity.yaml
+  deposits:
+    type: array
+    items:
+      $ref: ./SkuDepositEntity.yaml
+  branchOffices:
+    type: array
+    items:
+      $ref: ./SkuBranchOfficeEntity.yaml
+  totalStock:
+    type: integer
+    format: int32
+  quantityInPurchaseOrders:
+    type: integer
+    format: int32
+  quantityInRepositionOrders:
+    type: integer
+    format: int32
+  shoeSize:
+    type: number
+    format: double
+  clothSizeOp1:
+    type: integer
+    format: int32
+  clothSizeOp2:
+    type: string
+  colour:
+    type: string
+  brand:
+    type: string
+  flavour:
+    type: string
+  presentationVolumenM3:
+    type: number
+    format: double
+  presentationTypeOfContainer:
+    type: string
+  variety:
+    type: string
+  category:
+    $ref: ./CategoryEntity.yaml
+  detailedStock:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  articleId:
+    type: integer
+    format: int64
+  articleName:
+    type: string

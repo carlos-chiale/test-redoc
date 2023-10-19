@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  sku:
+    $ref: ./SkuIdNameProjection.yaml
+  quantity:
+    type: integer
+    format: int32
+  repositionOrder:
+    $ref: ./RepositionOrderIdFromToProjection.yaml

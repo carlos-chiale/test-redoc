@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Sucursales
+  summary: Altenrar el estado de discontinuado de un sku en una sucursal
+  operationId: toggleUnsuppliy
+  parameters:
+    - name: branchOfficeId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: skuId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/BranchOfficeResponse.yaml
+  security:
+    - Bearer Authentication: []

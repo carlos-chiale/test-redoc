@@ -1,0 +1,27 @@
+put:
+  tags:
+    - Sucursales
+  summary: Editar stock de un SKU en una sucursal
+  operationId: editStockFromSkuInBranchOffice
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: stock
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SkuBranchOfficeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

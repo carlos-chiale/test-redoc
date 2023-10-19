@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Unidades de compra
+  summary: Obtener todas las unidades de compra de la organización
+  operationId: getAllByOrganization_2
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListPurchaseUnitProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

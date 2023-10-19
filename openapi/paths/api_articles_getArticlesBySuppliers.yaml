@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Artículos
+  summary: Obtener artículos por proveedor
+  description: Se obtiene un JSONObject
+  operationId: getArticlesBySuppliers
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -1,0 +1,29 @@
+put:
+  tags:
+    - Roles
+  summary: Modificar roles de usuario
+  operationId: assignRoles
+  parameters:
+    - name: idUser
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: roleIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListRoleResponse.yaml
+  security:
+    - Bearer Authentication: []

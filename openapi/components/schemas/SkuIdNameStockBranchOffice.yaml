@@ -1,0 +1,31 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  articleId:
+    type: integer
+    format: int64
+  articleName:
+    type: string
+  name:
+    type: string
+  totalStock:
+    type: integer
+    format: int32
+  quantityInPurchaseOrders:
+    type: integer
+    format: int32
+  detailedStock:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  stockInBranchOffice:
+    type: integer
+    format: int32
+  stockInOrders:
+    type: integer
+    format: int32

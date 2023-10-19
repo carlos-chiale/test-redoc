@@ -1,0 +1,41 @@
+post:
+  tags:
+    - Proveedores
+  summary: Agregar contacto a proveedor
+  operationId: addContat
+  parameters:
+    - name: supplierId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: phoneNumber
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: email
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: role
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SupplierContactResponse.yaml
+  security:
+    - Bearer Authentication: []

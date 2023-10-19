@@ -1,0 +1,15 @@
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  externalId:
+    type: string
+  articles:
+    type: array
+    items:
+      $ref: ./ArticleIdNameProjection.yaml
+  website:
+    type: string

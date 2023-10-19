@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Autorización
+  summary: Confirmar si el token existe
+  description: >-
+    Para validar el usuario, se confirma que el mismo sea valido y si necesita
+    setear password.
+  operationId: existToken
+  parameters:
+    - name: token
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/ConfirmationTokenAndSetupPasswordResponse.yaml

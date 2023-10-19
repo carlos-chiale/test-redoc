@@ -1,0 +1,22 @@
+put:
+  tags:
+    - Sucursales
+  summary: Editar stocks de varios SKUs en varias sucursales
+  operationId: editStocksForMultipleSkuBranchOffices_1
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/StockUpdateRequest.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ListSkuBranchOfficeProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

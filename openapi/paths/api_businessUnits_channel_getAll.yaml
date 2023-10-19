@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Unidades de negocio
+  summary: Obtener todos los canales de la organización
+  operationId: getAllChannelsByOrganization
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

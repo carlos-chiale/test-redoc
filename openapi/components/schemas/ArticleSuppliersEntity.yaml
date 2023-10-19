@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+  article:
+    $ref: ./ArticleEntity.yaml
+  supplier:
+    $ref: ./SupplierEntity.yaml
+  principal:
+    type: boolean
+  commercialTerm:
+    $ref: ./CommercialTermEntity.yaml
+  purchaseUnit:
+    $ref: ./PurchaseUnitEntity.yaml
