@@ -1,8 +1,8 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
   bin:
     type: integer
     format: int32
+  id:
+    type: integer
+    format: int64

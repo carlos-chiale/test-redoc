@@ -1,0 +1,25 @@
+put:
+  tags:
+    - Usuarios
+  summary: Editar mi usuario
+  operationId: editMyUser
+  parameters:
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: lastname
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/UserProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

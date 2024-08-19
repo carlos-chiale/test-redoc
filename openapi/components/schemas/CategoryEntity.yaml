@@ -24,6 +24,10 @@ properties:
     format: int32
   organization:
     $ref: ./OrganizationEntity.yaml
+  parents:
+    type: array
+    items:
+      type: string
   fatherId:
     type: integer
     format: int64

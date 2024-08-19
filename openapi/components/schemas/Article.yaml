@@ -1,4 +1,7 @@
 required:
+  - brandId
+  - businessUnitsIds
+  - categoryId
   - name
 type: object
 properties:

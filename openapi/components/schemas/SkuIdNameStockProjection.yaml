@@ -1,19 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  externalId:
-    type: string
-  detailedStock:
-    type: object
-    properties:
-      empty:
-        type: boolean
-    additionalProperties:
-      type: object
   articleId:
     type: integer
     format: int64
@@ -28,3 +14,17 @@ properties:
   quantityInRepositionOrders:
     type: integer
     format: int32
+  externalId:
+    type: string
+  detailedStock:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

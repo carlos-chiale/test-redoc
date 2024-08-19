@@ -1,18 +1,13 @@
 type: object
 properties:
+  currencies:
+    type: array
+    items:
+      $ref: ./CurrencyProjection.yaml
   id:
     type: integer
     format: int64
   type:
     $ref: ./ChannelTypeProjection.yaml
-  currencies:
-    type: array
-    items:
-      $ref: ./CurrencyProjection.yaml
   businessUnit:
-    type: object
-    properties:
-      empty:
-        type: boolean
-    additionalProperties:
-      type: object
+    $ref: ./JSONObject.yaml

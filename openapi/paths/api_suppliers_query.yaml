@@ -26,6 +26,12 @@ get:
       schema:
         type: integer
         format: int64
+    - name: articleId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
     - name: page
       in: query
       required: true

@@ -1,12 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  language:
-    $ref: ./LanguageProjection.yaml
   branchOffices:
     type: array
     items:
@@ -19,3 +12,10 @@ properties:
     type: array
     items:
       $ref: ./ChannelProjection.yaml
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  language:
+    $ref: ./LanguageProjection.yaml

@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Usuarios
+  summary: Obtener mi usuario
+  operationId: getMyUser
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/UserSimpleProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

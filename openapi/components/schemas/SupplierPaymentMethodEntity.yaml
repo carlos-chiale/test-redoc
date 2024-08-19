@@ -10,3 +10,5 @@ properties:
     format: int32
   organization:
     $ref: ./OrganizationEntity.yaml
+  type:
+    $ref: ./AcceptedPaymentMethodTypeEntity.yaml

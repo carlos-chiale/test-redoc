@@ -2,7 +2,7 @@ get:
   tags:
     - Clientes
   summary: Obtener cliente
-  operationId: getClient
+  operationId: getClient_2
   parameters:
     - name: id
       in: path

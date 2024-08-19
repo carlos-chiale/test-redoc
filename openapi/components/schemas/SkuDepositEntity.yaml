@@ -10,3 +10,9 @@ properties:
   stock:
     type: integer
     format: int32
+  stockInOrders:
+    type: integer
+    format: int32
+  previousStock:
+    type: integer
+    format: int32

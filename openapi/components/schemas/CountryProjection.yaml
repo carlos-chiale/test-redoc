@@ -1,13 +1,13 @@
 type: object
 properties:
+  iso3:
+    type: string
+  iso2:
+    type: string
+  emoji:
+    type: string
   name:
     type: string
   id:
     type: integer
     format: int64
-  iso2:
-    type: string
-  emoji:
-    type: string
-  iso3:
-    type: string

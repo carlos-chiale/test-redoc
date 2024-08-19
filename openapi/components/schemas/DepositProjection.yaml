@@ -1,12 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  address:
-    type: string
   externalId:
     type: string
   skus:
@@ -21,10 +14,35 @@ properties:
     type: array
     items:
       $ref: ./BranchOfficeProjection.yaml
-  capacity:
-    type: integer
-    format: int32
   businessUnits:
     type: array
     items:
       $ref: ./BusinessUnitIdNameProjection.yaml
+  capacityMt3:
+    type: number
+    format: double
+  capacity:
+    type: integer
+    format: int32
+  capacityInUnits:
+    type: integer
+    format: int32
+  capacityDispatchUnits:
+    type: integer
+    format: int32
+  dispatchFrequency:
+    type: integer
+    format: int32
+  capacityReception:
+    type: integer
+    format: int32
+  capacityStorage:
+    type: integer
+    format: int32
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  address:
+    type: string

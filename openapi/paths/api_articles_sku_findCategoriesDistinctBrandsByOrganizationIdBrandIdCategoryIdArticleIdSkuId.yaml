@@ -1,0 +1,51 @@
+get:
+  tags:
+    - Artículos
+  summary: Consulta categorias por marca, categoria, articulo , sku
+  operationId: findCategoriesDistinctBrandsByOrganizationIdBrandIdArticleIdCategoryIdSkuId
+  parameters:
+    - name: brandId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: articleId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: categoryId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: skuId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

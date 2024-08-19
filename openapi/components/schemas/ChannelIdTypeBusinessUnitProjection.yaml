@@ -1,14 +1,9 @@
 type: object
 properties:
+  businessUnitIdName:
+    $ref: ./JSONObject.yaml
   id:
     type: integer
     format: int64
   type:
     $ref: ./ChannelTypeProjection.yaml
-  businessUnitIdName:
-    type: object
-    properties:
-      empty:
-        type: boolean
-    additionalProperties:
-      type: object

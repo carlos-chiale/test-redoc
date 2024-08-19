@@ -1,0 +1,11 @@
+type: object
+properties:
+  businessUnit:
+    $ref: ./BusinessUnitIdNameProjection.yaml
+  skuOrders:
+    type: array
+    items:
+      $ref: ./SkuPurchaseOrderProjection.yaml
+  id:
+    type: integer
+    format: int64

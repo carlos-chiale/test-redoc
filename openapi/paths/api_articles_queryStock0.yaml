@@ -1,0 +1,56 @@
+get:
+  tags:
+    - Artículos
+  summary: Consultar por skus con stock 0
+  operationId: getSku0
+  parameters:
+    - name: branchOfficeId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: categoriesIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: brandsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: orderBy
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          $ref: ../components/schemas/SortProperty.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/PageSkuIdNameProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

@@ -16,6 +16,9 @@ properties:
   quantityInPurchaseOrders:
     type: integer
     format: int32
+  quantityInRepositionOrders:
+    type: integer
+    format: int32
   detailedStock:
     type: object
     properties:
@@ -27,5 +30,8 @@ properties:
     type: integer
     format: int32
   stockInOrders:
+    type: integer
+    format: int32
+  stockAvailable:
     type: integer
     format: int32

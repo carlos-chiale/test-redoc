@@ -22,81 +22,81 @@ put:
         type: string
     - name: enable
       in: query
-      required: true
+      required: false
       schema:
         type: boolean
     - name: heightWithPackaging
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: lengthWithPackaging
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: widthWithPackaging
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: weightWithPackaging
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: height
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: length
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: width
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: weight
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: volumen
       in: query
-      required: true
+      required: false
       schema:
         type: number
         format: double
     - name: kit
       in: query
-      required: true
+      required: false
       schema:
         type: boolean
     - name: salesUnit
       in: query
-      required: true
+      required: false
       schema:
         type: string
     - name: storageUnit
       in: query
-      required: true
+      required: false
       schema:
         type: string
     - name: minimumStock
       in: query
-      required: true
+      required: false
       schema:
         type: integer
         format: int32
@@ -117,37 +117,23 @@ put:
       required: false
       schema:
         type: string
-    - name: colour
+    - name: colourId
       in: query
       required: false
       schema:
-        type: string
+        type: integer
+        format: int64
     - name: brand
       in: query
       required: false
       schema:
         type: string
-    - name: flavour
-      in: query
-      required: false
-      schema:
-        type: string
-    - name: presentationVolumenM3
+    - name: cost
       in: query
       required: false
       schema:
         type: number
         format: double
-    - name: presentationTypeOfContainer
-      in: query
-      required: false
-      schema:
-        type: string
-    - name: variety
-      in: query
-      required: false
-      schema:
-        type: string
   responses:
     '200':
       description: OK

@@ -14,5 +14,3 @@ properties:
     type: boolean
   roundingType:
     $ref: ./RoundingTypeEntity.yaml
-  organization:
-    $ref: ./OrganizationEntity.yaml

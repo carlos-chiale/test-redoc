@@ -50,19 +50,12 @@ properties:
     format: int32
   clothSizeOp2:
     type: string
-  colour:
-    type: string
-  brand:
-    type: string
-  flavour:
-    type: string
-  presentationVolumenM3:
+  cost:
     type: number
     format: double
-  presentationTypeOfContainer:
-    type: string
-  variety:
-    type: string
+  colourId:
+    type: integer
+    format: int64
   attributes:
     type: array
     items:

@@ -1,14 +1,21 @@
 type: object
 properties:
-  id:
+  stockInOrders:
     type: integer
-    format: int64
-  branchOffice:
-    $ref: ./BranchOfficeProjectionIdName.yaml
+    format: int32
+  analysis:
+    type: string
   sku:
     $ref: ./SkuIdNameProjection.yaml
+  branchOffice:
+    $ref: ./BranchOfficeProjectionIdName.yaml
   stock:
     type: integer
     format: int32
   unsupply:
     type: boolean
+  strategy:
+    type: string
+  id:
+    type: integer
+    format: int64

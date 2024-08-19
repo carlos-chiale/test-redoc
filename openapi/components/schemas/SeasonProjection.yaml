@@ -1,0 +1,13 @@
+type: object
+properties:
+  startingDate:
+    type: string
+    format: date
+  endingDate:
+    type: string
+    format: date
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

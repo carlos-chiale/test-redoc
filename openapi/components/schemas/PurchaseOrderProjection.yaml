@@ -1,28 +1,45 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  supplier:
-    $ref: ./SupplierIdNameProjection.yaml
+  orderStatus:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  orderOrigin:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  purchaseOrderAnalysis:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  notCompletedReason:
+    type: string
   branchOffice:
     $ref: ./BranchOfficeProjectionIdName.yaml
-  createdDate:
-    type: string
-    format: date
-  deposit:
-    $ref: ./DepositProjection.yaml
+  businessUnit:
+    $ref: ./BusinessUnitIdNameProjection.yaml
   estimatedDeliveryDate:
     type: string
     format: date
-  orderOrigin:
-    $ref: ./JSONObject.yaml
-  purchaseOrderAnalysis:
-    $ref: ./JSONObject.yaml
-  notCompletedReason:
+  supplier:
+    $ref: ./SupplierIdNameProjection.yaml
+  deposit:
+    $ref: ./DepositProjection.yaml
+  createdDate:
     type: string
-  orderStatus:
-    $ref: ./JSONObject.yaml
+    format: date
+  id:
+    type: integer
+    format: int64
   skus:
     type: array
     properties:

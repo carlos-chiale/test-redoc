@@ -1,13 +1,13 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
   branchOffice:
     $ref: ./BranchOfficeProjection.yaml
   acceptedPaymentMethods:
     type: array
     items:
       $ref: ./AcceptedPaymentMethodProjection.yaml
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

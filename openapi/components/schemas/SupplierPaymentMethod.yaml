@@ -8,3 +8,6 @@ properties:
   paymentDeadlineDays:
     type: integer
     format: int32
+  typeId:
+    type: integer
+    format: int64

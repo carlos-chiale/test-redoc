@@ -26,6 +26,8 @@ tags:
     description: Servicios referidos a las marcas
   - name: Proveedores
     description: Servicios referidos a los proveedores
+  - name: Temporadas
+    description: Servicios referidos a las temporadas
   - name: Métodos de pago de proveedores
     description: Servicios referidos a los métodos de pago de proveedores
   - name: Unidades de compra
@@ -34,8 +36,14 @@ tags:
     description: Servicios para chequear el servidor
   - name: Autorización
     description: Servicios para autenticación, registro de usuarios y organizaciones
+  - name: Movimientos de stock
+    description: Servicios referidos a los movimientos de stock
+  - name: Fechas comerciales
+    description: Servicios referidos a las fechas comerciales
   - name: Órdenes de compra
     description: Servicios referidos a las órdenes de compra
+  - name: Colours
+    description: Services related to colours
   - name: Pricings
     description: Servicios referidos a los pricings
   - name: Usuarios
@@ -46,6 +54,8 @@ tags:
     description: Servicios referidos a los tipos de pricing
   - name: Organización
     description: Servicios referidos a las organizaciones
+  - name: Notificaciones
+    description: Servicios referidos a los notificaciones
   - name: Métodos de pago aceptados
     description: Servicios referidos a los métodos de pago aceptados
   - name: Artículos
@@ -59,6 +69,10 @@ tags:
 paths:
   /api/users/{id}:
     $ref: paths/api_users_{id}.yaml
+  /api/users/password:
+    $ref: paths/api_users_password.yaml
+  /api/users/editMyUser:
+    $ref: paths/api_users_editMyUser.yaml
   /api/tickets/{id}:
     $ref: paths/api_tickets_{id}.yaml
   /api/suppliers/{supplierId}:
@@ -69,6 +83,8 @@ paths:
     $ref: paths/api_suppliers_articles_{articleSupplierId}.yaml
   /api/supplierPaymentMethod/{id}:
     $ref: paths/api_supplierPaymentMethod_{id}.yaml
+  /api/seasons/{id}:
+    $ref: paths/api_seasons_{id}.yaml
   /api/roles/{id}:
     $ref: paths/api_roles_{id}.yaml
   /api/roles/assignToUser/{idUser}:
@@ -101,6 +117,10 @@ paths:
     $ref: paths/api_pricingTypes_{id}.yaml
   /api/organizations/{id}:
     $ref: paths/api_organizations_{id}.yaml
+  /api/notifications/unread/{id}:
+    $ref: paths/api_notifications_unread_{id}.yaml
+  /api/notifications/read/{id}:
+    $ref: paths/api_notifications_read_{id}.yaml
   /api/deposits/{id}:
     $ref: paths/api_deposits_{id}.yaml
   /api/deposits/editStocks:
@@ -109,6 +129,10 @@ paths:
     $ref: paths/api_deposits_editStock_{id}.yaml
   /api/competitors/{id}:
     $ref: paths/api_competitors_{id}.yaml
+  /api/commercialDates/{id}:
+    $ref: paths/api_commercialDates_{id}.yaml
+  /api/colours/{id}:
+    $ref: paths/api_colours_{id}.yaml
   /api/clients/{id}:
     $ref: paths/api_clients_{id}.yaml
   /api/clients/segments/{id}:
@@ -163,6 +187,10 @@ paths:
     $ref: paths/api_suppliers_.yaml
   /api/supplierPaymentMethod/:
     $ref: paths/api_supplierPaymentMethod_.yaml
+  /api/stockMovements/:
+    $ref: paths/api_stockMovements_.yaml
+  /api/seasons/:
+    $ref: paths/api_seasons_.yaml
   /api/roles/{idRole}/unassign/{idUser}:
     $ref: paths/api_roles_{idRole}_unassign_{idUser}.yaml
   /api/roles/{idRole}/assign/{idUser}:
@@ -181,12 +209,14 @@ paths:
     $ref: paths/api_repositionOrders_draft_{businessUnitId}_{branchOfficeToId}.yaml
   /api/purchaseUnits/:
     $ref: paths/api_purchaseUnits_.yaml
+  /api/purchaseOrders/{businessUnitId}:
+    $ref: paths/api_purchaseOrders_{businessUnitId}.yaml
   /api/purchaseOrders/preview:
     $ref: paths/api_purchaseOrders_preview.yaml
   /api/purchaseOrders/markReceived:
     $ref: paths/api_purchaseOrders_markReceived.yaml
-  /api/purchaseOrders/:
-    $ref: paths/api_purchaseOrders_.yaml
+  /api/purchaseOrders/draft/{businessUnitId}:
+    $ref: paths/api_purchaseOrders_draft_{businessUnitId}.yaml
   /api/promotions/schedule/{id}:
     $ref: paths/api_promotions_schedule_{id}.yaml
   /api/promotions/regular:
@@ -225,6 +255,10 @@ paths:
     $ref: paths/api_competitors_processExcelTemplate.yaml
   /api/competitors/:
     $ref: paths/api_competitors_.yaml
+  /api/commercialDates/:
+    $ref: paths/api_commercialDates_.yaml
+  /api/colours/:
+    $ref: paths/api_colours_.yaml
   /api/clients/segments/clone/{id}:
     $ref: paths/api_clients_segments_clone_{id}.yaml
   /api/clients/segments/:
@@ -283,6 +317,8 @@ paths:
     $ref: paths/api_acceptedPaymentMethod_processExcelTemplate.yaml
   /api/acceptedPaymentMethod/:
     $ref: paths/api_acceptedPaymentMethod_.yaml
+  /api/users/:
+    $ref: paths/api_users_.yaml
   /api/types/ticketDocumentTypes:
     $ref: paths/api_types_ticketDocumentTypes.yaml
   /api/types/sex:
@@ -301,26 +337,34 @@ paths:
     $ref: paths/api_suppliers_excelTemplate.yaml
   /api/supplierPaymentMethod/getAll:
     $ref: paths/api_supplierPaymentMethod_getAll.yaml
+  /api/stockMovements/types:
+    $ref: paths/api_stockMovements_types.yaml
   /api/repositionOrders/statistics:
     $ref: paths/api_repositionOrders_statistics.yaml
   /api/repositionOrders/query:
     $ref: paths/api_repositionOrders_query.yaml
   /api/repositionOrders/queryStockout:
     $ref: paths/api_repositionOrders_queryStockout.yaml
+  /api/repositionOrders/queryStatistics:
+    $ref: paths/api_repositionOrders_queryStatistics.yaml
   /api/repositionOrders/queryRequests:
     $ref: paths/api_repositionOrders_queryRequests.yaml
+  /api/repositionOrders/getLeadTime:
+    $ref: paths/api_repositionOrders_getLeadTime.yaml
   /api/repositionOrders/findSkuArticleQuantityDestiny:
     $ref: paths/api_repositionOrders_findSkuArticleQuantityDestiny.yaml
   /api/repositionOrders/draft/{businessUnitId}:
     $ref: paths/api_repositionOrders_draft_{businessUnitId}.yaml
+  /api/repositionOrders/compliance:
+    $ref: paths/api_repositionOrders_compliance.yaml
   /api/purchaseUnits/query:
     $ref: paths/api_purchaseUnits_query.yaml
   /api/purchaseUnits/getAll:
     $ref: paths/api_purchaseUnits_getAll.yaml
   /api/purchaseOrders/statistics:
     $ref: paths/api_purchaseOrders_statistics.yaml
-  /api/purchaseOrders/query:
-    $ref: paths/api_purchaseOrders_query.yaml
+  /api/purchaseOrders/queryRequests:
+    $ref: paths/api_purchaseOrders_queryRequests.yaml
   /api/promotions/{id}:
     $ref: paths/api_promotions_{id}.yaml
   /api/promotions/monthByPromotion/{date}:
@@ -333,6 +377,8 @@ paths:
     $ref: paths/api_pricings_monthByPricing_{date}.yaml
   /api/pricingTypes/getAll:
     $ref: paths/api_pricingTypes_getAll.yaml
+  /api/notifications/getByUser:
+    $ref: paths/api_notifications_getByUser.yaml
   /api/health:
     $ref: paths/api_health.yaml
   /api/deposits/stocks/excelTemplate:
@@ -397,8 +443,42 @@ paths:
     $ref: paths/api_attributes_query.yaml
   /api/attributes/getAll:
     $ref: paths/api_attributes_getAll.yaml
+  /api/articles/sku/findSkusDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId:
+    $ref: >-
+      paths/api_articles_sku_findSkusDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId.yaml
+  /api/articles/sku/findSkuDistinctBrandsByBranchOfficeIdAndBrandIdAndCategoryIdAndOrganizationId:
+    $ref: >-
+      paths/api_articles_sku_findSkuDistinctBrandsByBranchOfficeIdAndBrandIdAndCategoryIdAndOrganizationId.yaml
+  /api/articles/sku/findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId:
+    $ref: >-
+      paths/api_articles_sku_findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId.yaml
+  /api/articles/sku/findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuIdWithStock:
+    $ref: >-
+      paths/api_articles_sku_findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuIdWithStock.yaml
+  /api/articles/sku/findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationId:
+    $ref: >-
+      paths/api_articles_sku_findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationId.yaml
+  /api/articles/sku/findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationIdWithStock:
+    $ref: >-
+      paths/api_articles_sku_findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationIdWithStock.yaml
+  /api/articles/sku/findByBranchOfficeId:
+    $ref: paths/api_articles_sku_findByBranchOfficeId.yaml
+  /api/articles/sku/findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSku:
+    $ref: >-
+      paths/api_articles_sku_findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSku.yaml
+  /api/articles/sku/findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSkuWithStock:
+    $ref: >-
+      paths/api_articles_sku_findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSkuWithStock.yaml
+  /api/articles/sku/findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationId:
+    $ref: >-
+      paths/api_articles_sku_findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationId.yaml
+  /api/articles/sku/findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationIdWithStock:
+    $ref: >-
+      paths/api_articles_sku_findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationIdWithStock.yaml
   /api/articles/query:
     $ref: paths/api_articles_query.yaml
+  /api/articles/queryStock0:
+    $ref: paths/api_articles_queryStock0.yaml
   /api/articles/querySkus:
     $ref: paths/api_articles_querySkus.yaml
   /api/articles/querySkuStockBranchOffice:

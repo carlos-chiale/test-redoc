@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Colours
+  summary: Create colour
+  operationId: createColour
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Colour.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/ColourProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

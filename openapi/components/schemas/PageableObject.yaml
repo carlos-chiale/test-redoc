@@ -1,17 +1,17 @@
 type: object
 properties:
-  offset:
-    type: integer
-    format: int64
-  sort:
-    $ref: ./Sort.yaml
+  unpaged:
+    type: boolean
+  paged:
+    type: boolean
   pageNumber:
     type: integer
     format: int32
   pageSize:
     type: integer
     format: int32
-  paged:
-    type: boolean
-  unpaged:
-    type: boolean
+  sort:
+    $ref: ./Sort.yaml
+  offset:
+    type: integer
+    format: int64

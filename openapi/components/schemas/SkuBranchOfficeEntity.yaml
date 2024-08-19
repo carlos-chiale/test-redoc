@@ -12,3 +12,13 @@ properties:
     format: int32
   unsupply:
     type: boolean
+  analysis:
+    type: string
+  strategy:
+    type: string
+  stockInOrders:
+    type: integer
+    format: int32
+  previousStock:
+    type: integer
+    format: int32

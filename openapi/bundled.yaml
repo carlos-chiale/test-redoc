@@ -26,6 +26,8 @@ tags:
     description: Servicios referidos a las marcas
   - name: Proveedores
     description: Servicios referidos a los proveedores
+  - name: Temporadas
+    description: Servicios referidos a las temporadas
   - name: Métodos de pago de proveedores
     description: Servicios referidos a los métodos de pago de proveedores
   - name: Unidades de compra
@@ -34,8 +36,14 @@ tags:
     description: Servicios para chequear el servidor
   - name: Autorización
     description: Servicios para autenticación, registro de usuarios y organizaciones
+  - name: Movimientos de stock
+    description: Servicios referidos a los movimientos de stock
+  - name: Fechas comerciales
+    description: Servicios referidos a las fechas comerciales
   - name: Órdenes de compra
     description: Servicios referidos a las órdenes de compra
+  - name: Colours
+    description: Services related to colours
   - name: Pricings
     description: Servicios referidos a los pricings
   - name: Usuarios
@@ -46,6 +54,8 @@ tags:
     description: Servicios referidos a los tipos de pricing
   - name: Organización
     description: Servicios referidos a las organizaciones
+  - name: Notificaciones
+    description: Servicios referidos a los notificaciones
   - name: Métodos de pago aceptados
     description: Servicios referidos a los métodos de pago aceptados
   - name: Artículos
@@ -86,6 +96,16 @@ paths:
             items:
               type: integer
               format: int64
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastname
+          in: query
+          required: false
+          schema:
+            type: string
         - name: branchOfficesIds
           in: query
           required: false
@@ -94,6 +114,58 @@ paths:
             items:
               type: integer
               format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/users/password:
+    put:
+      tags:
+        - Usuarios
+      summary: Cambiar contraseña
+      operationId: editPassword
+      parameters:
+        - name: oldPassword
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: newPassword
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/users/editMyUser:
+    put:
+      tags:
+        - Usuarios
+      summary: Editar mi usuario
+      operationId: editMyUser
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastname
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -418,6 +490,87 @@ paths:
         - Métodos de pago de proveedores
       summary: Eliminar método de pago de proveedor
       operationId: removeSupplierPaymentMethod
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/seasons/{id}:
+    get:
+      tags:
+        - Temporadas
+      summary: Obtener temporada
+      operationId: getClient
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SeasonsProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    put:
+      tags:
+        - Temporadas
+      summary: Editar temporada
+      operationId: editCommercialDate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SeasonsProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    delete:
+      tags:
+        - Temporadas
+      summary: Eliminar temporada
+      operationId: deleteSeason
       parameters:
         - name: id
           in: path
@@ -1135,6 +1288,50 @@ paths:
                 $ref: '#/components/schemas/OrganizationEntityResponse'
       security:
         - Bearer Authentication: []
+  /api/notifications/unread/{id}:
+    put:
+      tags:
+        - Notificaciones
+      summary: Marcar como leída
+      operationId: setUnread
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/notifications/read/{id}:
+    put:
+      tags:
+        - Notificaciones
+      summary: Marcar como leída
+      operationId: setRead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
   /api/deposits/{id}:
     get:
       tags:
@@ -1343,12 +1540,162 @@ paths:
                 $ref: '#/components/schemas/OkResponse'
       security:
         - Bearer Authentication: []
+  /api/commercialDates/{id}:
+    get:
+      tags:
+        - Fechas comerciales
+      summary: Obtener fecha comercial
+      operationId: getClient_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommercialDateProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    put:
+      tags:
+        - Fechas comerciales
+      summary: Editar fecha comercial
+      operationId: editCommercialDate_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommercialDateProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    delete:
+      tags:
+        - Fechas comerciales
+      summary: Eliminar fecha comercial
+      operationId: deleteCommercialDate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/colours/{id}:
+    get:
+      tags:
+        - Colours
+      summary: Obtain colour
+      operationId: getColour
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ColourProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    put:
+      tags:
+        - Colours
+      summary: Edit colour
+      operationId: editColour
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ColourProjectionResponse'
+      security:
+        - Bearer Authentication: []
+    delete:
+      tags:
+        - Colours
+      summary: Delete colour
+      operationId: deleteColour
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
   /api/clients/{id}:
     get:
       tags:
         - Clientes
       summary: Obtener cliente
-      operationId: getClient
+      operationId: getClient_2
       parameters:
         - name: id
           in: path
@@ -2380,81 +2727,81 @@ paths:
             type: string
         - name: enable
           in: query
-          required: true
+          required: false
           schema:
             type: boolean
         - name: heightWithPackaging
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: lengthWithPackaging
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: widthWithPackaging
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: weightWithPackaging
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: height
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: length
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: width
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: weight
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: volumen
           in: query
-          required: true
+          required: false
           schema:
             type: number
             format: double
         - name: kit
           in: query
-          required: true
+          required: false
           schema:
             type: boolean
         - name: salesUnit
           in: query
-          required: true
+          required: false
           schema:
             type: string
         - name: storageUnit
           in: query
-          required: true
+          required: false
           schema:
             type: string
         - name: minimumStock
           in: query
-          required: true
+          required: false
           schema:
             type: integer
             format: int32
@@ -2475,37 +2822,23 @@ paths:
           required: false
           schema:
             type: string
-        - name: colour
+        - name: colourId
           in: query
           required: false
           schema:
-            type: string
+            type: integer
+            format: int64
         - name: brand
           in: query
           required: false
           schema:
             type: string
-        - name: flavour
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: presentationVolumenM3
+        - name: cost
           in: query
           required: false
           schema:
             type: number
             format: double
-        - name: presentationTypeOfContainer
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: variety
-          in: query
-          required: false
-          schema:
-            type: string
       responses:
         '200':
           description: OK
@@ -2941,6 +3274,60 @@ paths:
                 $ref: '#/components/schemas/SupplierPaymentMethodProjectionResponse'
       security:
         - Bearer Authentication: []
+  /api/stockMovements/:
+    post:
+      tags:
+        - Movimientos de stock
+      summary: Añadir movimiento de stock
+      operationId: addStockMovement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockMovement'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StockMovementResponse'
+      security:
+        - Bearer Authentication: []
+  /api/seasons/:
+    post:
+      tags:
+        - Temporadas
+      summary: Crear tempodad
+      operationId: createSeason
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SeasonsProjectionResponse'
+      security:
+        - Bearer Authentication: []
   /api/roles/{idRole}/unassign/{idUser}:
     post:
       tags:
@@ -3194,6 +3581,36 @@ paths:
                 $ref: '#/components/schemas/PurchaseUnitResponse'
       security:
         - Bearer Authentication: []
+  /api/purchaseOrders/{businessUnitId}:
+    post:
+      tags:
+        - Órdenes de compra
+      summary: Crear orden de compra
+      operationId: createPurchaseOrders
+      parameters:
+        - name: businessUnitId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CreatePurchaseOrder'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListPurchaseOrderProjectionResponse'
+      security:
+        - Bearer Authentication: []
   /api/purchaseOrders/preview:
     post:
       tags:
@@ -3240,19 +3657,47 @@ paths:
                 $ref: '#/components/schemas/ListPurchaseOrderSkuProjectionResponse'
       security:
         - Bearer Authentication: []
-  /api/purchaseOrders/:
+  /api/purchaseOrders/draft/{businessUnitId}:
+    get:
+      tags:
+        - Órdenes de compra
+      summary: Obtener borrador de órdenes de compra para unidad de negocio
+      operationId: getDraftRepositionOrder_1
+      parameters:
+        - name: businessUnitId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DraftPurchaseOrderSavedProjectionResponse'
+      security:
+        - Bearer Authentication: []
     post:
       tags:
         - Órdenes de compra
-      summary: Crear orden de compra
-      operationId: createPurchaseOrders
+      summary: Crear borrador de órdenes de compra para unidad de negocio
+      operationId: createDraftPurchaseOrder
+      parameters:
+        - name: businessUnitId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/CreatePurchaseOrder'
+                $ref: '#/components/schemas/SkuPurchaseOrder'
         required: true
       responses:
         '200':
@@ -3260,7 +3705,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListPurchaseOrderProjectionResponse'
+                $ref: '#/components/schemas/DraftPurchaseOrderProjectionResponse'
       security:
         - Bearer Authentication: []
   /api/promotions/schedule/{id}:
@@ -3753,6 +4198,60 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/CompetitorProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/commercialDates/:
+    post:
+      tags:
+        - Fechas comerciales
+      summary: Crear fecha comercial
+      operationId: createCommercialDate
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endingDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommercialDateProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/colours/:
+    post:
+      tags:
+        - Colours
+      summary: Create colour
+      operationId: createColour
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Colour'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ColourProjectionResponse'
       security:
         - Bearer Authentication: []
   /api/clients/segments/clone/{id}:
@@ -4742,6 +5241,21 @@ paths:
                 $ref: '#/components/schemas/AcceptedPaymentMethodProjectionResponse'
       security:
         - Bearer Authentication: []
+  /api/users/:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtener mi usuario
+      operationId: getMyUser
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserSimpleProjectionResponse'
+      security:
+        - Bearer Authentication: []
   /api/types/ticketDocumentTypes:
     get:
       tags:
@@ -4851,6 +5365,12 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
         - name: page
           in: query
           required: true
@@ -4927,6 +5447,21 @@ paths:
                 $ref: '#/components/schemas/ListSupplierPaymentMethodProjectionResponse'
       security:
         - Bearer Authentication: []
+  /api/stockMovements/types:
+    get:
+      tags:
+        - Movimientos de stock
+      summary: Obtener tipo de movimientos de stock
+      operationId: getStockMovementTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
   /api/repositionOrders/statistics:
     get:
       tags:
@@ -4993,6 +5528,12 @@ paths:
               - NOT_COMPLETED
               - COMPLETED
               - CANCEL
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
         - name: articlesIds
           in: query
           required: false
@@ -5124,6 +5665,74 @@ paths:
                 $ref: '#/components/schemas/PageStockoutResponse'
       security:
         - Bearer Authentication: []
+  /api/repositionOrders/queryStatistics:
+    get:
+      tags:
+        - Órdenes de reposición
+      summary: Obtener estadísticas de órdenes de reposición
+      operationId: getQueryStatistics
+      parameters:
+        - name: filterDateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: filterDateTo
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: categoriesIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: brandsIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: branchOfficeIdFrom
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: branchOfficeIdTo
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: depositFrom
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: depositTo
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
   /api/repositionOrders/queryRequests:
     get:
       tags:
@@ -5175,6 +5784,12 @@ paths:
               - NOT_COMPLETED
               - COMPLETED
               - CANCEL
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
         - name: articlesIds
           in: query
           required: false
@@ -5233,6 +5848,62 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageRepositionOrderProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/repositionOrders/getLeadTime:
+    get:
+      tags:
+        - Órdenes de reposición
+      summary: Obtener lead time
+      operationId: getLeadTime
+      parameters:
+        - name: filterDateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: filterDateTo
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: categoriesIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: brandsIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: branchOfficeIdFrom
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: branchOfficeIdTo
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
       security:
         - Bearer Authentication: []
   /api/repositionOrders/findSkuArticleQuantityDestiny:
@@ -5302,6 +5973,74 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/DraftRepositionOrderSavedProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/repositionOrders/compliance:
+    get:
+      tags:
+        - Órdenes de reposición
+      summary: Obtener compliance
+      operationId: getCompliance
+      parameters:
+        - name: filterDateFrom
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: filterDateTo
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: categoriesIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: brandsIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: branchOfficeIdFrom
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: branchOfficeIdTo
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: depositFrom
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: depositTo
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
       security:
         - Bearer Authentication: []
   /api/purchaseUnits/query:
@@ -5374,19 +6113,49 @@ paths:
                 $ref: '#/components/schemas/OkResponse'
       security:
         - Bearer Authentication: []
-  /api/purchaseOrders/query:
+  /api/purchaseOrders/queryRequests:
     get:
       tags:
         - Órdenes de compra
-      summary: Consultar ordenes de compras paginado
-      operationId: queryPurchaseOrder
+      summary: Consultar órdenes de compra paginado
+      operationId: queryRequestsPurchaseOrder
       parameters:
+        - name: businessUnitId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
         - name: supplierId
           in: query
           required: false
           schema:
             type: integer
             format: int64
+        - name: startCreatedDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endCreatedDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: startEstimatedDeliveryDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endEstimatedDeliveryDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
         - name: status
           in: query
           required: false
@@ -5417,30 +6186,6 @@ paths:
             items:
               type: integer
               format: int64
-        - name: startCreatedDate
-          in: query
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: endCreatedDate
-          in: query
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: startEstimatedDeliveryDate
-          in: query
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: endEstimatedDeliveryDate
-          in: query
-          required: false
-          schema:
-            type: string
-            format: date
         - name: minStock
           in: query
           required: false
@@ -5465,6 +6210,13 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: orderBy
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SortProperty'
       responses:
         '200':
           description: OK
@@ -5618,6 +6370,34 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ListPricingTypeProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/notifications/getByUser:
+    get:
+      tags:
+        - Notificaciones
+      summary: Obtener notificaciones del usuario
+      operationId: getNotifications
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
       security:
         - Bearer Authentication: []
   /api/health:
@@ -6413,6 +7193,524 @@ paths:
                 $ref: '#/components/schemas/ListAttributesResponse'
       security:
         - Bearer Authentication: []
+  /api/articles/sku/findSkusDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta skus dado id de sucursal, id de marca e id de categoría e id de articulo e id de sku
+      operationId: getSkusOfSkusByBrandIdCategoryIdArticleIdSkuId
+      parameters:
+        - name: brandId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findSkuDistinctBrandsByBranchOfficeIdAndBrandIdAndCategoryIdAndOrganizationId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta skus dado id de sucursal, id de marca e id de categoría
+      operationId: getSkusOfSkusInBranchOfficeByBrandId
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta categorias por marca, categoria, articulo , sku
+      operationId: findCategoriesDistinctBrandsByOrganizationIdBrandIdArticleIdCategoryIdSkuId
+      parameters:
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findCategoriesDistinctBrandsByOrganizationIdBrandIdCategoryIdArticleIdSkuIdWithStock:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta categorías por marca, categoría, artículo, SKU
+      operationId: findCategoriesDistinctBrandsByOrganizationIdBrandIdArticleIdCategoryIdSkuIdWithStock
+      parameters:
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta categorias id de sucursal e id de marca
+      operationId: getCategoriesOfSkusInBranchOfficeByBrandId
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findCategoriesDistinctBrandsByBranchOfficeIdAndBrandIdAndOrganizationIdWithStock:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta categorias id de sucursal e id de marca
+      operationId: getCategoriesOfSkusInBranchOfficeByBrandIdWithStock
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findByBranchOfficeId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta sku por id de sucursal
+      operationId: getPageSku
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSku:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta marcas por marca, categoria, articulo , sku
+      operationId: findBrandsDistinctBrandsByOrganizationIdBrandIdArticleIdCategoryIdSkuId
+      parameters:
+        - name: brandId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findBrandsDistinctBrandsByOrganizationIdBrandCategoryArticleSkuWithStock:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta marcas por marca, categoria, articulo, sku
+      operationId: findBrandsDistinctBrandsByOrganizationIdBrandIdArticleIdCategoryIdSkuIdWithStock
+      parameters:
+        - name: brandId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: articleId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoryId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationId:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta marcas por id de sucursal
+      operationId: getBrandsFromBranchOffice
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/sku/findBrandsDistinctBrandsByBranchOfficeIdAndOrganizationIdWithStock:
+    get:
+      tags:
+        - Artículos
+      summary: Consulta marcas por id de sucursal y trae stock
+      operationId: getBrandsOfBranchOfficeWithStock
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: unsupply
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+      security:
+        - Bearer Authentication: []
   /api/articles/query:
     get:
       tags:
@@ -6474,6 +7772,63 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageArticleIdNameProjectionResponse'
+      security:
+        - Bearer Authentication: []
+  /api/articles/queryStock0:
+    get:
+      tags:
+        - Artículos
+      summary: Consultar por skus con stock 0
+      operationId: getSku0
+      parameters:
+        - name: branchOfficeId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: categoriesIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: brandsIds
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: orderBy
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SortProperty'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageSkuIdNameProjectionResponse'
       security:
         - Bearer Authentication: []
   /api/articles/querySkus:
@@ -6571,6 +7926,12 @@ paths:
         - name: businessUnitId
           in: query
           required: true
+          schema:
+            type: integer
+            format: int64
+        - name: skuId
+          in: query
+          required: false
           schema:
             type: integer
             format: int64
@@ -7014,13 +8375,13 @@ components:
     BranchOfficeProjectionIdName:
       type: object
       properties:
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
     BusinessUnitIdNameProjection:
       type: object
       properties:
@@ -7032,45 +8393,34 @@ components:
     PrivilegeProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         descriptionEs:
           type: string
         descriptionEn:
           type: string
-    RoleProjection:
-      type: object
-      properties:
         name:
           type: string
         id:
           type: integer
           format: int64
-        description:
-          type: string
+    RoleProjection:
+      type: object
+      properties:
         privileges:
           type: array
           items:
             $ref: '#/components/schemas/PrivilegeProjection'
         organizationName:
           type: string
-    UserProjection:
-      type: object
-      properties:
+        description:
+          type: string
+        name:
+          type: string
         id:
           type: integer
           format: int64
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoleProjection'
-        enabled:
-          type: boolean
-        organizationName:
-          type: string
+    UserProjection:
+      type: object
+      properties:
         branchOffices:
           type: array
           items:
@@ -7078,12 +8428,27 @@ components:
         organizationId:
           type: integer
           format: int64
-        email:
-          type: string
         businessUnits:
           type: array
           items:
             $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        lastname:
+          type: string
+        organizationName:
+          type: string
+        enabled:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleProjection'
+        email:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     UserProjectionResponse:
       type: object
       properties:
@@ -7101,7 +8466,6 @@ components:
         - acceptedPaymentMethodIds
         - accumulatePoints
         - channelId
-        - clientRut
         - code
         - consumedPoints
         - currencyId
@@ -7199,13 +8563,6 @@ components:
     AcceptedPaymentMethodProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        type:
-          $ref: '#/components/schemas/AcceptedPaymentMethodTypeProjection'
         externalId:
           type: string
         feeRangeMax:
@@ -7218,65 +8575,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BusinessUnitIdNameProjection'
-    AcceptedPaymentMethodTypeProjection:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        type:
-          type: string
-        descriptionEs:
-          type: string
-        descriptionEn:
-          type: string
-    CategoryIdAndNameProjection:
-      type: object
-      properties:
         name:
           type: string
         id:
           type: integer
           format: int64
+        type:
+          $ref: '#/components/schemas/AcceptedPaymentMethodTypeProjection'
+    AcceptedPaymentMethodTypeProjection:
+      type: object
+      properties:
+        descriptionEs:
+          type: string
+        descriptionEn:
+          type: string
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+    CategoryIdAndNameProjection:
+      type: object
+      properties:
         externalId:
           type: string
+        parents:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     ChannelIdTypeBusinessUnitProjection:
       type: object
       properties:
+        businessUnitIdName:
+          $ref: '#/components/schemas/JSONObject'
         id:
           type: integer
           format: int64
         type:
           $ref: '#/components/schemas/ChannelTypeProjection'
-        businessUnitIdName:
-          type: object
-          properties:
-            empty:
-              type: boolean
-          additionalProperties:
-            type: object
     ChannelTypeProjection:
       type: object
       properties:
+        descriptionEs:
+          type: string
+        descriptionEn:
+          type: string
         id:
           type: integer
           format: int64
         type:
           type: string
-        descriptionEs:
-          type: string
-        descriptionEn:
-          type: string
     CurrencyProjection:
       type: object
       properties:
+        shortName:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        shortName:
-          type: string
     JSONObject:
       type: object
       properties:
@@ -7287,71 +8650,61 @@ components:
     PromotionIdNameTypeDistributeProjection:
       type: object
       properties:
+        distributeLines:
+          type: boolean
         name:
           type: string
         id:
           type: integer
           format: int64
-        distributeLines:
-          type: boolean
         type:
           $ref: '#/components/schemas/JSONObject'
     SalePointBranchOfficeDataProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         acceptedPaymentMethods:
           type: array
           items:
             $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
-        branchOffice:
-          $ref: '#/components/schemas/JSONObject'
-    SkuIdNameProjection:
-      type: object
-      properties:
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
-        category:
-          $ref: '#/components/schemas/CategoryIdAndNameProjection'
+        branchOffice:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+    SkuIdNameProjection:
+      type: object
+      properties:
         articleId:
           type: integer
           format: int64
         articleName:
           type: string
-    TicketProjection:
-      type: object
-      properties:
+        externalId:
+          type: string
+        category:
+          $ref: '#/components/schemas/CategoryIdAndNameProjection'
+        name:
+          type: string
         id:
           type: integer
           format: int64
-        channel:
-          $ref: '#/components/schemas/ChannelIdTypeBusinessUnitProjection'
-        currency:
-          $ref: '#/components/schemas/CurrencyProjection'
-        date:
-          type: string
-          format: date
+    TicketProjection:
+      type: object
+      properties:
         code:
           type: integer
           format: int32
-        fidelity:
-          type: string
         acceptedPaymentMethods:
           type: array
           items:
             $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
-        clientRut:
-          type: integer
-          format: int32
         subtotal:
           type: number
           format: double
@@ -7367,6 +8720,9 @@ components:
         consumedPoints:
           type: number
           format: double
+        clientRut:
+          type: integer
+          format: int32
         skusWithUnitPrice:
           type: array
           items:
@@ -7377,6 +8733,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PromotionIdNameTypeDistributeProjection'
+        date:
+          type: string
+          format: date
+        fidelity:
+          type: string
+        currency:
+          $ref: '#/components/schemas/CurrencyProjection'
+        id:
+          type: integer
+          format: int64
+        channel:
+          $ref: '#/components/schemas/ChannelIdTypeBusinessUnitProjection'
         documentType:
           $ref: '#/components/schemas/JSONObject'
     TicketProjectionResponse:
@@ -7394,49 +8762,46 @@ components:
     TicketSkuProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        sku:
-          $ref: '#/components/schemas/SkuIdNameProjection'
         quantity:
           type: integer
           format: int32
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
         unitPrice:
           type: number
           format: double
+        id:
+          type: integer
+          format: int64
     ArticleIdNameProjection:
       type: object
       properties:
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
     ArticleSuppliersProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         principal:
           type: boolean
-        supplier:
-          $ref: '#/components/schemas/SupplierIdNameProjection'
-        article:
-          $ref: '#/components/schemas/ArticleIdNameProjection'
         commercialTerm:
           $ref: '#/components/schemas/CommercialTermProjection'
         purchaseUnit:
           $ref: '#/components/schemas/PurchaseUnitProjection'
-    CommercialTermProjection:
-      type: object
-      properties:
+        article:
+          $ref: '#/components/schemas/ArticleIdNameProjection'
+        supplier:
+          $ref: '#/components/schemas/SupplierIdNameProjection'
         id:
           type: integer
           format: int64
+    CommercialTermProjection:
+      type: object
+      properties:
         cost:
           type: number
           format: double
@@ -7450,72 +8815,60 @@ components:
           type: string
         supplierPaymentMethod:
           $ref: '#/components/schemas/SupplierPaymentMethodProjection'
-    PurchaseUnitProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
+    PurchaseUnitProjection:
+      type: object
+      properties:
         purchaseUnit:
           type: string
         conversionFactor:
           type: number
           format: double
-    SupplierContactProjection:
-      type: object
-      properties:
-        name:
-          type: string
         id:
           type: integer
           format: int64
+    SupplierContactProjection:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
         role:
           type: string
         email:
           type: string
-        phoneNumber:
+        name:
           type: string
+        id:
+          type: integer
+          format: int64
     SupplierIdNameProjection:
       type: object
       properties:
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
     SupplierPaymentMethodProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         paymentDeadlineDays:
           type: integer
           format: int32
-    SupplierProjection:
-      type: object
-      properties:
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
-        articles:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArticleSuppliersProjection'
-        website:
-          type: string
-        businessUnits:
-          type: array
-          items:
-            $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        type:
+          $ref: '#/components/schemas/AcceptedPaymentMethodTypeProjection'
+    SupplierProjection:
+      type: object
+      properties:
         catalogueLink:
           type: string
         paymentMethods:
@@ -7526,6 +8879,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupplierContactProjection'
+        externalId:
+          type: string
+        articles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleSuppliersProjection'
+        businessUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        website:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     SupplierResponse:
       type: object
       properties:
@@ -7595,6 +8965,9 @@ components:
         paymentDeadlineDays:
           type: integer
           format: int32
+        typeId:
+          type: integer
+          format: int64
     SupplierPaymentMethodProjectionResponse:
       type: object
       properties:
@@ -7607,6 +8980,32 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/SupplierPaymentMethodProjection'
+    SeasonProjection:
+      type: object
+      properties:
+        startingDate:
+          type: string
+          format: date
+        endingDate:
+          type: string
+          format: date
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
+    SeasonsProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/SeasonProjection'
     RoleResponse:
       type: object
       properties:
@@ -7673,13 +9072,6 @@ components:
     AcceptedPaymentMethodWithOutBUProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        type:
-          $ref: '#/components/schemas/AcceptedPaymentMethodTypeProjection'
         externalId:
           type: string
         feeRangeMax:
@@ -7688,32 +9080,32 @@ components:
         feeRangeMin:
           type: integer
           format: int32
-    ArticlePriceProjection:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        date:
-          type: string
-          format: date-time
-        branchOffice:
-          $ref: '#/components/schemas/BranchOfficeProjectionIdName'
-        price:
-          type: number
-          format: double
-    ArticleProjection:
-      type: object
-      properties:
         name:
           type: string
         id:
           type: integer
           format: int64
-        currency:
-          $ref: '#/components/schemas/CurrencyProjection'
-        description:
+        type:
+          $ref: '#/components/schemas/AcceptedPaymentMethodTypeProjection'
+    ArticlePriceProjection:
+      type: object
+      properties:
+        price:
+          type: number
+          format: double
+        branchOffice:
+          $ref: '#/components/schemas/BranchOfficeProjectionIdName'
+        date:
           type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+    ArticleProjection:
+      type: object
+      properties:
+        brand:
+          $ref: '#/components/schemas/BrandProjection'
         externalId:
           type: string
         cost:
@@ -7730,29 +9122,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SkuProjection'
-        brand:
-          $ref: '#/components/schemas/BrandProjection'
         suppliers:
           type: array
           items:
             $ref: '#/components/schemas/ArticleSuppliersWithoutArticleProjection'
         category:
           $ref: '#/components/schemas/CategoryProjection'
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArticlePriceProjection'
-        roundingType:
-          $ref: '#/components/schemas/RoundingTypeProjection'
-        businessUnits:
-          type: array
-          items:
-            $ref: '#/components/schemas/BusinessUnitIdNameProjection'
-        stock:
-          type: integer
-          format: int32
-        organization:
-          $ref: '#/components/schemas/OrganizationProjection'
         actualPrices:
           type: array
           items:
@@ -7761,30 +9136,54 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttributeValueArticleProjection'
-    ArticleSuppliersWithoutArticleProjection:
-      type: object
-      properties:
+        organization:
+          $ref: '#/components/schemas/OrganizationProjection'
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticlePriceProjection'
+        businessUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        stock:
+          type: integer
+          format: int32
+        roundingType:
+          $ref: '#/components/schemas/RoundingTypeProjection'
+        description:
+          type: string
+        currency:
+          $ref: '#/components/schemas/CurrencyProjection'
+        name:
+          type: string
         id:
           type: integer
           format: int64
+    ArticleSuppliersWithoutArticleProjection:
+      type: object
+      properties:
         principal:
           type: boolean
-        supplier:
-          $ref: '#/components/schemas/SupplierIdNameProjection'
         commercialTerm:
           $ref: '#/components/schemas/CommercialTermProjection'
         purchaseUnit:
           $ref: '#/components/schemas/PurchaseUnitProjection'
+        supplier:
+          $ref: '#/components/schemas/SupplierIdNameProjection'
+        id:
+          type: integer
+          format: int64
     AttributeEnumProjection:
       type: object
       properties:
+        attribute:
+          $ref: '#/components/schemas/AttributeIdNameProjection'
         value:
           type: string
         id:
           type: integer
           format: int64
-        attribute:
-          $ref: '#/components/schemas/AttributeIdNameProjection'
     AttributeEnumWithoutAttributeProjection:
       type: object
       properties:
@@ -7796,76 +9195,62 @@ components:
     AttributeIdNameProjection:
       type: object
       properties:
+        attribute:
+          type: string
         id:
           type: integer
           format: int64
-        attribute:
-          type: string
     AttributeProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        attribute:
-          type: string
         isEnum:
           type: boolean
         enums:
           type: array
           items:
             $ref: '#/components/schemas/AttributeEnumWithoutAttributeProjection'
+        organization:
+          $ref: '#/components/schemas/OrganizationProjection'
         businessUnits:
           type: array
           items:
             $ref: '#/components/schemas/BusinessUnitIdNameProjection'
-        organization:
-          $ref: '#/components/schemas/OrganizationProjection'
+        attribute:
+          type: string
+        id:
+          type: integer
+          format: int64
     AttributeValueArticleProjection:
       type: object
       properties:
+        valueEnum:
+          $ref: '#/components/schemas/AttributeEnumProjection'
+        attribute:
+          $ref: '#/components/schemas/AttributeProjection'
         value:
           type: string
         id:
           type: integer
           format: int64
-        attribute:
-          $ref: '#/components/schemas/AttributeProjection'
-        valueEnum:
-          $ref: '#/components/schemas/AttributeEnumProjection'
     AttributeValueSkuProjection:
       type: object
       properties:
+        valueEnum:
+          $ref: '#/components/schemas/AttributeEnumProjection'
+        attribute:
+          $ref: '#/components/schemas/AttributeProjection'
         value:
           type: string
         id:
           type: integer
           format: int64
-        attribute:
-          $ref: '#/components/schemas/AttributeProjection'
-        valueEnum:
-          $ref: '#/components/schemas/AttributeEnumProjection'
     BranchOfficeProjection:
       type: object
       properties:
-        name:
-          type: string
-        location:
-          type: string
-        id:
-          type: integer
-          format: int64
-        type:
-          type: string
-          enum:
-            - PHISIC
-            - ECOMMERCE
-        channel:
-          $ref: '#/components/schemas/ChannelWithBusinessUnitProjection'
-        url:
-          type: string
         externalId:
           type: string
+        belongsShoppingCenter:
+          type: boolean
         roomSpace:
           type: number
           format: double
@@ -7877,8 +9262,6 @@ components:
           format: double
         marketplace:
           type: string
-        belongsShoppingCenter:
-          type: boolean
         shoppingCenter:
           type: string
         priceRestriction:
@@ -7900,7 +9283,28 @@ components:
           items:
             $ref: '#/components/schemas/SalePointProjectionWithoutBranchOffice'
         branchOfficeType:
-          $ref: '#/components/schemas/JSONObject'
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        url:
+          type: string
+        name:
+          type: string
+        location:
+          type: string
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+            - PHISIC
+            - ECOMMERCE
+        channel:
+          $ref: '#/components/schemas/ChannelWithBusinessUnitProjection'
         businessUnit:
           type: array
           items:
@@ -7908,35 +9312,18 @@ components:
     BrandProjection:
       type: object
       properties:
+        externalId:
+          type: string
+        description:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        description:
-          type: string
-        externalId:
-          type: string
     CategoryProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        description:
-          type: string
-        externalId:
-          type: string
-        enable:
-          type: boolean
-        roundingType:
-          $ref: '#/components/schemas/RoundingTypeProjection'
-        father:
-          $ref: '#/components/schemas/CategoryIdAndNameProjection'
-        organization:
-          $ref: '#/components/schemas/OrganizationProjection'
         bussinesUnits:
           type: array
           items:
@@ -7944,45 +9331,62 @@ components:
         numberOfChilds:
           type: integer
           format: int32
+        externalId:
+          type: string
+        enable:
+          type: boolean
+        parents:
+          type: array
+          items:
+            type: string
+        organization:
+          $ref: '#/components/schemas/OrganizationProjection'
+        father:
+          $ref: '#/components/schemas/CategoryIdAndNameProjection'
+        roundingType:
+          $ref: '#/components/schemas/RoundingTypeProjection'
+        description:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     ChannelWithBusinessUnitProjection:
       type: object
       properties:
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrencyProjection'
         id:
           type: integer
           format: int64
         type:
           $ref: '#/components/schemas/ChannelTypeProjection'
-        currencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/CurrencyProjection'
         businessUnit:
-          type: object
-          properties:
-            empty:
-              type: boolean
-          additionalProperties:
-            type: object
+          $ref: '#/components/schemas/JSONObject'
+    ColourProjection:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     DepositIdNameProjection:
       type: object
       properties:
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
     DepositProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        address:
-          type: string
         externalId:
           type: string
         skus:
@@ -7997,16 +9401,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BranchOfficeProjection'
-        capacity:
-          type: integer
-          format: int32
         businessUnits:
           type: array
           items:
             $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        capacityMt3:
+          type: number
+          format: double
+        capacity:
+          type: integer
+          format: int32
+        capacityInUnits:
+          type: integer
+          format: int32
+        capacityDispatchUnits:
+          type: integer
+          format: int32
+        dispatchFrequency:
+          type: integer
+          format: int32
+        capacityReception:
+          type: integer
+          format: int32
+        capacityStorage:
+          type: integer
+          format: int32
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
+        address:
+          type: string
     OrganizationProjection:
       type: object
       properties:
+        enabled:
+          type: boolean
+        businessName:
+          type: string
+        rut:
+          type: string
         name:
           type: string
         id:
@@ -8016,23 +9451,9 @@ components:
           type: string
         address:
           type: string
-        enabled:
-          type: boolean
-        businessName:
-          type: string
-        rut:
-          type: string
     RepositionOrderProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        createdDate:
-          type: string
-          format: date
-        businessUnit:
-          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
         branchOfficeFrom:
           $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         depositFrom:
@@ -8041,11 +9462,27 @@ components:
           $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         depositTo:
           $ref: '#/components/schemas/DepositProjection'
-        estimatedDeliveryDate:
+        completedDate:
           type: string
           format: date
         orderStatus:
-          $ref: '#/components/schemas/JSONObject'
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        businessUnit:
+          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        estimatedDeliveryDate:
+          type: string
+          format: date
+        createdDate:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
         skus:
           type: array
           properties:
@@ -8068,53 +9505,62 @@ components:
     RoundingTypeProjection:
       type: object
       properties:
+        descriptionEs:
+          type: string
+        descriptionEn:
+          type: string
         id:
           type: integer
           format: int64
         type:
           type: string
-        descriptionEs:
-          type: string
-        descriptionEn:
-          type: string
     SalePointProjectionWithoutBranchOffice:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         acceptedPaymentMethods:
           type: array
           items:
             $ref: '#/components/schemas/AcceptedPaymentMethodWithOutBUProjection'
-    SkuDepositProjection:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        sku:
-          $ref: '#/components/schemas/SkuIdNameProjection'
-        deposit:
-          $ref: '#/components/schemas/DepositIdNameProjection'
-        stock:
-          type: integer
-          format: int32
-    SkuProjection:
-      type: object
-      properties:
-        length:
-          type: number
-          format: double
         name:
           type: string
         id:
           type: integer
           format: int64
+    SkuDepositProjection:
+      type: object
+      properties:
+        stockInOrders:
+          type: integer
+          format: int32
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
+        stock:
+          type: integer
+          format: int32
+        deposit:
+          $ref: '#/components/schemas/DepositIdNameProjection'
+        id:
+          type: integer
+          format: int64
+    SkuProjection:
+      type: object
+      properties:
+        articleId:
+          type: integer
+          format: int64
+        articleName:
+          type: string
+        totalStock:
+          type: integer
+          format: int32
+        weightGrs:
+          type: number
+          format: double
         externalId:
           type: string
+        cost:
+          type: number
+          format: double
         enable:
           type: boolean
         heightWithPackaging:
@@ -8159,38 +9605,29 @@ components:
         clothSizeOp2:
           type: string
         colour:
-          type: string
-        brand:
-          type: string
-        flavour:
-          type: string
-        presentationVolumenM3:
-          type: number
-          format: double
-        presentationTypeOfContainer:
-          type: string
-        variety:
-          type: string
+          $ref: '#/components/schemas/ColourProjection'
         detailedStock:
-          $ref: '#/components/schemas/JSONObject'
-        articleId:
-          type: integer
-          format: int64
-        articleName:
-          type: string
-        totalStock:
-          type: integer
-          format: int32
-        createdDate:
-          type: string
-          format: date-time
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
         attributesWithValue:
           type: array
           items:
             $ref: '#/components/schemas/AttributeValueSkuProjection'
-        weightGrs:
+        createdDate:
+          type: string
+          format: date-time
+        length:
           type: number
           format: double
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     PurchaseUnit:
       type: object
       properties:
@@ -8244,29 +9681,46 @@ components:
     PurchaseOrderProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        supplier:
-          $ref: '#/components/schemas/SupplierIdNameProjection'
+        orderStatus:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        orderOrigin:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        purchaseOrderAnalysis:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        notCompletedReason:
+          type: string
         branchOffice:
           $ref: '#/components/schemas/BranchOfficeProjectionIdName'
-        createdDate:
-          type: string
-          format: date
-        deposit:
-          $ref: '#/components/schemas/DepositProjection'
+        businessUnit:
+          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
         estimatedDeliveryDate:
           type: string
           format: date
-        orderOrigin:
-          $ref: '#/components/schemas/JSONObject'
-        purchaseOrderAnalysis:
-          $ref: '#/components/schemas/JSONObject'
-        notCompletedReason:
+        supplier:
+          $ref: '#/components/schemas/SupplierIdNameProjection'
+        deposit:
+          $ref: '#/components/schemas/DepositProjection'
+        createdDate:
           type: string
-        orderStatus:
-          $ref: '#/components/schemas/JSONObject'
+          format: date
+        id:
+          type: integer
+          format: int64
         skus:
           type: array
           properties:
@@ -8453,9 +9907,6 @@ components:
     BuyOneGetOnePromotionProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         skus:
           type: array
           items:
@@ -8464,12 +9915,12 @@ components:
           $ref: '#/components/schemas/JSONObject'
         gift:
           $ref: '#/components/schemas/SkuIdNameProjection'
-    BuyTogetherPromotionProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
+    BuyTogetherPromotionProjection:
+      type: object
+      properties:
         discountFirstList:
           type: number
           format: double
@@ -8484,6 +9935,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SkuIdNameProjection'
+        id:
+          type: integer
+          format: int64
     ClientSegmentOnlyNameProjection:
       type: object
       properties:
@@ -8495,9 +9949,6 @@ components:
     MxnPromotionProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         skus:
           type: array
           items:
@@ -8517,24 +9968,24 @@ components:
           type: boolean
         forTotalArticles:
           type: boolean
-    ProgressiveDiscountPromotionLineProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
+    ProgressiveDiscountPromotionLineProjection:
+      type: object
+      properties:
         quantity:
           type: integer
           format: int32
         discount:
           type: number
           format: double
-    ProgressiveDiscountPromotionProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
+    ProgressiveDiscountPromotionProjection:
+      type: object
+      properties:
         skus:
           type: array
           items:
@@ -8543,25 +9994,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProgressiveDiscountPromotionLineProjection'
+        id:
+          type: integer
+          format: int64
     PromotionBinProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         bin:
           type: integer
           format: int32
-    PromotionProjection:
-      type: object
-      properties:
-        name:
-          type: string
         id:
           type: integer
           format: int64
-        description:
+    PromotionProjection:
+      type: object
+      properties:
+        endDay:
           type: string
+          format: date
         categories:
           type: array
           items:
@@ -8576,14 +10026,14 @@ components:
         endDate:
           type: string
           format: date-time
-        brands:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandProjection'
         acceptedPaymentMethods:
           type: array
           items:
             $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
+        bines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionBinProjection'
         recurrence:
           $ref: '#/components/schemas/RecurrenceProjection'
         quantityApplications:
@@ -8614,10 +10064,6 @@ components:
         binRangeMin:
           type: integer
           format: int32
-        bines:
-          type: array
-          items:
-            $ref: '#/components/schemas/PromotionBinProjection'
         clientSegments:
           type: array
           items:
@@ -8635,9 +10081,17 @@ components:
         startDay:
           type: string
           format: date
-        endDay:
+        brands:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandProjection'
+        description:
           type: string
-          format: date
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
         type:
           type: object
           properties:
@@ -8664,13 +10118,6 @@ components:
     RecurrenceProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        endTime:
-          $ref: '#/components/schemas/LocalTime'
-        startTime:
-          $ref: '#/components/schemas/LocalTime'
         monday:
           type: boolean
         tuesday:
@@ -8691,9 +10138,16 @@ components:
         dayAnually:
           type: string
           format: date
+        endTime:
+          $ref: '#/components/schemas/LocalTime'
         repeatInterval:
           type: integer
           format: int32
+        startTime:
+          $ref: '#/components/schemas/LocalTime'
+        id:
+          type: integer
+          format: int64
         type:
           type: object
           properties:
@@ -8704,21 +10158,21 @@ components:
     RegularPromotionProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         skus:
           type: array
           items:
             $ref: '#/components/schemas/SkuIdNameProjection'
+        gift:
+          $ref: '#/components/schemas/SkuIdNameProjection'
         discountValue:
           type: number
           format: double
         discountPercent:
           type: number
           format: double
-        gift:
-          $ref: '#/components/schemas/SkuIdNameProjection'
+        id:
+          type: integer
+          format: int64
         type:
           type: object
           properties:
@@ -8840,13 +10294,13 @@ components:
     PromotionTypeProjection:
       type: object
       properties:
+        code:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        code:
-          type: string
     PromotionTypeProjectionResponse:
       type: object
       properties:
@@ -8911,16 +10365,23 @@ components:
     PricingProjection:
       type: object
       properties:
-        name:
+        pricingOrigin:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        pricingAnalysis:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        endDay:
           type: string
-        value:
-          type: number
-          format: double
-        id:
-          type: integer
-          format: int64
-        percent:
-          type: boolean
+          format: date
         articles:
           type: array
           items:
@@ -8944,30 +10405,23 @@ components:
         endDate:
           type: string
           format: date-time
-        pricingType:
-          $ref: '#/components/schemas/PricingTypeProjection'
+        organization:
+          $ref: '#/components/schemas/OrganizationProjection'
         startDay:
           type: string
           format: date
-        organization:
-          $ref: '#/components/schemas/OrganizationProjection'
-        pricingOrigin:
-          type: object
-          properties:
-            empty:
-              type: boolean
-          additionalProperties:
-            type: object
-        pricingAnalysis:
-          type: object
-          properties:
-            empty:
-              type: boolean
-          additionalProperties:
-            type: object
-        endDay:
+        pricingType:
+          $ref: '#/components/schemas/PricingTypeProjection'
+        percent:
+          type: boolean
+        name:
           type: string
-          format: date
+        value:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int64
         status:
           $ref: '#/components/schemas/JSONObject'
         endPrice:
@@ -8987,13 +10441,13 @@ components:
     PricingTypeProjection:
       type: object
       properties:
+        code:
+          type: string
+        description:
+          type: string
         id:
           type: integer
           format: int64
-        description:
-          type: string
-        code:
-          type: string
     PricingTypeProjectionResponse:
       type: object
       properties:
@@ -9047,6 +10501,18 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/OrganizationEntity'
+    OkResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          type: object
     Deposit:
       required:
         - capacity
@@ -9060,6 +10526,24 @@ components:
         capacity:
           type: number
           format: double
+        capacityInUnits:
+          type: integer
+          format: int32
+        capacityMt3:
+          type: number
+          format: double
+        capacityDispatchUnits:
+          type: integer
+          format: int32
+        dispatchFrequency:
+          type: integer
+          format: int32
+        capacityReception:
+          type: integer
+          format: int32
+        capacityStorage:
+          type: integer
+          format: int32
         address:
           type: string
         branchOfficesIds:
@@ -9127,11 +10611,6 @@ components:
     CompetitorProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         externalId:
           type: string
         articles:
@@ -9140,6 +10619,11 @@ components:
             $ref: '#/components/schemas/ArticleIdNameProjection'
         website:
           type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     CompetitorProjectionResponse:
       type: object
       properties:
@@ -9152,21 +10636,50 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/CompetitorProjection'
-    ClientProjection:
+    CommercialDateProjection:
       type: object
       properties:
+        startingDate:
+          type: string
+          format: date
+        endingDate:
+          type: string
+          format: date
         name:
           type: string
         id:
           type: integer
           format: int64
-        state:
-          $ref: '#/components/schemas/StateWithoutCountryProjection'
-        address:
+    CommercialDateProjectionResponse:
+      type: object
+      properties:
+        message:
           type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/CommercialDateProjection'
+    ColourProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/ColourProjection'
+    ClientProjection:
+      type: object
+      properties:
         country:
           $ref: '#/components/schemas/CountryProjection'
-        email:
+        cellphone:
           type: string
         lastname:
           type: string
@@ -9183,7 +10696,16 @@ components:
           type: string
         fidelity:
           type: string
-        cellphone:
+        email:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
+        state:
+          $ref: '#/components/schemas/StateWithoutCountryProjection'
+        address:
           type: string
         sex:
           type: object
@@ -9207,28 +10729,28 @@ components:
     CountryProjection:
       type: object
       properties:
+        iso3:
+          type: string
+        iso2:
+          type: string
+        emoji:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        iso2:
-          type: string
-        emoji:
-          type: string
-        iso3:
-          type: string
     IdTypeProjection:
       type: object
       properties:
+        descriptionEs:
+          type: string
+        descriptionEn:
+          type: string
         id:
           type: integer
           format: int64
         type:
-          type: string
-        descriptionEs:
-          type: string
-        descriptionEn:
           type: string
     StateWithoutCountryProjection:
       type: object
@@ -9241,16 +10763,6 @@ components:
     ClientSegmentProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        maxAge:
-          type: integer
-          format: int32
-        description:
-          type: string
         articles:
           type: array
           items:
@@ -9263,6 +10775,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BranchOfficeProjectionIdName'
+        maxAge:
+          type: integer
+          format: int32
         minAge:
           type: integer
           format: int32
@@ -9278,6 +10793,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BrandProjection'
+        description:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
         sex:
           type: object
           properties:
@@ -9316,8 +10838,6 @@ components:
           type: boolean
         roundingType:
           $ref: '#/components/schemas/RoundingTypeEntity'
-        organization:
-          $ref: '#/components/schemas/OrganizationEntity'
     CategoryResponse:
       type: object
       properties:
@@ -9763,6 +11283,10 @@ components:
           format: int32
         organization:
           $ref: '#/components/schemas/OrganizationEntity'
+        parents:
+          type: array
+          items:
+            type: string
         fatherId:
           type: integer
           format: int64
@@ -9799,6 +11323,16 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/ChannelEntity'
+    ColourEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        organization:
+          $ref: '#/components/schemas/OrganizationEntity'
     CommercialTermEntity:
       type: object
       properties:
@@ -9831,6 +11365,24 @@ components:
         capacity:
           type: number
           format: double
+        capacityInUnits:
+          type: integer
+          format: int32
+        capacityMt3:
+          type: number
+          format: double
+        capacityDispatchUnits:
+          type: integer
+          format: int32
+        dispatchFrequency:
+          type: integer
+          format: int32
+        capacityReception:
+          type: integer
+          format: int32
+        capacityStorage:
+          type: integer
+          format: int32
         branchOffices:
           type: array
           items:
@@ -9900,6 +11452,16 @@ components:
           format: int32
         unsupply:
           type: boolean
+        analysis:
+          type: string
+        strategy:
+          type: string
+        stockInOrders:
+          type: integer
+          format: int32
+        previousStock:
+          type: integer
+          format: int32
     SkuDepositEntity:
       type: object
       properties:
@@ -9911,6 +11473,12 @@ components:
         deposit:
           $ref: '#/components/schemas/DepositEntity'
         stock:
+          type: integer
+          format: int32
+        stockInOrders:
+          type: integer
+          format: int32
+        previousStock:
           type: integer
           format: int32
     SkuEntity:
@@ -10009,18 +11577,18 @@ components:
         clothSizeOp2:
           type: string
         colour:
-          type: string
-        brand:
-          type: string
-        flavour:
-          type: string
-        presentationVolumenM3:
+          $ref: '#/components/schemas/ColourEntity'
+        cost:
           type: number
           format: double
-        presentationTypeOfContainer:
+        articleId:
+          type: integer
+          format: int64
+        articleName:
           type: string
-        variety:
-          type: string
+        colourId:
+          type: integer
+          format: int64
         category:
           $ref: '#/components/schemas/CategoryEntity'
         detailedStock:
@@ -10030,11 +11598,6 @@ components:
               type: boolean
           additionalProperties:
             type: object
-        articleId:
-          type: integer
-          format: int64
-        articleName:
-          type: string
     SupplierContactEntity:
       type: object
       properties:
@@ -10096,6 +11659,8 @@ components:
           format: int32
         organization:
           $ref: '#/components/schemas/OrganizationEntity'
+        type:
+          $ref: '#/components/schemas/AcceptedPaymentMethodTypeEntity'
     BrandProjectionResponse:
       type: object
       properties:
@@ -10195,17 +11760,17 @@ components:
     SalePointProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         branchOffice:
           $ref: '#/components/schemas/BranchOfficeProjection'
         acceptedPaymentMethods:
           type: array
           items:
             $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     SalePointProjectionResponse:
       type: object
       properties:
@@ -10235,18 +11800,25 @@ components:
     SkuBranchOfficeProjection:
       type: object
       properties:
-        id:
+        stockInOrders:
           type: integer
-          format: int64
-        branchOffice:
-          $ref: '#/components/schemas/BranchOfficeProjectionIdName'
+          format: int32
+        analysis:
+          type: string
         sku:
           $ref: '#/components/schemas/SkuIdNameProjection'
+        branchOffice:
+          $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         stock:
           type: integer
           format: int32
         unsupply:
           type: boolean
+        strategy:
+          type: string
+        id:
+          type: integer
+          format: int64
     SkuBranchOfficeProjectionResponse:
       type: object
       properties:
@@ -10475,6 +12047,87 @@ components:
           type: string
         role:
           type: string
+    StockMovement:
+      required:
+        - date
+        - stock
+        - type
+      type: object
+      properties:
+        skuBranchOfficeId:
+          type: integer
+          format: int64
+        skuDepositId:
+          type: integer
+          format: int64
+        stock:
+          type: integer
+          format: int32
+        reason:
+          type: string
+        date:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/StockMovementType'
+    StockMovementType:
+      type: string
+      enum:
+        - ADJUSTMENT
+        - REPOSITION_ORDER
+        - PURCHASE_ORDER
+    StockMovementProjection:
+      type: object
+      properties:
+        skuBranchOffice:
+          $ref: '#/components/schemas/SkuBranchOfficeProjection'
+        reason:
+          type: string
+        purchaseOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderProjection'
+        repositionOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepositionOrderProjection'
+        stock:
+          type: integer
+          format: int32
+        stockMovementType:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        date:
+          type: string
+          format: date-time
+        skuDeposit:
+          $ref: '#/components/schemas/SkuDepositProjection'
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+            - ADJUSTMENT
+            - ADJUSTMENT_EXCEL
+            - REPOSITION_ORDER
+            - PURCHASE_ORDER
+    StockMovementResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/StockMovementProjection'
     CreateRepositionOrder:
       type: object
       properties:
@@ -10573,27 +12226,21 @@ components:
     RepositionOrderSkuProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        sku:
-          $ref: '#/components/schemas/SkuIdNameProjection'
         quantity:
           type: integer
           format: int32
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
         received:
           type: array
           items:
             $ref: '#/components/schemas/RepositionOrderSkuReceivedProjection'
-    RepositionOrderSkuReceivedProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
-        date:
-          type: string
-          format: date
+    RepositionOrderSkuReceivedProjection:
+      type: object
+      properties:
         quantity:
           type: integer
           format: int32
@@ -10601,14 +12248,15 @@ components:
           type: string
         observations:
           type: string
-    RepositionOrderIdFromToProjection:
-      type: object
-      properties:
+        date:
+          type: string
+          format: date
         id:
           type: integer
           format: int64
-        businessUnit:
-          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+    RepositionOrderIdFromToProjection:
+      type: object
+      properties:
         branchOfficeFrom:
           $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         depositFrom:
@@ -10618,20 +12266,30 @@ components:
         depositTo:
           $ref: '#/components/schemas/DepositProjection'
         orderStatus:
-          $ref: '#/components/schemas/JSONObject'
-    RepositionOrderSentProjection:
-      type: object
-      properties:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        businessUnit:
+          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
         id:
           type: integer
           format: int64
-        user:
-          $ref: '#/components/schemas/UserSimpleProjection'
+    RepositionOrderSentProjection:
+      type: object
+      properties:
         repositionOrderSku:
           $ref: '#/components/schemas/RepositionOrderSkuOrderProjection'
         estimatedDate:
           type: string
           format: date
+        user:
+          $ref: '#/components/schemas/UserSimpleProjection'
+        id:
+          type: integer
+          format: int64
     RepositionOrderSentProjectionProjectionResponse:
       type: object
       properties:
@@ -10649,41 +12307,45 @@ components:
     RepositionOrderSkuOrderProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        sku:
-          $ref: '#/components/schemas/SkuIdNameProjection'
         quantity:
           type: integer
           format: int32
         repositionOrder:
           $ref: '#/components/schemas/RepositionOrderIdFromToProjection'
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
+        id:
+          type: integer
+          format: int64
     UserSimpleProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        organizationName:
-          type: string
         organizationId:
           type: integer
           format: int64
+        lastname:
+          type: string
+        organizationName:
+          type: string
         email:
           type: string
-    DraftRepositionOrderProjection:
-      type: object
-      properties:
+        name:
+          type: string
         id:
           type: integer
           format: int64
+    DraftRepositionOrderProjection:
+      type: object
+      properties:
         businessUnit:
           $ref: '#/components/schemas/BusinessUnitIdNameProjection'
         skuOrders:
           type: array
           items:
             $ref: '#/components/schemas/SkuRepositionOrderProjection'
+        id:
+          type: integer
+          format: int64
     DraftRepositionOrderProjectionResponse:
       type: object
       properties:
@@ -10699,11 +12361,6 @@ components:
     SkuRepositionOrderProjection:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        sku:
-          $ref: '#/components/schemas/SkuIdNameProjection'
         quantity:
           type: integer
           format: int32
@@ -10715,85 +12372,11 @@ components:
           $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         depositTo:
           $ref: '#/components/schemas/DepositIdNameProjection'
-    SkuPurchaseOrder:
-      type: object
-      properties:
-        skuId:
-          type: integer
-          format: int64
-        supplierId:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int32
-        branchOfficeOrDepositId:
-          type: integer
-          format: int64
-        branchOfficeOrDeposit:
-          type: string
-          enum:
-            - BRANCH_OFFICE
-            - DEPOSIT
-    ListPurchaseOrderProjectionResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-          enum:
-            - OK
-            - ERROR
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderProjection'
-    ListPurchaseOrderSkuProjectionResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-          enum:
-            - OK
-            - ERROR
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderSkuProjection'
-    PurchaseOrderSkuProjection:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
         sku:
           $ref: '#/components/schemas/SkuIdNameProjection'
-        quantity:
-          type: integer
-          format: int32
-        received:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderSkuReceivedProjection'
-    PurchaseOrderSkuReceivedProjection:
-      type: object
-      properties:
         id:
           type: integer
           format: int64
-        date:
-          type: string
-          format: date
-        quantity:
-          type: integer
-          format: int32
-        whoReceived:
-          type: string
-        observations:
-          type: string
     CreatePurchaseOrder:
       required:
         - branchOfficeOrDeposit
@@ -10820,6 +12403,133 @@ components:
         estimatedDeliveryDate:
           type: string
           format: date
+    ListPurchaseOrderProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderProjection'
+    SkuPurchaseOrder:
+      type: object
+      properties:
+        skuId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int32
+        branchOfficeOrDepositId:
+          type: integer
+          format: int64
+        branchOfficeOrDeposit:
+          type: string
+          enum:
+            - BRANCH_OFFICE
+            - DEPOSIT
+    ListPurchaseOrderSkuProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderSkuProjection'
+    PurchaseOrderSkuProjection:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
+        received:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderSkuReceivedProjection'
+        id:
+          type: integer
+          format: int64
+    PurchaseOrderSkuReceivedProjection:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+        whoReceived:
+          type: string
+        observations:
+          type: string
+        date:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
+    DraftPurchaseOrderProjection:
+      type: object
+      properties:
+        businessUnit:
+          $ref: '#/components/schemas/BusinessUnitIdNameProjection'
+        skuOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkuPurchaseOrderProjection'
+        id:
+          type: integer
+          format: int64
+    DraftPurchaseOrderProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/DraftPurchaseOrderProjection'
+    SkuPurchaseOrderProjection:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          format: int32
+        sku:
+          $ref: '#/components/schemas/SkuIdNameProjection'
+        branchOffice:
+          $ref: '#/components/schemas/BranchOfficeProjectionIdName'
+        supplier:
+          $ref: '#/components/schemas/SupplierIdNameProjection'
+        deposit:
+          $ref: '#/components/schemas/DepositIdNameProjection'
+        id:
+          type: integer
+          format: int64
+    Colour:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
     SalePoint:
       type: object
       properties:
@@ -10833,18 +12543,6 @@ components:
           items:
             type: integer
             format: int64
-    OkResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-          enum:
-            - OK
-            - ERROR
-        data:
-          type: object
     Login:
       type: object
       properties:
@@ -10972,19 +12670,12 @@ components:
           format: int32
         clothSizeOp2:
           type: string
-        colour:
-          type: string
-        brand:
-          type: string
-        flavour:
-          type: string
-        presentationVolumenM3:
+        cost:
           type: number
           format: double
-        presentationTypeOfContainer:
-          type: string
-        variety:
-          type: string
+        colourId:
+          type: integer
+          format: int64
         attributes:
           type: array
           items:
@@ -10992,16 +12683,17 @@ components:
     SkuWithoutStockProjection:
       type: object
       properties:
-        length:
-          type: number
-          format: double
-        name:
-          type: string
-        id:
+        articleId:
           type: integer
           format: int64
+        weightGrs:
+          type: number
+          format: double
         externalId:
           type: string
+        cost:
+          type: number
+          format: double
         enable:
           type: boolean
         heightWithPackaging:
@@ -11046,31 +12738,22 @@ components:
         clothSizeOp2:
           type: string
         colour:
-          type: string
-        brand:
-          type: string
-        flavour:
-          type: string
-        presentationVolumenM3:
-          type: number
-          format: double
-        presentationTypeOfContainer:
-          type: string
-        variety:
-          type: string
-        articleId:
-          type: integer
-          format: int64
-        createdDate:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/ColourProjection'
         attributesWithValue:
           type: array
           items:
             $ref: '#/components/schemas/AttributeValueSkuProjection'
-        weightGrs:
+        createdDate:
+          type: string
+          format: date-time
+        length:
           type: number
           format: double
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     SkuWithoutStockResponse:
       type: object
       properties:
@@ -11085,6 +12768,9 @@ components:
           $ref: '#/components/schemas/SkuWithoutStockProjection'
     Article:
       required:
+        - brandId
+        - businessUnitsIds
+        - categoryId
         - name
       type: object
       properties:
@@ -11136,15 +12822,8 @@ components:
     ArticleProjectionWithoutStock:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        currency:
-          $ref: '#/components/schemas/CurrencyProjection'
-        description:
-          type: string
+        brand:
+          $ref: '#/components/schemas/BrandProjection'
         externalId:
           type: string
         cost:
@@ -11161,26 +12840,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SkuWithoutStockProjection'
-        brand:
-          $ref: '#/components/schemas/BrandProjection'
         suppliers:
           type: array
           items:
             $ref: '#/components/schemas/ArticleSuppliersProjection'
         category:
           $ref: '#/components/schemas/CategoryProjection'
+        attributesWithValue:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValueArticleProjection'
+        organization:
+          $ref: '#/components/schemas/OrganizationProjection'
         prices:
           type: array
           items:
             $ref: '#/components/schemas/ArticlePriceProjection'
         roundingType:
           $ref: '#/components/schemas/RoundingTypeProjection'
-        organization:
-          $ref: '#/components/schemas/OrganizationProjection'
-        attributesWithValue:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeValueArticleProjection'
+        description:
+          type: string
+        currency:
+          $ref: '#/components/schemas/CurrencyProjection'
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     ArticleProjectionWithoutStockResponse:
       type: object
       properties:
@@ -11193,6 +12879,18 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/ArticleProjectionWithoutStock'
+    UserSimpleProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          $ref: '#/components/schemas/UserSimpleProjection'
     SortProperty:
       type: object
       properties:
@@ -11212,18 +12910,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplierIdNamePaymentMethodProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11233,6 +12919,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplierIdNamePaymentMethodProjection'
         empty:
           type: boolean
     PageSupplierIdNameProjectionResponse:
@@ -11250,44 +12948,44 @@ components:
     PageableObject:
       type: object
       properties:
-        offset:
-          type: integer
-          format: int64
-        sort:
-          $ref: '#/components/schemas/Sort'
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
         pageNumber:
           type: integer
           format: int32
         pageSize:
           type: integer
           format: int32
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        offset:
+          type: integer
+          format: int64
     Sort:
       type: object
       properties:
-        empty:
-          type: boolean
         unsorted:
           type: boolean
         sorted:
           type: boolean
+        empty:
+          type: boolean
     SupplierIdNamePaymentMethodProjection:
       type: object
       properties:
+        paymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupplierPaymentMethodProjection'
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
-        paymentMethods:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupplierPaymentMethodProjection'
     SupplierIdNameResponse:
       type: object
       properties:
@@ -11325,18 +13023,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/RepositionOrderProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11346,6 +13032,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepositionOrderProjection'
         empty:
           type: boolean
     PageRepositionOrderProjectionResponse:
@@ -11369,18 +13067,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SkuStockout'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11390,6 +13076,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkuStockout'
         empty:
           type: boolean
     PageStockoutResponse:
@@ -11407,20 +13105,6 @@ components:
     SkuIdNameStockProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        externalId:
-          type: string
-        detailedStock:
-          type: object
-          properties:
-            empty:
-              type: boolean
-          additionalProperties:
-            type: object
         articleId:
           type: integer
           format: int64
@@ -11435,6 +13119,20 @@ components:
         quantityInRepositionOrders:
           type: integer
           format: int32
+        externalId:
+          type: string
+        detailedStock:
+          type: object
+          properties:
+            empty:
+              type: boolean
+          additionalProperties:
+            type: object
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     SkuStockout:
       type: object
       properties:
@@ -11456,18 +13154,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/RepositionOrderSkuOrderProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11477,6 +13163,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/RepositionOrderSkuOrderProjection'
         empty:
           type: boolean
     RepositionOrderSkuOrderProjectionProjectionResponse:
@@ -11553,18 +13251,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseUnitProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11574,6 +13260,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseUnitProjection'
         empty:
           type: boolean
     PagePurchaseUnitProjectionResponse:
@@ -11611,18 +13309,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11632,6 +13318,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderProjection'
         empty:
           type: boolean
     PagePurchaseOrderProjectionResponse:
@@ -11646,6 +13344,54 @@ components:
             - ERROR
         data:
           $ref: '#/components/schemas/PagePurchaseOrderProjection'
+    DraftPurchaseOrderSavedProjectionResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+          enum:
+            - OK
+            - ERROR
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkuPurchaseOrderDraft'
+    SkuPurchaseOrderDraft:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        skuId:
+          type: integer
+          format: int64
+        skuName:
+          type: string
+        articleId:
+          type: integer
+          format: int64
+        articleName:
+          type: string
+        branchOfficeOrDepositId:
+          type: integer
+          format: int64
+        branchOfficeOrDepositName:
+          type: string
+        supplierId:
+          type: integer
+          format: int64
+        supplierName:
+          type: string
+        branchOfficeOrDeposit:
+          type: string
+          enum:
+            - BRANCH_OFFICE
+            - DEPOSIT
+        quantity:
+          type: integer
+          format: int32
     ListPricingTypeProjectionResponse:
       type: object
       properties:
@@ -11681,18 +13427,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/DepositIdNameProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11702,6 +13436,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DepositIdNameProjection'
         empty:
           type: boolean
     PageDepositProjectionIdNameResponse:
@@ -11739,18 +13485,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClientSegmentOnlyNameProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11760,6 +13494,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientSegmentOnlyNameProjection'
         empty:
           type: boolean
     PageClientSegmentOnlyNameProjectionResponse:
@@ -11824,18 +13570,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClientProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11845,6 +13579,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientProjection'
         empty:
           type: boolean
     PageClientProjectionResponse:
@@ -11868,18 +13614,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/CategoryIdAndNameProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -11889,6 +13623,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryIdAndNameProjection'
         empty:
           type: boolean
     PageCategoryIdNameProjectionResponse:
@@ -11920,13 +13666,6 @@ components:
     BusinessUnitProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
-        language:
-          $ref: '#/components/schemas/LanguageProjection'
         branchOffices:
           type: array
           items:
@@ -11939,6 +13678,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChannelProjection'
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          $ref: '#/components/schemas/LanguageProjection'
     BusinessUnitProjectionResponse:
       type: object
       properties:
@@ -11954,33 +13700,28 @@ components:
     ChannelProjection:
       type: object
       properties:
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrencyProjection'
         id:
           type: integer
           format: int64
         type:
           $ref: '#/components/schemas/ChannelTypeProjection'
-        currencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/CurrencyProjection'
     LanguageProjection:
       type: object
       properties:
+        shortName:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        shortName:
-          type: string
     BusinessUnitChannelProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         branchOffices:
           type: array
           items:
@@ -11989,6 +13730,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ChannelIdTypeProjection'
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
     ChannelIdTypeProjection:
       type: object
       properties:
@@ -12020,18 +13766,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12041,6 +13775,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandProjection'
         empty:
           type: boolean
     PageBrandProjectionResponse:
@@ -12078,18 +13824,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/BranchOfficeProjectionIdName'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12099,6 +13833,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/BranchOfficeProjectionIdName'
         empty:
           type: boolean
     PageBranchOfficeProjectionIdNameResponse:
@@ -12164,18 +13910,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12185,6 +13919,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeProjection'
         empty:
           type: boolean
     PageAttributeProjectionResponse:
@@ -12222,18 +13968,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArticleIdNameProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12243,6 +13977,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleIdNameProjection'
         empty:
           type: boolean
     PageArticleIdNameProjectionResponse:
@@ -12266,18 +14012,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SkuIdNameProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12287,6 +14021,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkuIdNameProjection'
         empty:
           type: boolean
     PageSkuIdNameProjectionResponse:
@@ -12310,18 +14056,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SkuIdNameStockBranchOffice'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12331,6 +14065,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkuIdNameStockBranchOffice'
         empty:
           type: boolean
     PageSkuIdNameStockBranchOfficeResponse:
@@ -12364,6 +14110,9 @@ components:
         quantityInPurchaseOrders:
           type: integer
           format: int32
+        quantityInRepositionOrders:
+          type: integer
+          format: int32
         detailedStock:
           type: object
           properties:
@@ -12375,6 +14124,9 @@ components:
           type: integer
           format: int32
         stockInOrders:
+          type: integer
+          format: int32
+        stockAvailable:
           type: integer
           format: int32
     ArticleIdNameResponse:
@@ -12392,11 +14144,6 @@ components:
     ArticleIdNameStockProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         externalId:
           type: string
         discontinued:
@@ -12412,6 +14159,11 @@ components:
         quantityInPurchaseOrder:
           type: integer
           format: int32
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
         totalStockArticles:
           type: integer
           format: int32
@@ -12438,18 +14190,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArticleIdNameStockProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12459,6 +14199,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleIdNameStockProjection'
         empty:
           type: boolean
     PageArticleIdNameStockProjectionResponse:
@@ -12476,11 +14228,6 @@ components:
     ArticleIdNameSkuWithStocksProjection:
       type: object
       properties:
-        name:
-          type: string
-        id:
-          type: integer
-          format: int64
         externalId:
           type: string
         skus:
@@ -12494,6 +14241,11 @@ components:
         quantityInPurchaseOrder:
           type: integer
           format: int32
+        name:
+          type: string
+        id:
+          type: integer
+          format: int64
         totalStockArticles:
           type: integer
           format: int32
@@ -12506,18 +14258,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ArticleIdNameSkuWithStocksProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12527,6 +14267,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleIdNameSkuWithStocksProjection'
         empty:
           type: boolean
     PageArticleIdNameSkuWithStocksProjectionResponse:
@@ -12544,13 +14296,13 @@ components:
     ArticleIdNameSkusProjection:
       type: object
       properties:
+        externalId:
+          type: string
         name:
           type: string
         id:
           type: integer
           format: int64
-        externalId:
-          type: string
         skus:
           type: array
           properties:
@@ -12595,18 +14347,6 @@ components:
         totalElements:
           type: integer
           format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
         first:
           type: boolean
         last:
@@ -12616,6 +14356,18 @@ components:
           format: int32
         pageable:
           $ref: '#/components/schemas/PageableObject'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/AcceptedPaymentMethodProjection'
         empty:
           type: boolean
     PageAcceptedPaymentMethodProjectionResponse:
@@ -12714,6 +14466,10 @@ components:
         id:
           type: integer
           format: int64
+        name:
+          type: string
+        lastname:
+          type: string
         email:
           type: string
         organization:
@@ -12736,11 +14492,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BranchOfficeEntity'
-        organizationName:
-          type: string
         organizationId:
           type: integer
           format: int64
+        organizationName:
+          type: string
     BuyOneGetOnePromotionEntity:
       type: object
       properties:

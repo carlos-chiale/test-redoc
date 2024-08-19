@@ -93,18 +93,18 @@ properties:
   clothSizeOp2:
     type: string
   colour:
-    type: string
-  brand:
-    type: string
-  flavour:
-    type: string
-  presentationVolumenM3:
+    $ref: ./ColourEntity.yaml
+  cost:
     type: number
     format: double
-  presentationTypeOfContainer:
+  articleId:
+    type: integer
+    format: int64
+  articleName:
     type: string
-  variety:
-    type: string
+  colourId:
+    type: integer
+    format: int64
   category:
     $ref: ./CategoryEntity.yaml
   detailedStock:
@@ -114,8 +114,3 @@ properties:
         type: boolean
     additionalProperties:
       type: object
-  articleId:
-    type: integer
-    format: int64
-  articleName:
-    type: string

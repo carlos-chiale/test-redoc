@@ -1,12 +1,15 @@
 type: object
 properties:
-  id:
+  stockInOrders:
     type: integer
-    format: int64
+    format: int32
   sku:
     $ref: ./SkuIdNameProjection.yaml
-  deposit:
-    $ref: ./DepositIdNameProjection.yaml
   stock:
     type: integer
     format: int32
+  deposit:
+    $ref: ./DepositIdNameProjection.yaml
+  id:
+    type: integer
+    format: int64

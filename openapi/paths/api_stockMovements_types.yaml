@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Movimientos de stock
+  summary: Obtener tipo de movimientos de stock
+  operationId: getStockMovementTypes
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

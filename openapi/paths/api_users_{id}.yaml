@@ -26,6 +26,16 @@ put:
         items:
           type: integer
           format: int64
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+    - name: lastname
+      in: query
+      required: false
+      schema:
+        type: string
     - name: branchOfficesIds
       in: query
       required: false

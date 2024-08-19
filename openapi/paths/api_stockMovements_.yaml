@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Movimientos de stock
+  summary: Añadir movimiento de stock
+  operationId: addStockMovement
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/StockMovement.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/StockMovementResponse.yaml
+  security:
+    - Bearer Authentication: []

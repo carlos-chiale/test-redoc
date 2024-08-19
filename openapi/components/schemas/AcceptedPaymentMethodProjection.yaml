@@ -1,12 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  type:
-    $ref: ./AcceptedPaymentMethodTypeProjection.yaml
   externalId:
     type: string
   feeRangeMax:
@@ -19,3 +12,10 @@ properties:
     type: array
     items:
       $ref: ./BusinessUnitIdNameProjection.yaml
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  type:
+    $ref: ./AcceptedPaymentMethodTypeProjection.yaml

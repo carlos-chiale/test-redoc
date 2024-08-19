@@ -1,8 +1,5 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
   skus:
     type: array
     items:
@@ -11,3 +8,6 @@ properties:
     $ref: ./JSONObject.yaml
   gift:
     $ref: ./SkuIdNameProjection.yaml
+  id:
+    type: integer
+    format: int64

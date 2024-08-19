@@ -1,11 +1,11 @@
 type: object
 properties:
+  valueEnum:
+    $ref: ./AttributeEnumProjection.yaml
+  attribute:
+    $ref: ./AttributeProjection.yaml
   value:
     type: string
   id:
     type: integer
     format: int64
-  attribute:
-    $ref: ./AttributeProjection.yaml
-  valueEnum:
-    $ref: ./AttributeEnumProjection.yaml

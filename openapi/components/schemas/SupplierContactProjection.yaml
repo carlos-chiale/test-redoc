@@ -1,13 +1,13 @@
 type: object
 properties:
+  phoneNumber:
+    type: string
+  role:
+    type: string
+  email:
+    type: string
   name:
     type: string
   id:
     type: integer
     format: int64
-  role:
-    type: string
-  email:
-    type: string
-  phoneNumber:
-    type: string

@@ -1,8 +1,5 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
   skus:
     type: array
     items:
@@ -22,3 +19,6 @@ properties:
     type: boolean
   forTotalArticles:
     type: boolean
+  id:
+    type: integer
+    format: int64

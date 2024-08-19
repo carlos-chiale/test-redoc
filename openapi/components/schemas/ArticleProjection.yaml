@@ -1,14 +1,7 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  currency:
-    $ref: ./CurrencyProjection.yaml
-  description:
-    type: string
+  brand:
+    $ref: ./BrandProjection.yaml
   externalId:
     type: string
   cost:
@@ -25,29 +18,12 @@ properties:
     type: array
     items:
       $ref: ./SkuProjection.yaml
-  brand:
-    $ref: ./BrandProjection.yaml
   suppliers:
     type: array
     items:
       $ref: ./ArticleSuppliersWithoutArticleProjection.yaml
   category:
     $ref: ./CategoryProjection.yaml
-  prices:
-    type: array
-    items:
-      $ref: ./ArticlePriceProjection.yaml
-  roundingType:
-    $ref: ./RoundingTypeProjection.yaml
-  businessUnits:
-    type: array
-    items:
-      $ref: ./BusinessUnitIdNameProjection.yaml
-  stock:
-    type: integer
-    format: int32
-  organization:
-    $ref: ./OrganizationProjection.yaml
   actualPrices:
     type: array
     items:
@@ -56,3 +32,27 @@ properties:
     type: array
     items:
       $ref: ./AttributeValueArticleProjection.yaml
+  organization:
+    $ref: ./OrganizationProjection.yaml
+  prices:
+    type: array
+    items:
+      $ref: ./ArticlePriceProjection.yaml
+  businessUnits:
+    type: array
+    items:
+      $ref: ./BusinessUnitIdNameProjection.yaml
+  stock:
+    type: integer
+    format: int32
+  roundingType:
+    $ref: ./RoundingTypeProjection.yaml
+  description:
+    type: string
+  currency:
+    $ref: ./CurrencyProjection.yaml
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

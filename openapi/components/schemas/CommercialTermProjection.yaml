@@ -1,8 +1,5 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
   cost:
     type: number
     format: double
@@ -16,3 +13,6 @@ properties:
     type: string
   supplierPaymentMethod:
     $ref: ./SupplierPaymentMethodProjection.yaml
+  id:
+    type: integer
+    format: int64

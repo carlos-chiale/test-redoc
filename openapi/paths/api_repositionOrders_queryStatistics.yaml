@@ -1,0 +1,67 @@
+get:
+  tags:
+    - Órdenes de reposición
+  summary: Obtener estadísticas de órdenes de reposición
+  operationId: getQueryStatistics
+  parameters:
+    - name: filterDateFrom
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: filterDateTo
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: categoriesIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: brandsIds
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+    - name: branchOfficeIdFrom
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: branchOfficeIdTo
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: depositFrom
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+    - name: depositTo
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

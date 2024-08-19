@@ -1,9 +1,9 @@
 type: object
 properties:
+  code:
+    type: string
   name:
     type: string
   id:
     type: integer
     format: int64
-  code:
-    type: string

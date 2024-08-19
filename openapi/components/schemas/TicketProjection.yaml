@@ -1,27 +1,12 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  channel:
-    $ref: ./ChannelIdTypeBusinessUnitProjection.yaml
-  currency:
-    $ref: ./CurrencyProjection.yaml
-  date:
-    type: string
-    format: date
   code:
     type: integer
     format: int32
-  fidelity:
-    type: string
   acceptedPaymentMethods:
     type: array
     items:
       $ref: ./AcceptedPaymentMethodProjection.yaml
-  clientRut:
-    type: integer
-    format: int32
   subtotal:
     type: number
     format: double
@@ -37,6 +22,9 @@ properties:
   consumedPoints:
     type: number
     format: double
+  clientRut:
+    type: integer
+    format: int32
   skusWithUnitPrice:
     type: array
     items:
@@ -47,5 +35,17 @@ properties:
     type: array
     items:
       $ref: ./PromotionIdNameTypeDistributeProjection.yaml
+  date:
+    type: string
+    format: date
+  fidelity:
+    type: string
+  currency:
+    $ref: ./CurrencyProjection.yaml
+  id:
+    type: integer
+    format: int64
+  channel:
+    $ref: ./ChannelIdTypeBusinessUnitProjection.yaml
   documentType:
     $ref: ./JSONObject.yaml

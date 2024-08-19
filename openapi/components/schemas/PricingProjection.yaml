@@ -1,15 +1,22 @@
 type: object
 properties:
-  name:
+  pricingOrigin:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  pricingAnalysis:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  endDay:
     type: string
-  value:
-    type: number
-    format: double
-  id:
-    type: integer
-    format: int64
-  percent:
-    type: boolean
+    format: date
   articles:
     type: array
     items:
@@ -33,30 +40,23 @@ properties:
   endDate:
     type: string
     format: date-time
-  pricingType:
-    $ref: ./PricingTypeProjection.yaml
+  organization:
+    $ref: ./OrganizationProjection.yaml
   startDay:
     type: string
     format: date
-  organization:
-    $ref: ./OrganizationProjection.yaml
-  pricingOrigin:
-    type: object
-    properties:
-      empty:
-        type: boolean
-    additionalProperties:
-      type: object
-  pricingAnalysis:
-    type: object
-    properties:
-      empty:
-        type: boolean
-    additionalProperties:
-      type: object
-  endDay:
+  pricingType:
+    $ref: ./PricingTypeProjection.yaml
+  percent:
+    type: boolean
+  name:
     type: string
-    format: date
+  value:
+    type: number
+    format: double
+  id:
+    type: integer
+    format: int64
   status:
     $ref: ./JSONObject.yaml
   endPrice:

@@ -1,0 +1,51 @@
+get:
+  tags:
+    - Órdenes de compra
+  summary: Obtener borrador de órdenes de compra para unidad de negocio
+  operationId: getDraftRepositionOrder_1
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: >-
+              ../components/schemas/DraftPurchaseOrderSavedProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []
+post:
+  tags:
+    - Órdenes de compra
+  summary: Crear borrador de órdenes de compra para unidad de negocio
+  operationId: createDraftPurchaseOrder
+  parameters:
+    - name: businessUnitId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../components/schemas/SkuPurchaseOrder.yaml
+    required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/DraftPurchaseOrderProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

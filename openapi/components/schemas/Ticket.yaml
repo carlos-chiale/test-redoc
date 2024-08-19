@@ -2,7 +2,6 @@ required:
   - acceptedPaymentMethodIds
   - accumulatePoints
   - channelId
-  - clientRut
   - code
   - consumedPoints
   - currencyId

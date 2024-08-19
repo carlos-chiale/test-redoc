@@ -1,0 +1,16 @@
+type: object
+properties:
+  quantity:
+    type: integer
+    format: int32
+  sku:
+    $ref: ./SkuIdNameProjection.yaml
+  branchOffice:
+    $ref: ./BranchOfficeProjectionIdName.yaml
+  supplier:
+    $ref: ./SupplierIdNameProjection.yaml
+  deposit:
+    $ref: ./DepositIdNameProjection.yaml
+  id:
+    type: integer
+    format: int64

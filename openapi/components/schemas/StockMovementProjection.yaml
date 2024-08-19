@@ -1,0 +1,39 @@
+type: object
+properties:
+  skuBranchOffice:
+    $ref: ./SkuBranchOfficeProjection.yaml
+  reason:
+    type: string
+  purchaseOrders:
+    type: array
+    items:
+      $ref: ./PurchaseOrderProjection.yaml
+  repositionOrders:
+    type: array
+    items:
+      $ref: ./RepositionOrderProjection.yaml
+  stock:
+    type: integer
+    format: int32
+  stockMovementType:
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  date:
+    type: string
+    format: date-time
+  skuDeposit:
+    $ref: ./SkuDepositProjection.yaml
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - ADJUSTMENT
+      - ADJUSTMENT_EXCEL
+      - REPOSITION_ORDER
+      - PURCHASE_ORDER

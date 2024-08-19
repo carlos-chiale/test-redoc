@@ -1,12 +1,12 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  user:
-    $ref: ./UserSimpleProjection.yaml
   repositionOrderSku:
     $ref: ./RepositionOrderSkuOrderProjection.yaml
   estimatedDate:
     type: string
     format: date
+  user:
+    $ref: ./UserSimpleProjection.yaml
+  id:
+    type: integer
+    format: int64

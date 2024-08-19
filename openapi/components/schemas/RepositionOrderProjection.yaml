@@ -1,13 +1,5 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  createdDate:
-    type: string
-    format: date
-  businessUnit:
-    $ref: ./BusinessUnitIdNameProjection.yaml
   branchOfficeFrom:
     $ref: ./BranchOfficeProjectionIdName.yaml
   depositFrom:
@@ -16,11 +8,27 @@ properties:
     $ref: ./BranchOfficeProjectionIdName.yaml
   depositTo:
     $ref: ./DepositProjection.yaml
-  estimatedDeliveryDate:
+  completedDate:
     type: string
     format: date
   orderStatus:
-    $ref: ./JSONObject.yaml
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  businessUnit:
+    $ref: ./BusinessUnitIdNameProjection.yaml
+  estimatedDeliveryDate:
+    type: string
+    format: date
+  createdDate:
+    type: string
+    format: date
+  id:
+    type: integer
+    format: int64
   skus:
     type: array
     properties:

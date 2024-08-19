@@ -1,17 +1,8 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  state:
-    $ref: ./StateWithoutCountryProjection.yaml
-  address:
-    type: string
   country:
     $ref: ./CountryProjection.yaml
-  email:
+  cellphone:
     type: string
   lastname:
     type: string
@@ -28,7 +19,16 @@ properties:
     type: string
   fidelity:
     type: string
-  cellphone:
+  email:
+    type: string
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
+  state:
+    $ref: ./StateWithoutCountryProjection.yaml
+  address:
     type: string
   sex:
     type: object

@@ -1,15 +1,15 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  description:
-    type: string
   privileges:
     type: array
     items:
       $ref: ./PrivilegeProjection.yaml
   organizationName:
     type: string
+  description:
+    type: string
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

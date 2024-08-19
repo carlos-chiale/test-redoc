@@ -1,13 +1,13 @@
 type: object
 properties:
+  paymentMethods:
+    type: array
+    items:
+      $ref: ./SupplierPaymentMethodProjection.yaml
+  externalId:
+    type: string
   name:
     type: string
   id:
     type: integer
     format: int64
-  externalId:
-    type: string
-  paymentMethods:
-    type: array
-    items:
-      $ref: ./SupplierPaymentMethodProjection.yaml

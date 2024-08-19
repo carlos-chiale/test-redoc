@@ -1,0 +1,22 @@
+required:
+  - date
+  - stock
+  - type
+type: object
+properties:
+  skuBranchOfficeId:
+    type: integer
+    format: int64
+  skuDepositId:
+    type: integer
+    format: int64
+  stock:
+    type: integer
+    format: int32
+  reason:
+    type: string
+  date:
+    type: string
+    format: date-time
+  type:
+    $ref: ./StockMovementType.yaml

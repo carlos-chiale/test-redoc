@@ -1,23 +1,9 @@
 type: object
 properties:
-  name:
-    type: string
-  location:
-    type: string
-  id:
-    type: integer
-    format: int64
-  type:
-    type: string
-    enum:
-      - PHISIC
-      - ECOMMERCE
-  channel:
-    $ref: ./ChannelWithBusinessUnitProjection.yaml
-  url:
-    type: string
   externalId:
     type: string
+  belongsShoppingCenter:
+    type: boolean
   roomSpace:
     type: number
     format: double
@@ -29,8 +15,6 @@ properties:
     format: double
   marketplace:
     type: string
-  belongsShoppingCenter:
-    type: boolean
   shoppingCenter:
     type: string
   priceRestriction:
@@ -52,7 +36,28 @@ properties:
     items:
       $ref: ./SalePointProjectionWithoutBranchOffice.yaml
   branchOfficeType:
-    $ref: ./JSONObject.yaml
+    type: object
+    properties:
+      empty:
+        type: boolean
+    additionalProperties:
+      type: object
+  url:
+    type: string
+  name:
+    type: string
+  location:
+    type: string
+  id:
+    type: integer
+    format: int64
+  type:
+    type: string
+    enum:
+      - PHISIC
+      - ECOMMERCE
+  channel:
+    $ref: ./ChannelWithBusinessUnitProjection.yaml
   businessUnit:
     type: array
     items:

@@ -1,15 +1,5 @@
 type: object
 properties:
-  name:
-    type: string
-  id:
-    type: integer
-    format: int64
-  maxAge:
-    type: integer
-    format: int32
-  description:
-    type: string
   articles:
     type: array
     items:
@@ -22,6 +12,9 @@ properties:
     type: array
     items:
       $ref: ./BranchOfficeProjectionIdName.yaml
+  maxAge:
+    type: integer
+    format: int32
   minAge:
     type: integer
     format: int32
@@ -37,6 +30,13 @@ properties:
     type: array
     items:
       $ref: ./BrandProjection.yaml
+  description:
+    type: string
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64
   sex:
     type: object
     properties:

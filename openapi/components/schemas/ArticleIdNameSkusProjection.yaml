@@ -1,12 +1,12 @@
 type: object
 properties:
+  externalId:
+    type: string
   name:
     type: string
   id:
     type: integer
     format: int64
-  externalId:
-    type: string
   skus:
     type: array
     properties:

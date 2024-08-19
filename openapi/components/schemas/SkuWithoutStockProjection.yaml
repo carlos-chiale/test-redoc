@@ -1,15 +1,16 @@
 type: object
 properties:
-  length:
-    type: number
-    format: double
-  name:
-    type: string
-  id:
+  articleId:
     type: integer
     format: int64
+  weightGrs:
+    type: number
+    format: double
   externalId:
     type: string
+  cost:
+    type: number
+    format: double
   enable:
     type: boolean
   heightWithPackaging:
@@ -54,28 +55,19 @@ properties:
   clothSizeOp2:
     type: string
   colour:
-    type: string
-  brand:
-    type: string
-  flavour:
-    type: string
-  presentationVolumenM3:
-    type: number
-    format: double
-  presentationTypeOfContainer:
-    type: string
-  variety:
-    type: string
-  articleId:
-    type: integer
-    format: int64
-  createdDate:
-    type: string
-    format: date-time
+    $ref: ./ColourProjection.yaml
   attributesWithValue:
     type: array
     items:
       $ref: ./AttributeValueSkuProjection.yaml
-  weightGrs:
+  createdDate:
+    type: string
+    format: date-time
+  length:
     type: number
     format: double
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

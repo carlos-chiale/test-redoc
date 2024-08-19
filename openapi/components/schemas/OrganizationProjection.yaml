@@ -1,5 +1,11 @@
 type: object
 properties:
+  enabled:
+    type: boolean
+  businessName:
+    type: string
+  rut:
+    type: string
   name:
     type: string
   id:
@@ -8,10 +14,4 @@ properties:
   realName:
     type: string
   address:
-    type: string
-  enabled:
-    type: boolean
-  businessName:
-    type: string
-  rut:
     type: string

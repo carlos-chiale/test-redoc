@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Artículos
+  summary: Consulta categorias id de sucursal e id de marca
+  operationId: getCategoriesOfSkusInBranchOfficeByBrandIdWithStock
+  parameters:
+    - name: branchOfficeId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: brandId
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - name: unsupply
+      in: query
+      required: false
+      schema:
+        type: boolean
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+    - name: size
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/OkResponse.yaml
+  security:
+    - Bearer Authentication: []

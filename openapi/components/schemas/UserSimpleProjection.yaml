@@ -1,12 +1,16 @@
 type: object
 properties:
-  id:
-    type: integer
-    format: int64
-  organizationName:
-    type: string
   organizationId:
     type: integer
     format: int64
+  lastname:
+    type: string
+  organizationName:
+    type: string
   email:
     type: string
+  name:
+    type: string
+  id:
+    type: integer
+    format: int64

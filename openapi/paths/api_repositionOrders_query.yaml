@@ -48,6 +48,12 @@ get:
           - NOT_COMPLETED
           - COMPLETED
           - CANCEL
+    - name: skuId
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int64
     - name: articlesIds
       in: query
       required: false

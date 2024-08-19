@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Temporadas
+  summary: Crear tempodad
+  operationId: createSeason
+  parameters:
+    - name: name
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: startingDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+    - name: endingDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+  responses:
+    '200':
+      description: OK
+      content:
+        '*/*':
+          schema:
+            $ref: ../components/schemas/SeasonsProjectionResponse.yaml
+  security:
+    - Bearer Authentication: []

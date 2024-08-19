@@ -10,6 +10,24 @@ properties:
   capacity:
     type: number
     format: double
+  capacityInUnits:
+    type: integer
+    format: int32
+  capacityMt3:
+    type: number
+    format: double
+  capacityDispatchUnits:
+    type: integer
+    format: int32
+  dispatchFrequency:
+    type: integer
+    format: int32
+  capacityReception:
+    type: integer
+    format: int32
+  capacityStorage:
+    type: integer
+    format: int32
   branchOffices:
     type: array
     items:
